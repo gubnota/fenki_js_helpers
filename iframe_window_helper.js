@@ -139,7 +139,7 @@ IFrameWindowHelper.Button("Bing Translate","Collapse");}}}})(window,document,'sc
 // Cookie detector of current lang, you can also use window.navigator.language to detect it
     function _get_user_lang() {
       var match = document.cookie.match(new RegExp('lang=([^;]+)'));
-      if (typeof(match) == 'array' && match[1] != undefined) return match[1].toString();
+      if (match && match[1] != undefined) return match[1].toString();
       return IFrameWindowHelper.fl;
     }
 
@@ -176,7 +176,7 @@ IFrameWindowHelper.Button("Bing Translate","Collapse");}}}})(window,document,'sc
 
     function _buttonIdClick(){
       var from_lang = _get_user_lang();
-      if (from_lang == undefined||from_lang == 'zh') from_lang = 'zh-CHS';
+      if (from_lang == 'zh') from_lang = 'zh-CHS';
       (from_lang == 'ru') ? to_lang = 'zh-CHS' : to_lang = 'ru';
       Dialog(IFrameWindowHelper.closeText,'http://www.bing.com/translator/?from='+from_lang+'&to='+to_lang);
     }
