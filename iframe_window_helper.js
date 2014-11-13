@@ -69,7 +69,7 @@ if (window !== top) return;
       var dialog = document.createElement('div');
       dialog.style.cssText = dialogStyle;
       dialog.id = 'translate';
-      var dismissLink = _createDismissLink(dismissText);
+      var dismissLink = _createDismissLink(dismissText||closeText);
       dismissLink.style.cssText = dismissLink.style.cssText+';display:block;background-color:#193441;'+
       'text-align:center;padding:4px;font:normal 15px/17px \'PT Sans\',Arial';
 
@@ -89,7 +89,7 @@ if (window !== top) return;
     }
 
     function _setElementText(element, text) {
-        element.innerText = text;
+        element.innerHTML = text;
     }
 
     function ChangeHref(new_href){
@@ -99,7 +99,7 @@ if (window !== top) return;
 
     function _createDismissLink(dismissText) {
       var dismissLink = document.createElement('a');
-      _setElementText(dismissLink, dismissText);
+      _setElementText(dismissLink, dismissText||closeText);
       dismissLink.id = dismissLinkId;
       dismissLink.href = '#';
       dismissLink.style.cssText = 'color:#fff;margin:4px 10px 10px;text-decoration:none;font:normal 15px/17px \'PT Sans\',Arial';
@@ -112,14 +112,13 @@ if (window !== top) return;
     }
 
     function _showTranslateWindow(dismissText, linkHref) {
-        // _close();
       var translateChoiceElement = document.getElementById(TranslateWindowId);
       if (translateChoiceElement != null) {
         translateChoiceElement.style.display = 'block';
       }
       else{
         var consentElement = 
-            _createDialogElement(dismissText, linkHref||'/');
+            _createDialogElement(dismissText||closeText, linkHref||'/');
         var fragment = document.createDocumentFragment();
         fragment.appendChild(consentElement);
         document.body.appendChild(fragment.cloneNode(true));
@@ -131,9 +130,9 @@ if (window !== top) return;
       _showTranslateWindow(dismissText, linkHref, false);
     }
 
-    function Dialog(dismissText, linkHref, _buttonText) {
-      Button(_buttonText,dismissText,linkHref);
-      _showTranslateWindow(dismissText, linkHref, true);
+    function Dialog(_buttonText,dismissText,_url) {
+      Button(_buttonText||buttonText,dismissText||closeText,_url||url);
+      _showTranslateWindow(dismissText||closeText, _url||url);
     }
 
     function _close() {
@@ -156,12 +155,14 @@ if (window !== top) return;
         closeText = _closeText;
       if (_buttonText != undefined)
         buttonText = _buttonText;
+      if (_url != undefined)
+        {url = _url;}
+      else{
       var from_lang = _get_user_lang();
       if (from_lang == 'zh') from_lang = 'zh-CHS';
       (from_lang == tl) ? to_lang = 'zh-CHS' : to_lang = tl;
       url = 'http://www.bing.com/translator/?from='+from_lang+'&to='+to_lang;
-      if (_url != null)
-        url = _url;
+      }
       var el = document.createElement('div');
 
       var css = document.createElement('style');
@@ -192,7 +193,7 @@ if (window !== top) return;
     }
 
     function _buttonIdClick(){
-      Dialog(closeText,url);
+      Dialog(buttonText,closeText,url);
     }
 
 function TranslatorInit(callback,args){
@@ -203,7 +204,7 @@ else if (typeof $.browser == 'undefined') {$.browser={msie:null};}
 if(!e.getElementById('trans_landing_script')){var n=e.createElement(n),y=e.getElementsByTagName(i)[0];n.setAttribute('id','trans_landing_script');n.async=1;n.src=k;y.appendChild(n);if(typeof(Microsoft) == 'undefined'){n.onload = function() {
 Microsoft={Translator:{Configurations:{rttAppId:Microsoft.Translator.Configurations.rttAppId}}};e.getElementById('trans_landing_script').remove();
 var id = Microsoft.Translator.Configurations.rttAppId;
-callback.call(this,id);
+// callback.call(this,id);
 }}}})(window,document,'script','http://www.bing.com/translator/dynamic/js/LandingPage.js','head');
 }
 }
