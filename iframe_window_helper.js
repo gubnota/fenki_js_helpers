@@ -18,34 +18,37 @@
  To Load button, call it like:
 
 <script>(function(f,e,n,k,i){if(!e.getElementById('iframe_window_helper_script')){var n=e.createElement(n),y=e.getElementsByTagName(i)[0];n.setAttribute('id','iframe_window_helper_script');n.async=1;n.src=k;y.appendChild(n);if(typeof(IFrameWindowHelper) == 'undefined'){n.onload = function() {
-IFrameWindowHelper.Button("Bing Translate","Collapse");}}}})(window,document,'script','./iframe_window_helper.js','head');</script>
+TranslateWindow.Button("Bing Translate","Collapse");}}}})(window,document,'script','./translate.js','head');</script>
 
  Or:
 
 <script src="./iframe_window_helper.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function(event) {
-    cookieChoices.IFrameWindowHelper("Bing Translate","Collapse");
+    cookieChoices.TranslateWindow("Bing Translate","Collapse");
   });
 </script>
 */
 
 (function(window) {
-
-  if (!!window.IFrameWindowHelper) {
-    return window.IFrameWindowHelper;
+if (window !== top) return;
+  if (!!window.TranslateWindow) {
+    return window.TranslateWindow;
   }
 
   var document = window.document;
   // IE8 does not support textContent, so we should fallback to innerText.
-  var supportsTextContent = 'textContent' in document.body;
-
-  var IFrameWindowHelper = (function() {
-    var IFrameWindowHelperId = 'ihelperChoiceInfo';
-    var dismissLinkId = 'ihelperChoiceDismiss';
-    var buttonId = 'ihelperButtonOpen';
+  var TranslateWindow = (function() {
+    var id = Math.ceil(Math.random()*1000);//уникальный id объекта
+    var TranslateWindowId = 'translateChoiceInfo'+id;
+    var TranslateIframeId = 'translateChoiceInfoIframe'+id;
+    var dismissLinkId = 'translateChoiceDismiss'+id;
+    var buttonId = 'translateButtonOpen'+id;
     var fl = 'zh-CHS';
+    var tl = 'ru';
+    var url = 'http://www.bing.com/translator/?from='+fl+'&to='+tl;
     var closeText = 'Close';
+    var buttonText = 'Translate';
     function _createDialogElement(dismissText, linkHref) {
       var glassStyle = 'position:fixed;width:100%;height:100%;z-index:999;' +
           'top:0;left:0;opacity:0.3;filter:alpha(opacity=30);' +
@@ -54,8 +57,8 @@ IFrameWindowHelper.Button("Bing Translate","Collapse");}}}})(window,document,'sc
       var contentStyle = 'position:fixed;height:100%;width:100%;' +
           'background-color:#4a9cbc;padding:10px 0;box-shadow:4px 4px 25px #888;font: 15px/17px "PT Sans",Arial;';
 //border:5px solid #193441;
-      var ihelperWindowElement = document.createElement('div');
-      ihelperWindowElement.id = IFrameWindowHelperId;
+      var translateWindowElement = document.createElement('div');
+      translateWindowElement.id = TranslateWindowId;
 
       var glassPanel = document.createElement('div');
       glassPanel.style.cssText = glassStyle;
@@ -65,7 +68,7 @@ IFrameWindowHelper.Button("Bing Translate","Collapse");}}}})(window,document,'sc
 
       var dialog = document.createElement('div');
       dialog.style.cssText = dialogStyle;
-      dialog.id = 'ihelper';
+      dialog.id = 'translate';
       var dismissLink = _createDismissLink(dismissText);
       dismissLink.style.cssText = dismissLink.style.cssText+';display:block;background-color:#193441;'+
       'text-align:center;padding:4px;font:normal 15px/17px \'PT Sans\',Arial';
@@ -73,23 +76,25 @@ IFrameWindowHelper.Button("Bing Translate","Collapse");}}}})(window,document,'sc
       content.appendChild(dismissLink);
       var iframe = document.createElement('iframe');
       iframe.src = linkHref;
+      iframe.id = TranslateIframeId;
       iframe.width = "100%";
       iframe.height = "100%";
       content.appendChild(iframe);
 
       dialog.appendChild(content);
 
-      ihelperWindowElement.appendChild(glassPanel);
-      ihelperWindowElement.appendChild(dialog);
-      return ihelperWindowElement;
+      translateWindowElement.appendChild(glassPanel);
+      translateWindowElement.appendChild(dialog);
+      return translateWindowElement;
     }
 
     function _setElementText(element, text) {
-      if (supportsTextContent) {
-        element.textContent = text;
-      } else {
         element.innerText = text;
-      }
+    }
+
+    function ChangeHref(new_href){
+      var iframe = document.getElementById(TranslateIframeId);
+      iframe.src = new_href;
     }
 
     function _createDismissLink(dismissText) {
@@ -106,15 +111,15 @@ IFrameWindowHelper.Button("Bing Translate","Collapse");}}}})(window,document,'sc
       return false;
     }
 
-    function _showIFrameWindowHelper(dismissText, linkHref) {
+    function _showTranslateWindow(dismissText, linkHref) {
         // _close();
-      var ihelperChoiceElement = document.getElementById(IFrameWindowHelperId);
-      if (ihelperChoiceElement != null) {
-        ihelperChoiceElement.style.display = 'block';
+      var translateChoiceElement = document.getElementById(TranslateWindowId);
+      if (translateChoiceElement != null) {
+        translateChoiceElement.style.display = 'block';
       }
       else{
         var consentElement = 
-            _createDialogElement(dismissText, linkHref);
+            _createDialogElement(dismissText, linkHref||'/');
         var fragment = document.createDocumentFragment();
         fragment.appendChild(consentElement);
         document.body.appendChild(fragment.cloneNode(true));
@@ -123,28 +128,40 @@ IFrameWindowHelper.Button("Bing Translate","Collapse");}}}})(window,document,'sc
     }
 
     function Bar(dismissText, linkHref) {
-      _showIFrameWindowHelper(dismissText, linkHref, false);
+      _showTranslateWindow(dismissText, linkHref, false);
     }
 
-    function Dialog(dismissText, linkHref) {
-      _showIFrameWindowHelper(dismissText, linkHref, true);
+    function Dialog(dismissText, linkHref, _buttonText) {
+      Button(_buttonText,dismissText,linkHref);
+      _showTranslateWindow(dismissText, linkHref, true);
     }
 
     function _close() {
-      var ihelperChoiceElement = document.getElementById(IFrameWindowHelperId);
-      if (ihelperChoiceElement != null) {
-        ihelperChoiceElement.style.display = 'none';
+      var translateChoiceElement = document.getElementById(TranslateWindowId);
+      if (translateChoiceElement != null) {
+        translateChoiceElement.style.display = 'none';
       }
     }
-// Cookie detector of current lang, you can also use window.navigator.language to detect it
+
     function _get_user_lang() {
       var match = document.cookie.match(new RegExp('lang=([^;]+)'));
       if (match && match[1] != undefined) return match[1].toString();
-      return IFrameWindowHelper.fl;
+      return fl;
     }
 
-    function Button(buttonText,closeText){
-      IFrameWindowHelper.closeText = closeText;
+    function Button(_buttonText,_closeText,_url){
+      var ButtonElem = document.getElementById(buttonId);
+      if (ButtonElem != null) {return;} // уже существует кнопка
+      if (_closeText != undefined)
+        closeText = _closeText;
+      if (_buttonText != undefined)
+        buttonText = _buttonText;
+      var from_lang = _get_user_lang();
+      if (from_lang == 'zh') from_lang = 'zh-CHS';
+      (from_lang == tl) ? to_lang = 'zh-CHS' : to_lang = tl;
+      url = 'http://www.bing.com/translator/?from='+from_lang+'&to='+to_lang;
+      if (_url != null)
+        url = _url;
       var el = document.createElement('div');
 
       var css = document.createElement('style');
@@ -175,19 +192,28 @@ IFrameWindowHelper.Button("Bing Translate","Collapse");}}}})(window,document,'sc
     }
 
     function _buttonIdClick(){
-      var from_lang = _get_user_lang();
-      if (from_lang == 'zh') from_lang = 'zh-CHS';
-      (from_lang == 'ru') ? to_lang = 'zh-CHS' : to_lang = 'ru';
-      Dialog(IFrameWindowHelper.closeText,'http://www.bing.com/translator/?from='+from_lang+'&to='+to_lang);
+      Dialog(closeText,url);
     }
 
+function TranslatorInit(callback,args){
+if (typeof Microsoft == 'undefined'){
+if (typeof $ == 'undefined') {$={browser:{msie:null}};}
+else if (typeof $.browser == 'undefined') {$.browser={msie:null};}
+(function(f,e,n,k,i){
+if(!e.getElementById('trans_landing_script')){var n=e.createElement(n),y=e.getElementsByTagName(i)[0];n.setAttribute('id','trans_landing_script');n.async=1;n.src=k;y.appendChild(n);if(typeof(Microsoft) == 'undefined'){n.onload = function() {
+Microsoft={Translator:{Configurations:{rttAppId:Microsoft.Translator.Configurations.rttAppId}}};e.getElementById('trans_landing_script').remove();
+var id = Microsoft.Translator.Configurations.rttAppId;
+callback.call(this,id);
+}}}})(window,document,'script','http://www.bing.com/translator/dynamic/js/LandingPage.js','head');
+}
+}
 
-    var exports = {};
-    exports.Button = Button;
-    exports.Dialog = Dialog;
+    var exports={Button:Button,Dialog:Dialog,TranslatorInit:TranslatorInit,ChangeHref:ChangeHref};
+    exports.id = {'id':id,'TranslateWindowId':TranslateWindowId,'dismissLinkId':dismissLinkId,
+'buttonId':buttonId,'fl':fl,'tl':tl,'url':url,'closeText':closeText,'buttonText':buttonText};
     return exports;
   })();
 
-  window.IFrameWindowHelper = IFrameWindowHelper;
-  return IFrameWindowHelper;
+  window.TranslateWindow = TranslateWindow;
+  return TranslateWindow;
 })(this);
