@@ -23,13 +23,19 @@ var w = window;
     }
     // [4] дополнительная проверка наряду с @include
     if (/:\/\/submit\.shutterstock\.com\/home.mhtml/.test(w.location.href)) {
-var t = setInterval(function() {
         //Ниже идёт непосредственно код скрипта
         var el = document.getElementById('shutter_places_window_helper_script');
-        if (typeof el == 'undefined') {
-(function(f,e,n,k,i){if(!e.getElementById('shutter_places_window_helper_script')){var n=e.createElement(n),y=e.getElementsByTagName(i)[0];n.setAttribute('id','shutter_places_window_helper_script');n.async=1;n.src=k;y.appendChild(n);if(typeof(IFrameWindowHelper) == 'undefined'){n.onload = function() {
-TranslateWindow.Button("Bing Translate","Collapse");}}}})(window,document,'script','http://gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/window_helper.js','head');
+        if (el === null) {
+(function(f,e,n,k,i){
+var n=e.createElement(n),y=e.getElementsByTagName(i)[0];
+n.setAttribute('id','shutter_places_window_helper_script');
+n.async=1;n.src=k;y.appendChild(n);
+
+if(typeof(IFrameWindowHelper) == 'undefined'){
+    n.onload = function() {ShutterPlacesWindowHelperScript.Button("Show","Collapse");}
+}
+
+})(window,document,'script','http://gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/window_helper.js','head');
         }//undefined el
-}, 1000);
     }//url pattern
 })(window);
