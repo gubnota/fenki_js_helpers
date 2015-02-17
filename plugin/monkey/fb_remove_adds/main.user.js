@@ -8,6 +8,7 @@
 // @copyright  2012+, Vladislav Muravyev
 // @grant          none
 // @icon http://gubnota.github.io/fenki_js_helpers/plugin/monkey/fb_remove_adds/fb.ico
+// @run-at document-end
 // ==/UserScript==
 (function(){
 var t = setInterval(function(){
