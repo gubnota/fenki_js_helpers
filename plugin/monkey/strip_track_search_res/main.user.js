@@ -17,11 +17,11 @@
 //
 // ==UserScript==
 // @name           Yandex/Google Tracking-B-Gone
-// @namespace      http://gubnota.github.io/fenki_js_helpers/plugin/monkey/strip_track_search_res/
+// @namespace      http://git.gubnota.ru/fenki_js_helpers/plugin/monkey/strip_track_search_res/
 // @version        0.1.1
 // @copyright  2012+, Vladislav Muravyev
 // @description    Strips click tracking from Yandex/Google search results
-// @downloadURL http://gubnota.github.io/fenki_js_helpers/plugin/monkey/strip_track_search_res/main.user.js
+// @downloadURL http://git.gubnota.ru/fenki_js_helpers/plugin/monkey/strip_track_search_res/main.user.js
 // @include        http://*.google.*
 // @include        https://*.google.*
 // @include        http://91.213.30.151
