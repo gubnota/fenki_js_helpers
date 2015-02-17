@@ -5,7 +5,7 @@
 // @description  Replace Google CDN with my jquery libs
 // @copyright  2014+, Vladislav Muravyev
 // @grant          none
-// @icon http://gubnota.github.io/fenki_js_helpers/plugin/monkey/js_lib_booster/fb.ico
+// @icon http://gubnota.github.io/fenki_js_helpers/plugin/monkey/js_lib_booster/g.png
 // @run-at document-start
 // ==/UserScript==
 // itteration across DOM elems http://callmenick.com/2014/03/10/javascript-foreach-loop/
