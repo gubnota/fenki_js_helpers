@@ -17,9 +17,9 @@
         $('#main_content').headsmart()
       })
     </script>
+    <style>a{-ms-word-break: break-all;word-break: break-all;}</style>
     <title>Fenki js helpers by gubnota</title>
   </head>
-
   <body>
     <a id="forkme_banner" href="https://github.com/gubnota/fenki_js_helpers">View on GitHub</a>
     <div class="shell">
@@ -64,14 +64,6 @@ TranslateWindow.Button("Bing Translate","Collapse");}}}})
 </code></pre>
 <h3><a id="monkey_userscripts" class="anchor" href="#monkey_userscripts" aria-hidden="true"><span class="octicon octicon-link"></span></a>monkey_userscripts</h3>
 <p><a href="http://gubnota.github.io/fenki_js_helpers/plugin/monkey">http://gubnota.github.io/fenki_js_helpers/plugin/monkey</a></p>
-<p>Userscripts for use in conjunction as browser extention with one of the following browser extension or by hand:
-<ul>
-  <li><a href="https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/" target="_blank">GreaseMonkey extension for Mozilla Firefox</a></li>
-  <li><a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo" target="_blank">TamperMonkey extension for Google Chrome</a></li>
-  <li><a href="https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/" target="_blank">GreaseMonkey extension for Mozilla Firefox</a></li>
-  <li><a href="http://ss-o.net/safari/extension/NinjaKit.safariextz" target="_blank">NinjaKit extension for Apple Safari</a> from <a href="https://github.com/os0x/NinjaKit" target="_blank">here</a></li>
-  <li><a href="https://addons.opera.com/en/extensions/details/violent-monkey/" target="_blank">ViolentMonkey Opera extension for both Presto and WebKit engines</a></li>
-</ul>
 
 <a href="http://gubnota.github.io/fenki_js_helpers/plugin/monkey">Browse userscripts here</a>.</p>
 
@@ -92,5 +84,11 @@ TranslateWindow.Button("Bing Translate","Collapse");}}}})
     </div>
 
     
+<script src="http://gubnota.github.io/fenki_js_helpers/lib/bing_trans/iframe_window_helper.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function(event) {
+    TranslateWindow.Button("Bing Translate","Collapse");
+  });
+</script>
   </body>
 </html>

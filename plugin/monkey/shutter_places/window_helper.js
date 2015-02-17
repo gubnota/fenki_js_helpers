@@ -17,12 +17,12 @@
 
  To Load button, call it like:
 
-<script>(function(f,e,n,k,i){if(!e.getElementById('iframe_window_helper_script')){var n=e.createElement(n),y=e.getElementsByTagName(i)[0];n.setAttribute('id','iframe_window_helper_script');n.async=1;n.src=k;y.appendChild(n);if(typeof(IFrameWindowHelper) == 'undefined'){n.onload = function() {
-TranslateWindow.Button("Bing Translate","Collapse");}}}})(window,document,'script','http://gubnota.github.io/fenki_js_helpers/lib/bing_trans/iframe_window_helper.js','head');</script>
+<script>(function(f,e,n,k,i){if(!e.getElementById('shutter_places_window_helper_script')){var n=e.createElement(n),y=e.getElementsByTagName(i)[0];n.setAttribute('id','shutter_places_window_helper_script');n.async=1;n.src=k;y.appendChild(n);if(typeof(IFrameWindowHelper) == 'undefined'){n.onload = function() {
+TranslateWindow.Button("Bing Translate","Collapse");}}}})(window,document,'script','http://gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/window_helper.js','head');</script>
 
  Or:
 
-<script src="http://gubnota.github.io/fenki_js_helpers/lib/bing_trans/iframe_window_helper.js"></script>
+<script src="http://gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/window_helper.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function(event) {
     TranslateWindow.Button("Bing Translate","Collapse");
