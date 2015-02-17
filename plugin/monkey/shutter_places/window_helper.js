@@ -18,29 +18,29 @@
  To Load button, call it like:
 
 <script>(function(f,e,n,k,i){if(!e.getElementById('shutter_places_window_helper_script')){var n=e.createElement(n),y=e.getElementsByTagName(i)[0];n.setAttribute('id','shutter_places_window_helper_script');n.async=1;n.src=k;y.appendChild(n);if(typeof(IFrameWindowHelper) == 'undefined'){n.onload = function() {
-TranslateWindow.Button("Bing Translate","Collapse");}}}})(window,document,'script','http://gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/window_helper.js','head');</script>
+ShutterPlacesWindowHelperScript.Button("Bing Translate","Collapse");}}}})(window,document,'script','http://gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/window_helper.js','head');</script>
 
  Or:
 
 <script src="http://gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/window_helper.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function(event) {
-    TranslateWindow.Button("Bing Translate","Collapse");
+    ShutterPlacesWindowHelperScript.Button("Bing Translate","Collapse");
   });
 </script>
 */
 
 (function(window) {
 if (window !== top) return;
-  if (!!window.TranslateWindow) {
-    return window.TranslateWindow;
+  if (!!window.ShutterPlacesWindowHelperScript) {
+    return window.ShutterPlacesWindowHelperScript;
   }
 
   var document = window.document;
   // IE8 does not support textContent, so we should fallback to innerText.
-  var TranslateWindow = (function() {
+  var ShutterPlacesWindowHelperScript = (function() {
     var id = Math.ceil(Math.random()*1000);//уникальный id объекта
-    var TranslateWindowId = 'translateChoiceInfo'+id;
+    var ShutterPlacesWindowHelperScriptId = 'translateChoiceInfo'+id;
     var TranslateIframeId = 'translateChoiceInfoIframe'+id;
     var dismissLinkId = 'translateChoiceDismiss'+id;
     var buttonId = 'translateButtonOpen'+id;
@@ -57,8 +57,8 @@ if (window !== top) return;
       var contentStyle = 'position:fixed;height:100%;width:100%;' +
           'background-color:#4a9cbc;padding:10px 0;box-shadow:4px 4px 25px #888;font: 15px/17px "PT Sans",Arial;';
 //border:5px solid #193441;
-      var translateWindowElement = document.createElement('div');
-      translateWindowElement.id = TranslateWindowId;
+      var ShutterPlacesWindowHelperScriptElement = document.createElement('div');
+      ShutterPlacesWindowHelperScriptElement.id = ShutterPlacesWindowHelperScriptId;
 
       var glassPanel = document.createElement('div');
       glassPanel.style.cssText = glassStyle;
@@ -83,9 +83,9 @@ if (window !== top) return;
 
       dialog.appendChild(content);
 
-      translateWindowElement.appendChild(glassPanel);
-      translateWindowElement.appendChild(dialog);
-      return translateWindowElement;
+      ShutterPlacesWindowHelperScriptElement.appendChild(glassPanel);
+      ShutterPlacesWindowHelperScriptElement.appendChild(dialog);
+      return ShutterPlacesWindowHelperScriptElement;
     }
 
     function _setElementText(element, text) {
@@ -111,8 +111,8 @@ if (window !== top) return;
       return false;
     }
 
-    function _showTranslateWindow(dismissText, linkHref) {
-      var translateChoiceElement = document.getElementById(TranslateWindowId);
+    function _showShutterPlacesWindowHelperScript(dismissText, linkHref) {
+      var translateChoiceElement = document.getElementById(ShutterPlacesWindowHelperScriptId);
       if (translateChoiceElement != null) {
         translateChoiceElement.style.display = 'block';
       }
@@ -127,16 +127,16 @@ if (window !== top) return;
     }
 
     function Bar(dismissText, linkHref) {
-      _showTranslateWindow(dismissText, linkHref, false);
+      _showShutterPlacesWindowHelperScript(dismissText, linkHref, false);
     }
 
     function Dialog(_buttonText,dismissText,_url) {
       Button(_buttonText||buttonText,dismissText||closeText,_url||url);
-      _showTranslateWindow(dismissText||closeText, _url||url);
+      _showShutterPlacesWindowHelperScript(dismissText||closeText, _url||url);
     }
 
     function _close() {
-      var translateChoiceElement = document.getElementById(TranslateWindowId);
+      var translateChoiceElement = document.getElementById(ShutterPlacesWindowHelperScriptId);
       if (translateChoiceElement != null) {
         translateChoiceElement.style.display = 'none';
       }
@@ -210,11 +210,11 @@ var id = Microsoft.Translator.Configurations.rttAppId;
 }
 
     var exports={Button:Button,Dialog:Dialog,TranslatorInit:TranslatorInit,ChangeHref:ChangeHref};
-    exports.id = {'id':id,'TranslateWindowId':TranslateWindowId,'dismissLinkId':dismissLinkId,
+    exports.id = {'id':id,'ShutterPlacesWindowHelperScriptId':ShutterPlacesWindowHelperScriptId,'dismissLinkId':dismissLinkId,
 'buttonId':buttonId,'fl':fl,'tl':tl,'url':url,'closeText':closeText,'buttonText':buttonText};
     return exports;
   })();
 
-  window.TranslateWindow = TranslateWindow;
-  return TranslateWindow;
+  window.ShutterPlacesWindowHelperScript = ShutterPlacesWindowHelperScript;
+  return ShutterPlacesWindowHelperScript;
 })(this);
