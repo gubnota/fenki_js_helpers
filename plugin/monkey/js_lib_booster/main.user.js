@@ -15,18 +15,18 @@ window.onload = function(){
 [].slice.call(document.getElementsByTagName('script')).forEach(function(el,i){
     if (el.src && el.src.match('/yandex.st/') ){
         if ( el.src.match('/1.')) {
-        var replace = 'gubnota.github.io/fenki_js_helpers/plugin/monkey/js_lib_booster/jquery-1.11.2.min.js';
+        var replace = '//gubnota.github.io/fenki_js_helpers/plugin/monkey/js_lib_booster/jquery-1.11.2.min.js';
         }
         else if ( el.src.match('/2.')){
-        var replace = 'gubnota.github.io/fenki_js_helpers/plugin/monkey/js_lib_booster/jquery-2.1.3.min.js';
+        var replace = '//gubnota.github.io/fenki_js_helpers/plugin/monkey/js_lib_booster/jquery-2.1.3.min.js';
         }
     }
     if (el.src && el.src.match('/ajax.googleapis.com/') ){
     if (el.src && ( el.src.match('/jquery.') || el.src.match('/jquery/') || el.src.match('/jquery-'))){
     if ( el.src.match('/1.') || el.src.match('1.6') || el.src.match('1.7') || el.src.match('1.8') || el.src.match('1.9') || el.src.match('1.10'))
-    var replace = 'gubnota.github.io/fenki_js_helpers/plugin/monkey/js_lib_booster/jquery-1.11.2.min.js';
+    var replace = '//gubnota.github.io/fenki_js_helpers/plugin/monkey/js_lib_booster/jquery-1.11.2.min.js';
     else if ( el.src.match('/2.') || el.src.match('2.0') || el.src.match('2.1') || el.src.match('2.2') || el.src.match('2.3'))
-    var replace = 'gubnota.github.io/fenki_js_helpers/plugin/monkey/js_lib_booster/jquery-2.1.3.min.js';
+    var replace = '//gubnota.github.io/fenki_js_helpers/plugin/monkey/js_lib_booster/jquery-2.1.3.min.js';
     }
     var new_el = document.createElement('script'); new_el.src = replace;
     var parent = el.parentElement;
