@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       Facebook remove adds
-// @namespace  http://gubnota.ru/
+// @namespace  http://gubnota.github.io/fenki_js_helpers/
 // @version    0.0.2
 // @downloadURL http://gubnota.github.io/fenki_js_helpers/plugin/monkey/fb_remove_adds.js
 // @description removes adds block in Facebook
