@@ -40,13 +40,13 @@ if (window !== top) return;
   // IE8 does not support textContent, so we should fallback to innerText.
   var ShutterPlacesWindowHelperScript = (function() {
     var id = Math.ceil(Math.random()*1000);//уникальный id объекта
-    var ShutterPlacesWindowHelperScriptId = 'translateChoiceInfo'+id;
-    var TranslateIframeId = 'translateChoiceInfoIframe'+id;
-    var dismissLinkId = 'translateChoiceDismiss'+id;
+    var ShutterPlacesWindowHelperScriptId = 'ShutterPlacesInfo'+id;
+    var TranslateIframeId = 'ShutterPlacesInfoIframe'+id;
+    var dismissLinkId = 'ShutterPlacesDismiss'+id;
     var buttonId = 'translateButtonOpen'+id;
     var fl = 'zh-CHS';
     var tl = 'ru';
-    var url = 'http://www.bing.com/translator/?from='+fl+'&to='+tl;
+    var url = "http://localhost/shutter_load/shutter_places/response.json";
     var closeText = 'Collapse';
     var buttonText = 'Places';
     function _createDialogElement(dismissText, linkHref) {
@@ -74,15 +74,11 @@ if (window !== top) return;
       'text-align:center;padding:4px;font:normal 15px/17px \'PT Sans\',Arial';
 
       content.appendChild(dismissLink);
-      var iframe = document.createElement('iframe');
-      iframe.src = linkHref;
-      iframe.id = TranslateIframeId;
-      iframe.width = "100%";
-      iframe.height = "100%";
-      content.appendChild(iframe);
-
+      var frame = document.createElement('div');
+      frame.id = TranslateIframeId;
+      frame.style.cssText = "width:100%;height:100%;background:#fff;";
+      content.appendChild(frame);
       dialog.appendChild(content);
-
       ShutterPlacesWindowHelperScriptElement.appendChild(glassPanel);
       ShutterPlacesWindowHelperScriptElement.appendChild(dialog);
       return ShutterPlacesWindowHelperScriptElement;
@@ -90,11 +86,6 @@ if (window !== top) return;
 
     function _setElementText(element, text) {
         element.innerHTML = text;
-    }
-
-    function ChangeHref(new_href){
-      var iframe = document.getElementById(TranslateIframeId);
-      iframe.src = new_href;
     }
 
     function _createDismissLink(dismissText) {
@@ -112,9 +103,9 @@ if (window !== top) return;
     }
 
     function _showShutterPlacesWindowHelperScript(dismissText, linkHref) {
-      var translateChoiceElement = document.getElementById(ShutterPlacesWindowHelperScriptId);
-      if (translateChoiceElement != null) {
-        translateChoiceElement.style.display = 'block';
+      var ShutterPlacesElement = document.getElementById(ShutterPlacesWindowHelperScriptId);
+      if (ShutterPlacesElement != null) {
+        ShutterPlacesElement.style.display = 'block';
       }
       else{
         var consentElement = 
@@ -133,12 +124,14 @@ if (window !== top) return;
     function Dialog(_buttonText,dismissText,_url) {
       Button(_buttonText||buttonText,dismissText||closeText,_url||url);
       _showShutterPlacesWindowHelperScript(dismissText||closeText, _url||url);
+    ShutterPlacesWindowHelperScript.draw_table();
+    ShutterPlacesWindowHelperScript.load_info(_url);
     }
 
     function _close() {
-      var translateChoiceElement = document.getElementById(ShutterPlacesWindowHelperScriptId);
-      if (translateChoiceElement != null) {
-        translateChoiceElement.style.display = 'none';
+      var ShutterPlacesElement = document.getElementById(ShutterPlacesWindowHelperScriptId);
+      if (ShutterPlacesElement != null) {
+        ShutterPlacesElement.style.display = 'none';
       }
     }
 
@@ -161,7 +154,7 @@ if (window !== top) return;
       var from_lang = _get_user_lang();
       if (from_lang == 'zh') from_lang = 'zh-CHS';
       (from_lang == tl) ? to_lang = 'zh-CHS' : to_lang = tl;
-      url = 'http://www.bing.com/translator/?from='+from_lang+'&to='+to_lang;
+      // url = 'http://www.bing.com/translator/?from='+from_lang+'&to='+to_lang;
       }
       var el = document.createElement('div');
 
@@ -203,8 +196,8 @@ if (window !== top) return;
 
 function TranslatorInit(callback,args){
 if (typeof Microsoft == 'undefined'){
-if (typeof $ == 'undefined') {$={browser:{msie:null}};}
-else if (typeof $.browser == 'undefined') {$.browser={msie:null};}
+if (typeof jQuery == 'undefined') {jQuery={browser:{msie:null}};}
+else if (typeof jQuery.browser == 'undefined') {jQuery.browser={msie:null};}
 (function(f,e,n,k,i){
 if(!e.getElementById('trans_landing_script')){var n=e.createElement(n),y=e.getElementsByTagName(i)[0];n.setAttribute('id','trans_landing_script');n.async=1;n.src=k;y.appendChild(n);if(typeof(Microsoft) == 'undefined'){n.onload = function() {
 Microsoft={Translator:{Configurations:{rttAppId:Microsoft.Translator.Configurations.rttAppId}}};e.getElementById('trans_landing_script').remove();
@@ -214,9 +207,48 @@ var id = Microsoft.Translator.Configurations.rttAppId;
 }
 }
 
-    var exports={Button:Button,Dialog:Dialog,TranslatorInit:TranslatorInit,ChangeHref:ChangeHref};
+function _resolve_place(placespot,lon,lat,zoom){
+//latitude,longtitude
+if (zoom == undefined) zoom = '11';
+jQuery.get( "http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lon, function( data ) {
+if (typeof data.results[0] !== 'undefined' && typeof data.results[0].formatted_address !== 'undefined') {var o = data.results[0].formatted_address;}
+else if (typeof lat !== 'undefined') {var o = '@'+lat+","+lon;}
+if (typeof o !== 'undefined') placespot.html(o); // add place name to place cell
+}, "json");
+}
+function _draw_table(url){
+  var t = jQuery('#'+TranslateIframeId+' table');
+  if (typeof t.html() == 'undefined'){
+      // console.log(document.getElementById(TranslateIframeId));
+      // var t = document.createElement('table');
+      // t.width = "100%";
+      // t.height = "100%";
+      // document.getElementById(TranslateIframeId).appendChild(t);
+      jQuery('#'+TranslateIframeId).html('<table></table>');
+      jQuery('#'+TranslateIframeId+' table').append('<tr>'+'<th>thumb</th>'+'<th>Stock</th>'+'<th>Google</th>'+'<th>time</th>'+'<th>place</th>'+'</tr>');
+      }
+  // jQuery('#'+TranslateIframeId+' table').append('<tr>'+'<td>thumb</td>'+'<td>Stock</td>'+'<td>Google</td>'+'<td>time</td>'+'<td>place</td>'+'</tr>');
+}
+
+function _load_info(url){
+jQuery.post( url, { component_path: "download_map/recent_downloads.mh" }, function( data ) {
+  for (var i = data.length - 1; i >= 0; i--) {//data.length - 1
+if (jQuery('#tableId .'+data[i].media_id) == null) continue; // если уже есть такой id
+var place = 'null';
+if (data[i].longitude !== null && data[i].latitude !== null) {
+  place = 'https://www.google.com/maps/@'+data[i].latitude+','+data[i].longitude+',11z';
+  place = '<a href="'+place+'" target="_blank">Google map place</a>';
+}
+jQuery('#'+TranslateIframeId+' table').append('<tr class="'+data[i].media_id+'" style="max-height:40px;">'+'<td class="thumb" style="width:105px"><a href="http://www.shutterstock.com/pic-'+data[i].media_id+'/index.html" target="_blank"><img src="'+data[i].thumb_url+'"></a></td>'+'<td class="similar"><a href="http://www.shutterstock.com/similar-'+data[i].media_id+'/index.html" target="_blank">Stock</a></td>'+'<td class="google"><a href="https://www.google.com/searchbyimage?&amp;image_url='+window.encodeURI('http://thumb101.shutterstock.com/display_pic_with_logo/0/0/'+data[i].media_id+'.jpg')+'" target="_blank">Google</a></td>'+'<td class="time" style="max-width:80px">'+(new Date(data[i].time*1000))+'</td>'+'<td class="place" style="max-width:100px;">'+place+'</td>'+'</tr>');
+resolve_place(jQuery('#tableId .'+data[i].media_id+' .place a'), data[i].longitude, data[i].latitude, 11);
+  };
+}, "json");
+}
+
+
+    var exports={Button:Button,Dialog:Dialog,TranslatorInit:TranslatorInit,'draw_table':_draw_table,'load_info':_load_info};
     exports.id = {'id':id,'ShutterPlacesWindowHelperScriptId':ShutterPlacesWindowHelperScriptId,'dismissLinkId':dismissLinkId,
-'buttonId':buttonId,'fl':fl,'tl':tl,'url':url,'closeText':closeText,'buttonText':buttonText};
+'buttonId':buttonId,'fl':fl,'tl':tl,'url':url,'closeText':closeText,'buttonText':buttonText,};
     return exports;
   })();
 
