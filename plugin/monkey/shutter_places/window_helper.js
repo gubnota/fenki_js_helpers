@@ -50,10 +50,10 @@ if (window !== top) return;
     var closeText = 'Collapse';
     var buttonText = 'Places';
     function _createDialogElement(dismissText, linkHref) {
-      var glassStyle = 'position:fixed;width:100%;height:100%;z-index:999;' +
+      var glassStyle = 'position:fixed;width:100%;height:100%;z-index:9999;' +
           'top:0;left:0;opacity:0.3;filter:alpha(opacity=30);' +
           'background-color:#000;';
-      var dialogStyle = 'z-index:1000;position:fixed;top:0';
+      var dialogStyle = 'z-index:10000;position:fixed;top:0';
       var contentStyle = 'position:fixed;height:100%;width:100%;' +
           'background-color:#5B7F98;padding:10px 0;box-shadow:4px 4px 25px #888;font: 15px/17px "PT Sans",Arial;z-index: 10000;';
 //border:5px solid #193441;
@@ -183,7 +183,7 @@ if (window !== top) return;
       'border: 0',
       'top: 0',
       'top: 0',
-      'z-index: 999',
+      'z-index: 9999',
       'line-height: 19px',
       'height:19px',
       'overflow:hidden',
