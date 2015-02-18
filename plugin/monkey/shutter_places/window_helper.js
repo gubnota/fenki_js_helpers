@@ -47,15 +47,15 @@ if (window !== top) return;
     var fl = 'zh-CHS';
     var tl = 'ru';
     var url = 'http://www.bing.com/translator/?from='+fl+'&to='+tl;
-    var closeText = 'Close';
-    var buttonText = 'Translate';
+    var closeText = 'Collapse';
+    var buttonText = 'Places';
     function _createDialogElement(dismissText, linkHref) {
       var glassStyle = 'position:fixed;width:100%;height:100%;z-index:999;' +
           'top:0;left:0;opacity:0.3;filter:alpha(opacity=30);' +
           'background-color:#000;';
       var dialogStyle = 'z-index:1000;position:fixed;top:0';
       var contentStyle = 'position:fixed;height:100%;width:100%;' +
-          'background-color:#4a9cbc;padding:10px 0;box-shadow:4px 4px 25px #888;font: 15px/17px "PT Sans",Arial;';
+          'background-color:#5B7F98;padding:10px 0;box-shadow:4px 4px 25px #888;font: 15px/17px "PT Sans",Arial;z-index: 10000;';
 //border:5px solid #193441;
       var ShutterPlacesWindowHelperScriptElement = document.createElement('div');
       ShutterPlacesWindowHelperScriptElement.id = ShutterPlacesWindowHelperScriptId;
@@ -102,7 +102,7 @@ if (window !== top) return;
       _setElementText(dismissLink, dismissText||closeText);
       dismissLink.id = dismissLinkId;
       dismissLink.href = '#';
-      dismissLink.style.cssText = 'color:#fff;margin:4px 10px 10px;text-decoration:none;font:normal 15px/17px \'PT Sans\',Arial';
+      dismissLink.style.cssText = 'color:#fff;margin:4px 10px 10px;text-decoration:none;font:normal 15px/17px \'PT Sans\',Arial;';
       return dismissLink;
     }
 
@@ -168,26 +168,31 @@ if (window !== top) return;
       var css = document.createElement('style');
 
       css.innerHTML = ['#'+buttonId+'{position:fixed',
-      'padding:0 10px',
-      'background:#0191D6',
+      'padding:11px 16px 10px',
+      'background:#5B7F98',
+      'background: linear-gradient(to bottom, #949494 0, #6B6B6B 100%) repeat scroll 0 0 transparent;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=\'#949494\', endColorstr=\'#6B6B6B\', GradientType=0)',
       'color:#fff',
-      'font-size:15px',
-      'text-shadow:1px 1px 0 #333, -1px 1px 0 #333, 1px -1px 0 #333, -1px -1px 0 #333',
+      'font-size:14px',
+      'font-weight:bold',
       'margin:0',
-      'left:40%',
-      'right:40%',
+      'border-radius:0 0 5px 0',
+      'left:0',
       'max-width:200px',
       'cursor: pointer',
+      'font-family:Franklin Gothic Medium, FranklinGothicMedium, Arial, sans-serif',
       'border: 0',
       'top: 0',
-      'line-height: 34px',
-      'max-height:36px',
+      'top: 0',
+      'z-index: 999',
+      'line-height: 19px',
+      'height:19px',
       'overflow:hidden',
       'text-align:center'].join(';')+'}';
-      css.innerHTML += '#'+buttonId+':hover{'+['background:#4a9cbc'].join(';')+'}'; 
+      css.innerHTML += '#'+buttonId+':hover{'+['background:#525252'].join(';')+'}'; 
       el.id = buttonId;
       el.innerHTML = buttonText;
       document.body.appendChild(css.cloneNode(true));
+      // document.body.insertBefore(el.cloneNode(true),document.body.firstChild);
       document.body.appendChild(el.cloneNode(true));
       document.getElementById(buttonId).onclick = _buttonIdClick;
     }
