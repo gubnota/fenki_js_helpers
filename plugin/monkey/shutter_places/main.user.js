@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       Shutterstock show places table
 // @namespace  http://git.gubnota.ru/fenki_js_helpers/plugin/monkey/
-// @version    0.1.2
+// @version    0.1.3
 // @downloadURL http://git.gubnota.ru/fenki_js_helpers/plugin/monkey/shutter_places/main.user.js
 // @description removes adds block in Vk.com
 // @include        http://submit.shutterstock.com/home.mhtml*
@@ -32,7 +32,7 @@ n.setAttribute('id','shutter_places_window_helper_script');
 n.async=1;n.src=k;y.appendChild(n);
 
 if(typeof(IFrameWindowHelper) == 'undefined'){
-    n.onload = function() {ShutterPlacesWindowHelperScript.Button("Places","Collapse",'http://submit.shutterstock.com/show_component.mhtml');}
+    n.onload = function() {ShutterPlacesWindowHelperScript.Button();}
 }
 
 })(window,document,'script','http://git.gubnota.ru/fenki_js_helpers/plugin/monkey/shutter_places/window_helper.js','head');
