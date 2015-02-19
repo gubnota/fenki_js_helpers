@@ -263,6 +263,7 @@ jQuery('#'+TranslateIframeId+' table').append('<tr class="'+data[i].media_id+'" 
 ShutterPlacesWindowHelperScript.resolve_place(jQuery('#'+TranslateIframeId+' table .'+data[i].media_id+' .place a'), data[i].longitude, data[i].latitude, 11);
   };
 },
+cache:false,
 dataType:"json"});
 }
 
