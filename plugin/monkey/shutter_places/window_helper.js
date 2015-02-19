@@ -70,6 +70,7 @@ if (window !== top) return;
       css.innerHTML = '#'+TranslateIframeId+' table{'+
 ['background:#fff6e9',
 'width:100%',
+'margin-bottom:50px',
 'border-bottom:2px solid #bdb6ad',
 'margin:10px 0'].join(';')+'}'+'#'+TranslateIframeId+' th{'+['display:table-cell',
 'padding:2px 10px',
