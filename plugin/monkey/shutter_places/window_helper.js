@@ -81,7 +81,7 @@ if (window !== top) return;
 'font-weight:bold',
 'font-size:.85em',
 ].join(';')+'}'+'#'+TranslateIframeId+' td{'+
-['border-width:0 2px 0 0','border:solid #ece4d8'].join(';')
+['border-width:0 2px 0 0','border:solid #ece4d8','vertical-align:middle','text-align:center'].join(';')
 +'}'+'#'+TranslateIframeId+' table:after{'+
 ['content:" "','display:block','width:100%','height:100px'].join(';')
 +'}';
@@ -96,7 +96,7 @@ if (window !== top) return;
       content.appendChild(dismissLink);
       var frame = document.createElement('div');
       frame.id = TranslateIframeId;
-      frame.style.cssText = "width:100%;height:100%;background:#fff;overflow-y:scroll;";
+      frame.style.cssText = "width:100%;height:100%;overflow-y:scroll;";
       content.appendChild(frame);
       dialog.appendChild(content);
       ShutterPlacesWindowHelperScriptElement.appendChild(glassPanel);
@@ -246,7 +246,7 @@ function _draw_table(url){
       // t.height = "100%";
       // document.getElementById(TranslateIframeId).appendChild(t);
       jQuery('#'+TranslateIframeId).html('<table></table>');
-      jQuery('#'+TranslateIframeId+' table').append('<tr>'+'<th>thumb</th>'+'<th>Stock</th>'+'<th>Google</th>'+'<th>time</th>'+'<th>place</th>'+'</tr>');
+      jQuery('#'+TranslateIframeId+' table').append('<tr>'+'<th>Thumb</th>'+'<th>Similar on Stock</th>'+'<th>Google images</th>'+'<th>Time</th>'+'<th>Place</th>'+'</tr>');
       }
   // jQuery('#'+TranslateIframeId+' table').append('<tr>'+'<td>thumb</td>'+'<td>Stock</td>'+'<td>Google</td>'+'<td>time</td>'+'<td>place</td>'+'</tr>');
 }
