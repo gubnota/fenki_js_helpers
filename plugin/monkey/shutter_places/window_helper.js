@@ -246,7 +246,7 @@ ShutterPlacesWindowHelperScript.resolve_place(jQuery('#tableId .'+data[i].media_
 }
 
 
-    var exports={Button:Button,Dialog:Dialog,TranslatorInit:TranslatorInit,'draw_table':_draw_table,'load_info':_load_info};
+    var exports={Button:Button,Dialog:Dialog,TranslatorInit:TranslatorInit,'draw_table':_draw_table,'load_info':_load_info,'resolve_place':_resolve_place};
     exports.id = {'id':id,'ShutterPlacesWindowHelperScriptId':ShutterPlacesWindowHelperScriptId,'dismissLinkId':dismissLinkId,
 'buttonId':buttonId,'fl':fl,'tl':tl,'url':url,'closeText':closeText,'buttonText':buttonText,};
     return exports;
