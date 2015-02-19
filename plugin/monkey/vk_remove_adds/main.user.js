@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name       Facebook remove adds
+// @name       Vk remove adds
 // @namespace  http://git.gubnota.ru/fenki_js_helpers/plugin/monkey/vk_remove_adds/
-// @version    0.1.1
+// @version    0.1.2
 // @downloadURL http://git.gubnota.ru/fenki_js_helpers/plugin/monkey/vk_remove_adds/main.user.js
 // @description removes adds block in Vk.com
 // @include        http://vk.com/*

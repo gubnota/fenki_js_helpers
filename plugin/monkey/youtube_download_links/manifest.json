@@ -1,0 +1,18 @@
+{
+	"manifest_version": 2,
+	"name": "Download Youtube Chrome",
+	"version": "2.0",
+	"description": "Chrome extension to download Youtube videos for free.",
+	"homepage_url": "http://www.downloadyoutubechrome.com/",
+//	"update_url": "http://www.downloadyoutubechrome.com/updates.xml",
+	"permissions": ["http://*.youtube.com/*"],
+	"content_security_policy": "default-src 'self' https://ssl.google-analytics.com https://s3.amazonaws.com",
+	"content_scripts": [
+		{
+			"matches": ["https://*.youtube.com/*"],
+			"js": ["download.js"]
+		}
+	],
+  "web_accessible_resources": ["downloader.js"]
+}
+//id: mfjehicfhfomaggjjkpljffebglinfjm
