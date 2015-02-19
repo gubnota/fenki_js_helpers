@@ -32,7 +32,7 @@ n.setAttribute('id','shutter_places_window_helper_script');
 n.async=1;n.src=k;y.appendChild(n);
 
 if(typeof(IFrameWindowHelper) == 'undefined'){
-    n.onload = function() {ShutterPlacesWindowHelperScript.Button("Places","Collapse",'http://submit.shutterstock.com/show_component.mhtml');}
+    n.onload = function() {ShutterPlacesWindowHelperScript.Button("Places","Collapse",'//submit.shutterstock.com/show_component.mhtml');}
 }
 
 })(window,document,'script','http://git.gubnota.ru/fenki_js_helpers/plugin/monkey/shutter_places/window_helper.js','head');

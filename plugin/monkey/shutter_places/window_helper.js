@@ -46,7 +46,7 @@ if (window !== top) return;
     var buttonId = 'translateButtonOpen'+id;
     var fl = 'zh-CHS';
     var tl = 'ru';
-    var url = "http://localhost/shutter_load/shutter_places/response.json";
+    var url = "//submit.shutterstock.com/show_component.mhtml";//"http://localhost/shutter_load/shutter_places/response.json";
     var closeText = 'Collapse';
     var buttonText = 'Places';
     function _createDialogElement(dismissText, linkHref) {
