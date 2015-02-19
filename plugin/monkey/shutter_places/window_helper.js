@@ -82,6 +82,8 @@ if (window !== top) return;
 'font-size:.85em',
 ].join(';')+'}'+'#'+TranslateIframeId+' td{'+
 ['border-width:0 2px 0 0','border:solid #ece4d8'].join(';')
++'}'+'#'+TranslateIframeId+' table:after{'+
+['content:" "','display:block','width:100%','height:100px'].join(';')
 +'}';
 
       var dialog = document.createElement('div');
@@ -250,6 +252,8 @@ function _draw_table(url){
 }
 
 function _load_info(url){
+var t = jQuery('#'+TranslateIframeId+' table tr td');
+if (t.length < 1){
 jQuery.ajax({
 url:url,
 type:'POST',
@@ -267,7 +271,9 @@ ShutterPlacesWindowHelperScript.resolve_place(jQuery('#'+TranslateIframeId+' tab
   };
 },
 cache:false,
+crossDomain:true,
 dataType:"json"});
+          }
 }
 
 
