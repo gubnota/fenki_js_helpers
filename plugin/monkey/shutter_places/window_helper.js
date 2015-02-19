@@ -80,7 +80,9 @@ if (window !== top) return;
 'font-family:"Open Sans", Myriad, Calibri, sans-serif',
 'font-weight:bold',
 'font-size:.85em',
-].join(';')+'}';
+].join(';')+'}'+'#'+TranslateIframeId+' td{'+
+['border-width:0 2px 0 0','border:solid #ece4d8'].join(';')
++'}';
 
       var dialog = document.createElement('div');
       dialog.style.cssText = dialogStyle;
