@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       Shutterstock show places table
 // @namespace  http://git.gubnota.ru/fenki_js_helpers/plugin/monkey/
-// @version    0.1
+// @version    0.1.1
 // @downloadURL http://git.gubnota.ru/fenki_js_helpers/plugin/monkey/shutter_places/main.user.js
 // @description removes adds block in Vk.com
 // @include        http://submit.shutterstock.com/home.mhtml*
