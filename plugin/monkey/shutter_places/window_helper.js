@@ -240,7 +240,7 @@ if (data[i].longitude !== null && data[i].latitude !== null) {
   place = '<a href="'+place+'" target="_blank">Google map place</a>';
 }
 jQuery('#'+TranslateIframeId+' table').append('<tr class="'+data[i].media_id+'" style="max-height:40px;">'+'<td class="thumb" style="width:105px"><a href="http://www.shutterstock.com/pic-'+data[i].media_id+'/index.html" target="_blank"><img src="'+data[i].thumb_url+'"></a></td>'+'<td class="similar"><a href="http://www.shutterstock.com/similar-'+data[i].media_id+'/index.html" target="_blank">Stock</a></td>'+'<td class="google"><a href="https://www.google.com/searchbyimage?&amp;image_url='+window.encodeURI('http://thumb101.shutterstock.com/display_pic_with_logo/0/0/'+data[i].media_id+'.jpg')+'" target="_blank">Google</a></td>'+'<td class="time" style="max-width:80px">'+(new Date(data[i].time*1000))+'</td>'+'<td class="place" style="max-width:100px;">'+place+'</td>'+'</tr>');
-resolve_place(jQuery('#tableId .'+data[i].media_id+' .place a'), data[i].longitude, data[i].latitude, 11);
+ShutterPlacesWindowHelperScript.resolve_place(jQuery('#tableId .'+data[i].media_id+' .place a'), data[i].longitude, data[i].latitude, 11);
   };
 }, "json");
 }
