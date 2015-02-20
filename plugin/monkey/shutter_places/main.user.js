@@ -27,15 +27,17 @@ var w = window;
         var el = document.getElementById('shutter_places_window_helper_script');
         if (el === null) {
 (function(f,e,n,k,i){
-var n=e.createElement(n),y=e.getElementsByTagName(i)[0];
+
+
+var n=e.createElement(n),y = e.getElementsByTagName(n)[0];
 n.setAttribute('id','shutter_places_window_helper_script');
-n.async=1;n.src=k;y.appendChild(n);
+n.async=1;n.src=k;y.parentNode[i](n, y);
 
 if(typeof(IFrameWindowHelper) == 'undefined'){
     n.onload = function() {ShutterPlacesWindowHelperScript.Button();}
 }
 
-})(window,document,'script','//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/window_helper.js','head');
+})(window,document,'script','//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/window_helper.js','insertBefore');
         }//undefined el
     }//url pattern
 })(window);
