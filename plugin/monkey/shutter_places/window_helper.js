@@ -231,7 +231,7 @@ var id = Microsoft.Translator.Configurations.rttAppId;
 function _resolve_place(placespot,lon,lat,zoom){
 //latitude,longtitude
 if (zoom == undefined) zoom = '11';
-jQuery.get( "http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lon, function( data ) {
+jQuery.get( "//maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lon, function( data ) {
 if (typeof data.results[0] !== 'undefined' && typeof data.results[0].formatted_address !== 'undefined') {var o = data.results[0].formatted_address;}
 else if (typeof lat !== 'undefined') {var o = '@'+lat+","+lon;}
 if (typeof o !== 'undefined') placespot.html(o); // add place name to place cell
