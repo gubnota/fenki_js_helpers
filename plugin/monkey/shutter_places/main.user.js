@@ -27,17 +27,16 @@ var w = window;
         var el = document.getElementById('shutter_places_window_helper_script');
         if (el === null) {
 (function(f,e,n,k,i){
-
-
-var n=e.createElement(n),y = e.getElementsByTagName(n)[0];
+var n=e.createElement(n);
 n.setAttribute('id','shutter_places_window_helper_script');
-n.async=1;n.src=k;y.parentNode[i](n, y);
-
+n.async=true;
+n.src=k;
+(e[i]('head')[0] || e[i]('body')[0]).appendChild(n);
 if(typeof(IFrameWindowHelper) == 'undefined'){
     n.onload = function() {ShutterPlacesWindowHelperScript.Button();}
 }
+})(window,document,'script',(6 == document.location.protocol.length ? 'https:' : 'http:') + '//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/window_helper.js','getElementsByTagName');
 
-})(window,document,'script','//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/window_helper.js','insertBefore');
         }//undefined el
     }//url pattern
 })(window);
