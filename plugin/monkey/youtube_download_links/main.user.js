@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name       Youtube video links inserter
-// @namespace  http://git.gubnota.ru/fenki_js_helpers/plugin/monkey/
+// @namespace  http://gubnota.github.io/fenki_js_helpers/plugin/monkey/
 // @version    0.1
-// @downloadURL http://git.gubnota.ru/fenki_js_helpers/plugin/monkey/youtube_download_links/main.user.js
+// @downloadURL http://gubnota.github.io/fenki_js_helpers/plugin/monkey/youtube_download_links/main.user.js
 // @description removes adds block in Vk.com
 // @include        https?://*.youtube.com/*
 // @include        https?://youtube.com/*
 // @copyright  2015+, Vladislav Muravyev
 // @grant          none
-// @icon http://git.gubnota.ru/fenki_js_helpers/plugin/monkey/youtube_download_links/yt.png
+// @icon http://gubnota.github.io/fenki_js_helpers/plugin/monkey/youtube_download_links/yt.png
 // @run-at document-end
 // ==/UserScript==
 (function(window, undefined){
@@ -35,7 +35,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
     n.onload = function() {ShutterPlacesWindowHelperScript.Button();}
 }
 
-})(window,document,'script','//git.gubnota.ru/fenki_js_helpers/plugin/monkey/youtube_download_links/window_helper.js','head');
+})(window,document,'script','//gubnota.github.io/fenki_js_helpers/plugin/monkey/youtube_download_links/window_helper.js','head');
         }//undefined el
     }//url pattern
 })(window);
