@@ -3,7 +3,7 @@
 // @namespace  http://gubnota.github.io/fenki_js_helpers/plugin/monkey/
 // @version    0.1
 // @downloadURL http://gubnota.github.io/fenki_js_helpers/plugin/monkey/youtube_download_links/main.user.js
-// @description removes adds block in Vk.com
+// @description adds links to download video at Youtube.com
 // @include        https://*.youtube.com/*
 // @include        https://youtube.com/*
 // @copyright  2015+, Vladislav Muravyev
