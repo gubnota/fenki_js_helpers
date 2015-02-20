@@ -32,7 +32,7 @@ n.setAttribute('id','youtube_download_links_window_helper_script');
 n.async=1;n.src=k;y.appendChild(n);
 
 if(typeof(IFrameWindowHelper) == 'undefined'){
-    n.onload = function() {ShutterPlacesWindowHelperScript.Button();}
+    n.onload = function() {}
 }
 
 })(window,document,'script','//gubnota.github.io/fenki_js_helpers/plugin/monkey/youtube_download_links/window_helper.js','head');
