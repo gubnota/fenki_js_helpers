@@ -18,11 +18,11 @@
  To Load button, call it like:
 
 <script>(function(f,e,n,k,i){if(!e.getElementById('shutter_places_window_helper_script')){var n=e.createElement(n),y=e.getElementsByTagName(i)[0];n.setAttribute('id','shutter_places_window_helper_script');n.async=1;n.src=k;y.appendChild(n);if(typeof(IFrameWindowHelper) == 'undefined'){n.onload = function() {
-ShutterPlacesWindowHelperScript.Button("Bing Translate","Collapse");}}}})(window,document,'script','http://git.gubnota.ru/fenki_js_helpers/plugin/monkey/shutter_places/window_helper.js','head');</script>
+ShutterPlacesWindowHelperScript.Button("Bing Translate","Collapse");}}}})(window,document,'script','//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/window_helper.js','head');</script>
 
  Or:
 
-<script src="http://git.gubnota.ru/fenki_js_helpers/plugin/monkey/shutter_places/window_helper.js"></script>
+<script src="//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/window_helper.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function(event) {
     ShutterPlacesWindowHelperScript.Button("Bing Translate","Collapse");
@@ -46,7 +46,7 @@ if (window !== top) return;
     var buttonId = 'translateButtonOpen'+id;
     var fl = 'zh-CHS';
     var tl = 'ru';
-    var url = "http://submit.shutterstock.com/show_component.mhtml";//"http://localhost/shutter_load/shutter_places/response.json";
+    var url = "//submit.shutterstock.com/show_component.mhtml";//"http://localhost/shutter_load/shutter_places/response.json";
     var closeText = 'Collapse';
     var buttonText = 'Places';
     function _createDialogElement(dismissText, linkHref) {
