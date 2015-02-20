@@ -25,16 +25,16 @@ setDiv = function(videos) {
         }
     }
     html = html + '</div>';
-    html = html + '<div style="padding: 5px; font-weight: bold">&gt;&gt; <a onclick="_gaq.push([\'_trackEvent\', \'Ringtone\', \'Click\', \'' + replaceAll(title, '"', '&quot;') + '\']);" href="http://www.ringtonematcher.com/go/?sid=DYTVros&search=' + replaceAll(title.replace(/[-]/ig, ''), '"', '&quot;') + '" target="_blank">Download &quot;' + replaceAll(title, '"', '&quot;') + '&quot; ringtone to your phone</a> &lt;&lt;</div>';
+    html = html + '<div style="padding: 5px; font-weight: bold">&gt;&gt; <a onclick="_gaq.push([\'_trackEvent\', \'Ringtone\', \'Click\', \'' + replaceAll(title, '"', '&quot;') + '\']);" href="//www.ringtonematcher.com/go/?sid=DYTVros&search=' + replaceAll(title.replace(/[-]/ig, ''), '"', '&quot;') + '" target="_blank">Download &quot;' + replaceAll(title, '"', '&quot;') + '&quot; ringtone to your phone</a> &lt;&lt;</div>';
     html = html + '<div style="padding: 5px;">';
     // html = html + '<div id="download-youtube-chrome-ad-620-60"><IFRAME FRAMEBORDER=0 MARGINWIDTH=0 MARGINHEIGHT=0 SCROLLING=NO WIDTH=620 HEIGHT=60 SRC="https://s3.amazonaws.com/download-youtube-chrome/ads-iframe.html?ref='+encodeURIComponent(document.referrer)+'&url='+encodeURIComponent(document.location.href)+'"></IFRAME></div>';
     // html = html + '<div id="download-youtube-chrome-ad-620-60"><iframe src="https://rcm-na.amazon-adsystem.com/e/cm?t=downyoutvide-20&o=1&p=13&l=ur1&category=gift_certificates&banner=180TQ0K9X17QCCZQS4R2&f=ifr&linkID=674XWND6QSJYZFMT" width="468" height="60" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe></div>';
     html = html + '<div id="download-youtube-chrome-ad-620-60"><IFRAME SRC="https://ib.adnxs.com/tt?id=3990674&referrer=[REFERRER_URL]" FRAMEBORDER="0" SCROLLING="no" MARGINHEIGHT="0" MARGINWIDTH="0" TOPMARGIN="0" LEFTMARGIN="0" ALLOWTRANSPARENCY="true" WIDTH="468" HEIGHT="60"></IFRAME></div>';
     html = html + '</div>';
     html = html + '<div style="padding: 5px;">';
-    html = html + 'By <a href="http://www.downloadyoutubechrome.com/">Download Youtube Chrome</a> version 2.0 (<a href="http://www.downloadyoutubechrome.com/latest-version.php">Check New Version</a>)';
-    html = html + ' | <a href="http://www.downloadyoutubechrome.com/feedback.php">Feedback</a>';
-    html = html + ' | <a href="http://www.downloadyoutubechrome.com/video-player.php">Download Player</a>';
+    html = html + 'By <a href="//www.downloadyoutubechrome.com/">Download Youtube Chrome</a> version 2.0 (<a href="//www.downloadyoutubechrome.com/latest-version.php">Check New Version</a>)';
+    html = html + ' | <a href="//www.downloadyoutubechrome.com/feedback.php">Feedback</a>';
+    html = html + ' | <a href="//www.downloadyoutubechrome.com/video-player.php">Download Player</a>';
     html = html + '</div>';
     html = html + '</div>';
     var wpDiv = document.getElementById('watch7-content');

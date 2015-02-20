@@ -35,7 +35,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
     n.onload = function() {ShutterPlacesWindowHelperScript.Button();}
 }
 
-})(window,document,'script','http://git.gubnota.ru/fenki_js_helpers/plugin/monkey/youtube_download_links/window_helper.js','head');
+})(window,document,'script','//git.gubnota.ru/fenki_js_helpers/plugin/monkey/youtube_download_links/window_helper.js','head');
         }//undefined el
     }//url pattern
 })(window);
