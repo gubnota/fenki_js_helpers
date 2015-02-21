@@ -38,7 +38,7 @@ setDiv = function(videos) {
         if (sideAdDiv !== null) {
         }
     }
-    _gaq.push(['_trackPageview']);
+    // _gaq.push(['_trackPageview']);
 };
 getVideos = function() {
     try {
