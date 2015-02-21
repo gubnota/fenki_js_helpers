@@ -9,7 +9,7 @@ setDiv = function(videos) {
         title = titleH1.children[0].innerText;
     }
     var html = '<div id="download-youtube-chrome-extension" style="-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 3px; border: 1px solid #CCC; margin-bottom: 10px; background-color: #fff;">';
-    html = html + '<div style="font-weight: bold; padding: 5px; border-bottom: 1px solid #CCC;">Click on the format to save the video as:</div>';
+    // html = html + '<div style="font-weight: bold; padding: 5px; border-bottom: 1px solid #CCC;">Click on the format to save the video as:</div>';
     html = html + '<div style="padding: 5px; font-weight: bold;">';
     var counter = 0;
     for (var i in videos) {
