@@ -5,7 +5,8 @@
 // @downloadURL http://gubnota.github.io/fenki_js_helpers/plugin/monkey/fb_remove_adds/main.user.js
 // @description removes adds block in Facebook
 // @include      https://www.facebook.com/*
-// @copyright  2012+, Vladislav Muravyev
+// @copyright  2015+, Vladislav Muravyev
+// @author Vladislav Muravyev
 // @grant          none
 // @icon http://gubnota.github.io/fenki_js_helpers/plugin/monkey/fb_remove_adds/fb.ico
 // @run-at document-end

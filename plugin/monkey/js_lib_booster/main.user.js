@@ -3,7 +3,8 @@
 // @namespace  http://gubnota.ru/
 // @version    0.1
 // @description  Replace Google CDN with my jquery libs
-// @copyright  2014+, Vladislav Muravyev
+// @copyright  2015+, Vladislav Muravyev
+// @author Vladislav Muravyev
 // @grant          none
 // @downloadURL http://gubnota.github.io/fenki_js_helpers/plugin/monkey/js_lib_booster/main.user.js
 // @icon http://gubnota.github.io/fenki_js_helpers/plugin/monkey/js_lib_booster/g.png

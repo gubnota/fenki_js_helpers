@@ -19,7 +19,8 @@
 // @name           Yandex/Google Tracking-B-Gone
 // @namespace      http://gubnota.github.io/fenki_js_helpers/plugin/monkey/strip_track_search_res/
 // @version        0.1.1
-// @copyright  2012+, Vladislav Muravyev
+// @copyright  2015+, Vladislav Muravyev
+// @author Vladislav Muravyev
 // @description    Strips click tracking from Yandex/Google search results
 // @downloadURL http://gubnota.github.io/fenki_js_helpers/plugin/monkey/strip_track_search_res/main.user.js
 // @include        http://*.google.*

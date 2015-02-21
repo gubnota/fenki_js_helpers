@@ -6,7 +6,8 @@
 // @description removes adds block in Vk.com
 // @include        http://submit.shutterstock.com/home.mhtml*
 // @include        https://submit.shutterstock.com/home.mhtml*
-// @copyright  2012+, Vladislav Muravyev
+// @copyright  2015+, Vladislav Muravyev
+// @author Vladislav Muravyev
 // @grant          none
 // @icon http://gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/ss.png
 // @run-at document-end

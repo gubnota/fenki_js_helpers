@@ -6,7 +6,8 @@
 // @description removes adds block in Vk.com
 // @include        http://vk.com/*
 // @include        https://vk.com/*
-// @copyright  2012+, Vladislav Muravyev
+// @copyright  2015+, Vladislav Muravyev
+// @author Vladislav Muravyev
 // @grant          none
 // @icon http://gubnota.github.io/fenki_js_helpers/plugin/monkey/vk_remove_adds/vk.ico
 // @run-at document-end

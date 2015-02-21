@@ -7,6 +7,7 @@
 // @include        https://*.youtube.com/*
 // @include        https://youtube.com/*
 // @copyright  2015+, Vladislav Muravyev
+// @author Vladislav Muravyev
 // @grant          none
 // @icon http://gubnota.github.io/fenki_js_helpers/plugin/monkey/youtube_download_links/yt.png
 // @run-at document-end
