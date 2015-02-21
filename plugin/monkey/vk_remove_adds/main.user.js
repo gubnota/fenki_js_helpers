@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name       Vk remove adds
-// @namespace  http://git.gubnota.ru/fenki_js_helpers/plugin/monkey/vk_remove_adds/
+// @namespace  http://gubnota.github.io/fenki_js_helpers/plugin/monkey/vk_remove_adds/
 // @version    0.1.2
-// @downloadURL http://git.gubnota.ru/fenki_js_helpers/plugin/monkey/vk_remove_adds/main.user.js
+// @downloadURL http://gubnota.github.io/fenki_js_helpers/plugin/monkey/vk_remove_adds/main.user.js
 // @description removes adds block in Vk.com
 // @include        http://vk.com/*
 // @include        https://vk.com/*
 // @copyright  2012+, Vladislav Muravyev
 // @grant          none
-// @icon http://git.gubnota.ru/fenki_js_helpers/plugin/monkey/vk_remove_adds/vk.ico
+// @icon http://gubnota.github.io/fenki_js_helpers/plugin/monkey/vk_remove_adds/vk.ico
 // @run-at document-end
 // ==/UserScript==
 (function(window, undefined){
