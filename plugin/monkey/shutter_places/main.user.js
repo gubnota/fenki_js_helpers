@@ -4,8 +4,7 @@
 // @version    0.1.4
 // @downloadURL http://gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/main.user.js
 // @description removes adds block in Vk.com
-// @include        http://submit.shutterstock.com/home.mhtml*
-// @include        https://submit.shutterstock.com/home.mhtml*
+// @include        http*://submit.shutterstock.com/home.mhtml*
 // @copyright  2015+, Vladislav Muravyev
 // @author Vladislav Muravyev
 // @grant          none
