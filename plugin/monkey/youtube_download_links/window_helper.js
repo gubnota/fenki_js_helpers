@@ -25,12 +25,11 @@ setDiv = function(videos) {
         }
     }
     html = html + '</div>';
-    html = html + '<div style="padding: 5px; font-weight: bold">&gt;&gt; <a onclick="_gaq.push([\'_trackEvent\', \'Ringtone\', \'Click\', \'' + replaceAll(title, '"', '&quot;') + '\']);" href="//www.ringtonematcher.com/go/?sid=DYTVros&search=' + replaceAll(title.replace(/[-]/ig, ''), '"', '&quot;') + '" target="_blank">Download &quot;' + replaceAll(title, '"', '&quot;') + '&quot; ringtone to your phone</a> &lt;&lt;</div>';
-    html = html + '<div style="padding: 5px;">';
-    html = html + '<div id="download-youtube-chrome-ad-620-60"><IFRAME SRC="https://ib.adnxs.com/tt?id=3990674&referrer=[REFERRER_URL]" FRAMEBORDER="0" SCROLLING="no" MARGINHEIGHT="0" MARGINWIDTH="0" TOPMARGIN="0" LEFTMARGIN="0" ALLOWTRANSPARENCY="true" WIDTH="468" HEIGHT="60"></IFRAME></div>';
-    html = html + '</div>';
-    html = html + '<div style="padding: 5px;">';
-    html = html + '</div>';
+    // html = html + '<div style="padding: 5px;">';
+    // html = html + '<div id="download-youtube-chrome-ad-620-60"><IFRAME SRC="https://ib.adnxs.com/tt?id=3990674&referrer=[REFERRER_URL]" FRAMEBORDER="0" SCROLLING="no" MARGINHEIGHT="0" MARGINWIDTH="0" TOPMARGIN="0" LEFTMARGIN="0" ALLOWTRANSPARENCY="true" WIDTH="468" HEIGHT="60"></IFRAME></div>';
+    // html = html + '</div>';
+    // html = html + '<div style="padding: 5px;">';
+    // html = html + '</div>';
     html = html + '</div>';
     var wpDiv = document.getElementById('watch7-content');
     if (wpDiv !== null) {
