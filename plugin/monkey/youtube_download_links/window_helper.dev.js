@@ -27,14 +27,9 @@ setDiv = function(videos) {
     html = html + '</div>';
     html = html + '<div style="padding: 5px; font-weight: bold">&gt;&gt; <a onclick="_gaq.push([\'_trackEvent\', \'Ringtone\', \'Click\', \'' + replaceAll(title, '"', '&quot;') + '\']);" href="//www.ringtonematcher.com/go/?sid=DYTVros&search=' + replaceAll(title.replace(/[-]/ig, ''), '"', '&quot;') + '" target="_blank">Download &quot;' + replaceAll(title, '"', '&quot;') + '&quot; ringtone to your phone</a> &lt;&lt;</div>';
     html = html + '<div style="padding: 5px;">';
-    // html = html + '<div id="download-youtube-chrome-ad-620-60"><IFRAME FRAMEBORDER=0 MARGINWIDTH=0 MARGINHEIGHT=0 SCROLLING=NO WIDTH=620 HEIGHT=60 SRC="https://s3.amazonaws.com/download-youtube-chrome/ads-iframe.html?ref='+encodeURIComponent(document.referrer)+'&url='+encodeURIComponent(document.location.href)+'"></IFRAME></div>';
-    // html = html + '<div id="download-youtube-chrome-ad-620-60"><iframe src="https://rcm-na.amazon-adsystem.com/e/cm?t=downyoutvide-20&o=1&p=13&l=ur1&category=gift_certificates&banner=180TQ0K9X17QCCZQS4R2&f=ifr&linkID=674XWND6QSJYZFMT" width="468" height="60" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe></div>';
     html = html + '<div id="download-youtube-chrome-ad-620-60"><IFRAME SRC="https://ib.adnxs.com/tt?id=3990674&referrer=[REFERRER_URL]" FRAMEBORDER="0" SCROLLING="no" MARGINHEIGHT="0" MARGINWIDTH="0" TOPMARGIN="0" LEFTMARGIN="0" ALLOWTRANSPARENCY="true" WIDTH="468" HEIGHT="60"></IFRAME></div>';
     html = html + '</div>';
     html = html + '<div style="padding: 5px;">';
-    // html = html + 'By <a href="//www.downloadyoutubechrome.com/">Download Youtube Chrome</a> version 2.0 (<a href="//www.downloadyoutubechrome.com/latest-version.php">Check New Version</a>)';
-    // html = html + ' | <a href="//www.downloadyoutubechrome.com/feedback.php">Feedback</a>';
-    // html = html + ' | <a href="//www.downloadyoutubechrome.com/video-player.php">Download Player</a>';
     html = html + '</div>';
     html = html + '</div>';
     var wpDiv = document.getElementById('watch7-content');
@@ -42,8 +37,6 @@ setDiv = function(videos) {
         wpDiv.innerHTML = html + wpDiv.innerHTML;
         var sideAdDiv = document.getElementById('watch7-sidebar-contents');
         if (sideAdDiv !== null) {
-            //var html = '<iframe src="https://ad131m.adk2.co/ad131m/scripts/direct/direct.html?a=11841112&secure=true&size=300x250&ci=1&serverdomain=s.ad131m.com&context=c55452061" height="250" width="300" frameborder="0" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>';
-            //sideAdDiv.innerHTML = html + sideAdDiv.innerHTML;
         }
     }
     _gaq.push(['_trackPageview']);
@@ -217,32 +210,3 @@ if (window.history && history.pushState) {
 } else {
     setDiv(getVideos());
 }
-// ga tracking
-// var _gaq = _gaq || [];
-// _gaq.push(['_setAccount', 'UA-28955501-2']);
-// _gaq.push(['_setDomainName', 'youtube.com']);
-// (function() {
-//     var ga = document.createElement('script');
-//     ga.type = 'text/javascript';
-//     ga.async = true;
-//     ga.src = 'https://ssl.google-analytics.com/ga.js';
-//     var s = document.getElementsByTagName('script')[0];
-//     s.parentNode.insertBefore(ga, s);
-// })();
-
-// var adParams = {
-//     a: '11841112',
-//     size: '800x600',
-//     numOfTimes: '2',
-//     duration: '24',
-//     serverdomain: 's.ad131m.com',
-//     period: 'hour',
-//     context: 'c11878122',
-//     openNewTab: true
-// };
-// var body = document.getElementsByTagName('body')[0];
-// var script = document.createElement('script');
-// script.type = 'text/javascript';
-// script.src = 'https://ad131m.adk2.co/matomy/scripts/popunder/popunder.js';
-// var rnd = Math.random();
-// if (rnd < 0.3) body.appendChild(script);
