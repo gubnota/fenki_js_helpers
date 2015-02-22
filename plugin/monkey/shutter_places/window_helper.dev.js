@@ -221,7 +221,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
                 'left:-22px',
                 'max-width:200px',
                 'cursor: pointer',
-                'font-family:Ubutnu, "PT Sans", Arial, sans-serif',
+                'font-family:Ubuntu, "PT Sans", Arial, sans-serif',
                 'text-shadow:none',
                 'top:65px',
                 'z-index:9999',
