@@ -56,18 +56,19 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
         var buttonId = 'ShutterPlacesButtonOpen' + id;
         var lang = 'en';
         var url = "//submit.shutterstock.com/show_component.mhtml"; //"http://gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/response.json";
-        var keys = ['buttonText','closeText'];
+        var keys = ['buttonText','closeText','thumbText','similarText','utilizesText','timeText','placeText'];
         var dic = 
-        {'en':['Places','Collapse'],
-        'ru':['Места','Свернуть'],
-        'zh':['地方','关闭'],
-        'fr':['Lieux','Fermer'],
-        'pl':['Miejsca','Zwiń okno'],
-        'es':['Lugares','Cerrar'],
-        'tr':['Yerler','Yakın'],
-        'pt':['Locais','Fechar'],
-        'de':['Places','Fenster'],
-        'id':['Tempat','Tutup']
+        {'en':['Places','Collapse','Thumbnail','Similar on Site','Who utilizes picture','Time','Place'],
+        'ru':['Места','Свернуть','Миниатюра','Похожие на сайт','Кто использует картину','Время','Место'],
+        'zh':['地方','关闭','缩略图','类似的网站','谁利用图片','时间','地方'],
+        'fr':['Lieux','Fermer','Miniature','Similaires dans le site','Qui utilise l\'image','Temps','Lieu'],
+        'pl':['Miejsca','Zwiń okno','Miniatura','Podobne w witrynie','Kto korzysta z obrazu','Pora','Miejsce'],
+        'es':['Lugares','Cerrar','Miniatura','Similar en el sitio','¿Quién utiliza la imagen','Tiempo','Lugar'],
+        'tr':['Yerler','Yakın','Küçük resim','Sitedeki benzer','Kim resmi kullanır','Zaman','Yer'],
+        'pt':['Locais','Fechar','Thumbnail','Similar no Site','Quem utiliza imagem','Tempo','Lugar'],
+        'de':['Places','Fenster','Daumennagel','Ähnliche vor Ort','Wer nutzt Bild','Zeit','Platz'],
+        'id':['Tempat','Tutup','Miniatur','Serupa di Situs','Siapa yang menggunakan gambar','Waktu','Tempat'],
+        'jp':['場所','隠す','サムネイル','サイト上内Shutterstock','誰が絵を利用','時間','場所']
         };
         var param = {buttonText:dic['en'][0], closeText:dic['en'][1], url:url};
 
@@ -183,7 +184,6 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
 
         function Button(_param) {
           if (typeof _param === 'string') url = _param;
-          console.log(url);
           for (var i in _param) { param[i] = _param[i]; }
             var ButtonElem = document.getElementById(buttonId);
             if (ButtonElem !== null) {
@@ -267,7 +267,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
                 // t.height = "100%";
                 // document.getElementById(TranslateIframeId).appendChild(t);
                 jQuery('#' + TranslateIframeId).html('<table></table>');
-                jQuery('#' + TranslateIframeId + ' table').append('<tr>' + '<th>Thumb</th>' + '<th>Similar on Stock</th>' + '<th>Google images</th>' + '<th>Time</th>' + '<th>Place</th>' + '</tr>');
+                jQuery('#' + TranslateIframeId + ' table').append('<tr>' + '<th>'+param.thumbText+'</th>' + '<th>'+param.similarText+'</th>' + '<th>'+param.utilizesText+'</th>' + '<th>'+param.timeText+'</th>' + '<th>'+param.placeText+'</th>' + '</tr>');
             }
             // jQuery('#'+TranslateIframeId+' table').append('<tr>'+'<td>thumb</td>'+'<td>Stock</td>'+'<td>Google</td>'+'<td>time</td>'+'<td>place</td>'+'</tr>');
         }
@@ -284,12 +284,16 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
                     success: function(data) {
                         for (var i = 0; data.length > i; i++) {//data.length - 1
                             if (jQuery('#' + TranslateIframeId + ' table .' + data[i].media_id) === null) continue; // если уже есть такой id
-                            var place = 'null';
+                            var place = 'Not exist';
                             if (data[i].longitude !== null && data[i].latitude !== null) {
-                                place = 'https://www.google.com/maps/@' + data[i].latitude + ',' + data[i].longitude + ',11z';
+                                // https://www.google.com/maps/dir//-20.4810998,-54.635534/@-21.3840774,-58.2390497,3z
+//                                place = 'https://www.google.com/maps/@' + data[i].latitude + ',' + data[i].longitude + ',11z';
+                                place = data[i].latitude + ',' + data[i].longitude;
+                                place = 'https://www.google.com/maps/dir//' + place + '/@' + place + ',3z';
                                 place = '<a href="' + place + '" target="_blank">Google map place</a>';
                             }
                             jQuery('#' + TranslateIframeId + ' table').append('<tr class="' + data[i].media_id + '" style="max-height:40px;">' + '<td class="thumb" style="width:105px"><a href="http://www.shutterstock.com/pic-' + data[i].media_id + '/index.html" target="_blank"><img src="' + data[i].thumb_url + '"></a></td>' + '<td class="similar"><a href="http://www.shutterstock.com/similar-' + data[i].media_id + '/index.html" target="_blank">Stock</a></td>' + '<td class="google"><a href="https://www.google.com/searchbyimage?&amp;image_url=' + window.encodeURI('http://thumb101.shutterstock.com/display_pic_with_logo/0/0/' + data[i].media_id + '.jpg') + '" target="_blank">Google</a></td>' + '<td class="time" style="max-width:80px">' + (new Date(data[i].time * 1000)) + '</td>' + '<td class="place" style="max-width:100px;">' + place + '</td>' + '</tr>');
+                            if(data[i].longitude !== null)
                             ShutterPlacesWindowHelperScript.resolve_place(jQuery('#' + TranslateIframeId + ' table .' + data[i].media_id + ' .place a'), data[i].longitude, data[i].latitude, 11);
                         };
                     },
