@@ -33,3 +33,9 @@ bit.ly
 *.wp.com
 *.twimg.com
 t.co
+*.dropbox.com
+*.dropboxstatic.com
+*.dropboxlocalhost.com
+*.howtogeek.com
+*.fotolia.com
+*.istockphoto.com
