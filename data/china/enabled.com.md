@@ -32,3 +32,4 @@ bit.ly
 *.appspot.com
 *.wp.com
 *.twimg.com
+t.co
