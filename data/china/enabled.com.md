@@ -39,3 +39,5 @@ t.co
 *.howtogeek.com
 *.fotolia.com
 *.istockphoto.com
+*.lithium.com
+*.skypeassets.com
