@@ -40,4 +40,3 @@ t.co
 *.fotolia.com
 *.istockphoto.com
 *.lithium.com
-*.skypeassets.com
