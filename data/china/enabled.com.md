@@ -40,3 +40,6 @@ t.co
 *.fotolia.com
 *.istockphoto.com
 *.lithium.com
+*.google.com.mx
+*.google.com.ar
+*.google.co.in
