@@ -43,3 +43,9 @@ t.co
 *.google.com.mx
 *.google.com.ar
 *.google.co.in
+*.uploaded.net
+*.flickr.com
+*.slideshare.net
+*.googlecode.com
+*.blogspot.com
+*.blogspot.ru
