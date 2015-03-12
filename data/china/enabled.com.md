@@ -49,3 +49,4 @@ t.co
 *.googlecode.com
 *.blogspot.com
 *.blogspot.ru
+*.google.com.vn
