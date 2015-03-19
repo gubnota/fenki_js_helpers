@@ -3,7 +3,7 @@
 // @namespace  http://gubnota.github.io/fenki_js_helpers/plugin/monkey/
 // @version    0.1.4
 // @downloadURL http://gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/main.user.js
-// @description removes adds block in Vk.com
+// @description Shows Shutterstock buyers places map spots one-by-one table
 // @include        http*://submit.shutterstock.com/home.mhtml*
 // @copyright  2015+, Vladislav Muravyev
 // @author Vladislav Muravyev
