@@ -53,3 +53,4 @@ t.co
 youtu.be
 *.reuters.com
 *.greatfire.org
+*.getlantern.org
