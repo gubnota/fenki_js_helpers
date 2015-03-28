@@ -52,3 +52,4 @@ t.co
 *.google.com.vn
 youtu.be
 *.reuters.com
+*.greatfire.org
