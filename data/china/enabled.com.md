@@ -51,3 +51,4 @@ t.co
 *.blogspot.ru
 *.google.com.vn
 youtu.be
+*.reuters.com
