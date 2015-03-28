@@ -54,3 +54,5 @@ youtu.be
 *.reuters.com
 *.greatfire.org
 *.getlantern.org
+*.jshell.net
+*.github.com
