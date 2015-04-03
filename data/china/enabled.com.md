@@ -238,3 +238,4 @@ youtu.be
 *.vectorstock.com
 *.gravatar.com
 use.typekit.com
+gist.github.com
