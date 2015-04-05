@@ -242,4 +242,4 @@ gist.github.com
 *.vimeocdn.com
 *.vimeo.com
 video.mail.ru
-my.mail.ru
+*.my.mail.ru
