@@ -239,3 +239,5 @@ youtu.be
 *.gravatar.com
 use.typekit.com
 gist.github.com
+*.vimeocdn.com
+*.vimeo.com

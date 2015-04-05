@@ -238,3 +238,5 @@ githubusercontent.com
 vectorstock.com
 gravatar.com
 use.typekit.com
+vimeocdn.com
+vimeo.com
