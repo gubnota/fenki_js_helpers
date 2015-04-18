@@ -13,9 +13,12 @@
 // ==/UserScript==
 (function(){
 var t = setInterval(function(){
-var el = document.querySelectorAll('.xd0,.gWel-promt,.gWel-tabs-promt,.gWel-tabs-panel,.gWel-tabs-panel-hasBg,#_mail_tabitem_2_34,.js-component-popup');
-    for(var i =0; i<el.length; i++){
+var el = document.querySelectorAll('.xd0,.gWel-promt,.gWel-tabs-promt,.gWel-tabs-panel,.gWel-tabs-panel-hasBg,#_mail_tabitem_2_34,.js-component-popup'); for(var i =0; i<el.length; i++){
     el[i].remove();//clearInterval(t);
-    }
+}
+
+var el = document.querySelectorAll('#dvMultiTab li'); for(var i=0; i<el.length; i++) {
+	if(el[i].title.match('一元夺宝')) el[i].remove();
+}
     },100);
 })();
