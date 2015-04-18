@@ -20,5 +20,14 @@ var el = document.querySelectorAll('.xd0,.gWel-promt,.gWel-tabs-promt,.gWel-tabs
 var el = document.querySelectorAll('#dvMultiTab li'); for(var i=0; i<el.length; i++) {
 	if(el[i].title.match('一元夺宝')) el[i].remove();
 }
+var el = document.querySelectorAll('.tN0'); for(var i=0; i<el.length; i++) {
+if(el[i].id.match('_AdDiv')) el[i].remove();
+}
+var el = document.querySelectorAll('.sV0'); for(var i=0; i<el.length; i++) {
+if(el[i].innerHTML.match('马上领取|免费|广告')) el[i].remove();
+}
+var el = document.querySelectorAll('.En0'); for(var i=0; i<el.length; i++) {
+if(el[i].innerHTML.match('马上领取|免费|广告')) el[i].remove();
+}
     },100);
 })();
