@@ -242,3 +242,4 @@ vimeocdn.com
 vimeo.com
 video.mail.ru
 my.mail.ru
+tumblr.com
