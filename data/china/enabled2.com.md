@@ -243,3 +243,4 @@ vimeo.com
 video.mail.ru
 my.mail.ru
 tumblr.com
+viddler.com
