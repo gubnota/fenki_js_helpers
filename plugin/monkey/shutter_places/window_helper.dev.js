@@ -1,3 +1,4 @@
+/;
 /*
  Copyright 2014 Gubnota Tech (Shenzhen) Ltd, Art Well Enterprise (HK) Ltd.
  All rights reserved. Licensed under the Apache License, 
@@ -284,7 +285,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
                     success: function(data) {
                         for (var i = 0; data.length > i; i++) {//data.length - 1
                             if (jQuery('#' + TranslateIframeId + ' table .' + data[i].media_id) === null) continue; // если уже есть такой id
-                            var place = dic['en'][7];//vm20150528
+                            var place = dic[lang][7];//vm20150528
                             if (data[i].longitude !== null && data[i].latitude !== null) {
                                 // https://www.google.com/maps/dir//-20.4810998,-54.635534/@-21.3840774,-58.2390497,3z
 //                                place = 'https://www.google.com/maps/@' + data[i].latitude + ',' + data[i].longitude + ',11z';
