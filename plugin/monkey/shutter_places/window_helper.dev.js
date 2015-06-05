@@ -103,7 +103,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
                 'font-family:"Open Sans",Myriad,Calibri,sans-serif',
                 'font-weight:bold',
                 'font-size:.85em',
-            ].join(';') + '}' + '#' + TranslateIframeId + ' td{' + ['border-width:0 2px 0 0', 'border:solid #ece4d8', 'vertical-align:middle', 'text-align:center'].join(';') + '}' + '#' + TranslateIframeId + ' table:after{' + ['content:" "', 'display:block', 'width:100%', 'height:100px'].join(';') + '}';
+            ].join(';') + '}' + '#' + TranslateIframeId + ' td{' + ['border-width:0 2px 0 0', 'border:solid #ece4d8', 'vertical-align:middle', 'text-align:center'].join(';') + '}' + '#' + TranslateIframeId + ' table:after{' + ['content:" "', 'display:block', 'width:100%', 'height:100px'].join(';') + '}' + '#' + TranslateIframeId + ' td.thumb img{' + ['min-width:50px', 'min-height:50px'].join(';') + '}';
 
             var dialog = document.createElement('div');
             dialog.style.cssText = dialogStyle;
