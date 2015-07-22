@@ -244,3 +244,4 @@ video.mail.ru
 my.mail.ru
 tumblr.com
 viddler.com
+fastpic.ru
