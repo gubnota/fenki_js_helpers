@@ -51,7 +51,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
     var ShutterPlacesWindowHelperScript = (function() {
         var id = Math.ceil(Math.random() * 1000); //уникальный id объекта
         var ShutterPlacesWindowHelperScriptId = 'ShutterPlacesInfo' + id;
-        var TranslateIframeId = 'ShutterPlacesInfoIframe' + id;
+        var ShutterPlacesIframeId = 'ShutterPlacesInfoIframe' + id;
         var dismissLinkId = 'ShutterPlacesDismiss' + id;
         var buttonId = 'ShutterPlacesButtonOpen' + id;
         var lang = 'en';
@@ -90,12 +90,12 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
             content.style.cssText = contentStyle;
 
             var css = document.createElement('style');
-            css.innerHTML = '#' + TranslateIframeId + ' table{' + ['background:#fff6e9',
+            css.innerHTML = '#' + ShutterPlacesIframeId + ' table{' + ['background:#fff6e9',
                 'width:100%',
                 'margin-bottom:50px',
                 'border-bottom:2px solid #bdb6ad',
                 'margin:10px 0'
-            ].join(';') + '}' + '#' + TranslateIframeId + ' th{' + ['display:table-cell',
+            ].join(';') + '}' + '#' + ShutterPlacesIframeId + ' th{' + ['display:table-cell',
                 'padding:2px 10px',
                 'border:solid #ece4d8',
                 'border-width:0 2px 2px 0',
@@ -103,7 +103,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
                 'font-family:"Open Sans",Myriad,Calibri,sans-serif',
                 'font-weight:bold',
                 'font-size:.85em',
-            ].join(';') + '}' + '#' + TranslateIframeId + ' td{' + ['border-width:0 2px 0 0', 'border:solid #ece4d8', 'vertical-align:middle', 'text-align:center'].join(';') + '}' + '#' + TranslateIframeId + ' table:after{' + ['content:" "', 'display:block', 'width:100%', 'height:100px'].join(';') + '}' + '#' + TranslateIframeId + ' td.thumb img{' + ['min-width:50px', 'min-height:50px'].join(';') + '}';
+            ].join(';') + '}' + '#' + ShutterPlacesIframeId + ' td{' + ['border-width:0 2px 0 0', 'border:solid #ece4d8', 'vertical-align:middle', 'text-align:center'].join(';') + '}' + '#' + ShutterPlacesIframeId + ' table:after{' + ['content:" "', 'display:block', 'width:100%', 'height:100px'].join(';') + '}' + '#' + ShutterPlacesIframeId + ' td.thumb img{' + ['min-width:50px', 'min-height:50px'].join(';') + '}';
 
             var dialog = document.createElement('div');
             dialog.style.cssText = dialogStyle;
@@ -114,7 +114,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
 
             content.appendChild(dismissLink);
             var frame = document.createElement('div');
-            frame.id = TranslateIframeId;
+            frame.id = ShutterPlacesIframeId;
             frame.style.cssText = "width:100%;height:100%;overflow-y:scroll;";
             content.appendChild(frame);
             dialog.appendChild(content);
@@ -259,21 +259,21 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
         }
 
         function _draw_table(url) {
-            var t = jQuery('#' + TranslateIframeId + ' table');
+            var t = jQuery('#' + ShutterPlacesIframeId + ' table');
             if (typeof t.html() == 'undefined') {
-                // console.log(document.getElementById(TranslateIframeId));
+                // console.log(document.getElementById(ShutterPlacesIframeId));
                 // var t = document.createElement('table');
                 // t.width = "100%";
                 // t.height = "100%";
-                // document.getElementById(TranslateIframeId).appendChild(t);
-                jQuery('#' + TranslateIframeId).html('<table></table>');
-                jQuery('#' + TranslateIframeId + ' table').append('<tr>' + '<th>'+param.thumbText+'</th>' + '<th>'+param.similarText+'</th>' + '<th>'+param.utilizesText+'</th>' + '<th>'+param.timeText+'</th>' + '<th>'+param.placeText+'</th>' + '</tr>');
+                // document.getElementById(ShutterPlacesIframeId).appendChild(t);
+                jQuery('#' + ShutterPlacesIframeId).html('<table></table>');
+                jQuery('#' + ShutterPlacesIframeId + ' table').append('<tr>' + '<th>'+param.thumbText+'</th>' + '<th>'+param.similarText+'</th>' + '<th>'+param.utilizesText+'</th>' + '<th>'+param.timeText+'</th>' + '<th>'+param.placeText+'</th>' + '</tr>');
             }
-            // jQuery('#'+TranslateIframeId+' table').append('<tr>'+'<td>thumb</td>'+'<td>Stock</td>'+'<td>Google</td>'+'<td>time</td>'+'<td>place</td>'+'</tr>');
+            // jQuery('#'+ShutterPlacesIframeId+' table').append('<tr>'+'<td>thumb</td>'+'<td>Stock</td>'+'<td>Google</td>'+'<td>time</td>'+'<td>place</td>'+'</tr>');
         }
 
         function _load_info(url) {
-            var t = jQuery('#' + TranslateIframeId + ' table tr td');
+            var t = jQuery('#' + ShutterPlacesIframeId + ' table tr td');
             if (t.length < 1) {
                 jQuery.ajax({
                     url: url,
@@ -283,7 +283,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
                     },
                     success: function(data) {
                         for (var i = 0; data.length > i; i++) {//data.length - 1
-                            if (jQuery('#' + TranslateIframeId + ' table .' + data[i].media_id) === null) continue; // если уже есть такой id
+                            if (jQuery('#' + ShutterPlacesIframeId + ' table .' + data[i].media_id) === null) continue; // если уже есть такой id
                             var place = dic[lang][7];//vm20150528
                             if (data[i].longitude !== null && data[i].latitude !== null) {
                                 // https://www.google.com/maps/dir//-20.4810998,-54.635534/@-21.3840774,-58.2390497,3z
@@ -294,9 +294,9 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
                             }
                             else {var place = dic[lang][7]}
                             data[i].thumb_url = data[i].thumb_url.replace(/:\/\/thumb\./g,'://image.');//vm20150528
-                            jQuery('#' + TranslateIframeId + ' table').append('<tr id="ph' + data[i].media_id + '_' + i + '" style="max-height:40px;">' + '<td class="thumb" style="width:105px"><a href="http://www.shutterstock.com/pic-' + data[i].media_id + '/index.html" target="_blank"><img src="' + data[i].thumb_url + '"></a></td>' + '<td class="similar"><a href="http://www.shutterstock.com/similar-' + data[i].media_id + '/index.html" target="_blank">Shutterstock</a></td>' + '<td class="google"><a href="https://www.google.com/searchbyimage?&amp;image_url=' + window.encodeURI('http://thumb101.shutterstock.com/display_pic_with_logo/0/0/' + data[i].media_id + '.jpg') + '" target="_blank">Google images</a></td>' + '<td class="time" style="max-width:80px">' + (new Date((data[i].time+3600*5) * 1000)) + '</td>' + '<td class="place" style="max-width:100px;">' + place + '</td>' + '</tr>');
+                            jQuery('#' + ShutterPlacesIframeId + ' table').append('<tr id="ph' + data[i].media_id + '_' + i + '" style="max-height:40px;">' + '<td class="thumb" style="width:105px"><a href="http://www.shutterstock.com/pic-' + data[i].media_id + '/index.html" target="_blank"><img src="' + data[i].thumb_url + '"></a></td>' + '<td class="similar"><a href="http://www.shutterstock.com/similar-' + data[i].media_id + '/index.html" target="_blank">Shutterstock</a></td>' + '<td class="google"><a href="https://www.google.com/searchbyimage?&amp;image_url=' + window.encodeURI('http://thumb101.shutterstock.com/display_pic_with_logo/0/0/' + data[i].media_id + '.jpg') + '" target="_blank">Google images</a></td>' + '<td class="time" style="max-width:80px">' + (new Date((data[i].time+3600*5) * 1000)) + '</td>' + '<td class="place" style="max-width:100px;">' + place + '</td>' + '</tr>');
                             if(data[i].longitude !== undefined && data[i].longitude !== null)
-                            ShutterPlacesWindowHelperScript.resolve_place(jQuery('#' + TranslateIframeId + ' table #ph' + data[i].media_id + '_' + i + ' .place a'), data[i].longitude, data[i].latitude, 11);
+                            ShutterPlacesWindowHelperScript.resolve_place(jQuery('#' + ShutterPlacesIframeId + ' table #ph' + data[i].media_id + '_' + i + ' .place a'), data[i].longitude, data[i].latitude, 11);
                         };
                     },
                     cache: false,
