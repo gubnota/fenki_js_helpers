@@ -6,6 +6,8 @@
 // @description adds links to download video at Youtube.com
 // @include        https://*.youtube.com/*
 // @include        https://youtube.com/*
+// @include        http://*.youtube.com/*
+// @include        http://youtube.com/*
 // @copyright  2015+, Vladislav Muravyev
 // @author Vladislav Muravyev
 // @grant          none
