@@ -25,11 +25,6 @@ setDiv = function(videos) {
         }
     }
     html = html + '</div>';
-    // html = html + '<div style="padding: 5px;">';
-    // html = html + '<div id="download-youtube-chrome-ad-620-60"><IFRAME SRC="https://ib.adnxs.com/tt?id=3990674&referrer=[REFERRER_URL]" FRAMEBORDER="0" SCROLLING="no" MARGINHEIGHT="0" MARGINWIDTH="0" TOPMARGIN="0" LEFTMARGIN="0" ALLOWTRANSPARENCY="true" WIDTH="468" HEIGHT="60"></IFRAME></div>';
-    // html = html + '</div>';
-    // html = html + '<div style="padding: 5px;">';
-    // html = html + '</div>';
     html = html + '</div>';
     var wpDiv = document.getElementById('watch7-content');
     if (wpDiv !== null) {
@@ -42,121 +37,71 @@ setDiv = function(videos) {
 };
 getVideos = function() {
     try {
-        var formats = {/*
+        var formats = {
+            1: {
+                itag: 1,
+                resolution: 240,
+                format: "MP4"
+            },
+            2: {
+                itag: 2,
+                resolution: 360,
+                format: "MP4"
+            },
+            3: {
+                itag: 3,
+                resolution: 480,
+                format: "MP4"
+            },
+            4: {
+                itag: 4,
+                resolution: 720,
+                format: "MP4"
+            },
             5: {
                 itag: 5,
-                resolution: 224,
-                format: "FLV"
+                resolution: 1080,
+                format: "MP4"
             },
             6: {
                 itag: 6,
-                resolution: 270,
-                format: "FLV"
-            },
-            13: {
-                itag: 13,
-                resolution: 144,
-                format: "3GP"
-            },
-            17: {
-                itag: 17,
-                resolution: 144,
-                format: "3GP"
-            },*/
-            18: {
-                itag: 18,
-                resolution: 480,
-                format: "MP4"
-            },
-            19: {
-                itag: 19,
-                resolution: 420,
-                format: "MP4"
-            },
-            22: {
-                itag: 22,
-                resolution: 720,
-                format: "MP4"
-            },/*
-            34: {
-                itag: 34,
-                resolution: 360,
-                format: "FLV"
-            },
-            35: {
-                itag: 35,
-                resolution: 480,
-                format: "FLV"
-            },
-            36: {
-                itag: 36,
-                resolution: 240,
-                format: "3GP"
-            },*/
-            37: {
-                itag: 37,
-                resolution: 1080,
-                format: "MP4"
-            },
-            38: {
-                itag: 38,
                 resolution: 2304,
                 format: "MP4"
             },
-            43: {
-                itag: 43,
+            7: {
+                itag: 7,
+                resolution: 240,
+                format: "WebM"
+            },
+            8: {
+                itag: 8,
                 resolution: 360,
                 format: "WebM"
             },
-            44: {
-                itag: 44,
+            9: {
+                itag: 9,
                 resolution: 480,
                 format: "WebM"
             },
-            45: {
-                itag: 45,
+            10: {
+                itag: 10,
                 resolution: 720,
                 format: "WebM"
             },
-            46: {
-                itag: 46,
+            11: {
+                itag: 11,
                 resolution: 1080,
                 format: "WebM"
             },
-            82: {
-                itag: 82,
-                resolution: 360,
-                format: "MP4"
+            12: {
+                itag: 12,
+                resolution: 2304,
+                format: "WebM"
             },
-            83: {
-                itag: 83,
-                resolution: 240,
-                format: "MP4"
-            },
-            84: {
-                itag: 84,
-                resolution: 720,
-                format: "MP4"
-            },
-            85: {
-                itag: 85,
+            13: {
+                itag: 13,
                 resolution: 520,
                 format: "MP4"
-            },
-            100: {
-                itag: 100,
-                resolution: 360,
-                format: "WebM"
-            },
-            101: {
-                itag: 101,
-                resolution: 480,
-                format: "WebM"
-            },
-            102: {
-                itag: 102,
-                resolution: 720,
-                format: "WebM"
             }
         };
         var videos = new Array();
