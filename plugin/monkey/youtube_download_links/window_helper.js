@@ -54,9 +54,11 @@ getVideos = function() {
                     url = unescape(urlData[1]);
                 }
                 if (streamData[y].indexOf('type=') === 0) {
-                    typeData = streamData[y].split('=');
-if (typeData[1].indexOf('video/mp4') === 0) {type = "mp4";}
-if (typeData[1].indexOf('video/webm') === 0) {type = "webm";}
+typeData = streamData[y].split('=');var v = unescape(typeData[1]);
+/*if (v.indexOf('video/x-flv') !== -1) {type = "flv";}
+else if (v.indexOf('video/3gpp') !== -1) {type = "3gp";}*/
+if (v.indexOf('video/mp4') === 0) {type = "mp4";}
+if (v.indexOf('video/webm') === 0) {type = "webm";}
                 }
                 if (streamData[y].indexOf('quality=') === 0) {
                     qualityData = streamData[y].split('=');
