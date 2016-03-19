@@ -55,8 +55,9 @@ getVideos = function() {
                 }
                 if (streamData[y].indexOf('type=') === 0) {
                     typeData = streamData[y].split('=');
-if (typeData[1].indexOf('video/mp4') === 0) {type = "mp4";}
-else if (typeData[1].indexOf('video/webm') === 0) {type = "webm";}
+                    type = typeData[1];
+if (type.indexOf('video/mp4') === 0) {type = "mp4";}
+else if (type.indexOf('video/webm') === 0) {type = "webm";}
                 }
                 if (streamData[y].indexOf('quality=') === 0) {
                     qualityData = streamData[y].split('=');
@@ -72,7 +73,7 @@ else if (typeData[1].indexOf('video/webm') === 0) {type = "webm";}
                 }
 
             }
-            if (url !== '' && itag !== 0) {
+            if (url !== '' && itag !== 0 && (type == "mp4" || type == "webm")) {
                 var video = {
                     formatObject: type+quality,
                     url: url/* + '&signature=' + sig*/
