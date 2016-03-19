@@ -19,7 +19,7 @@ setDiv = function(videos) {
             if (typeof video.formatObject == 'undefined') {
                 html = html + '<span><a href="' + video.url + '&title=' + replaceAll(title, '"', '%22') + '" onclick="_gaq.push([\'_trackEvent\', \'Download\', \'' + replaceAll(replaceAll(title, '"', '&quot;'), '\'', '\\\'') + '\', \'Unknown Format\']);">Unknown Format</a></span>';
             } else {
-                html = html + '<span><a href="' + video.url + '&title=' + replaceAll(title, '"', '%22') + ' ' + video.formatObject + '" onclick="_gaq.push([\'_trackEvent\', \'Download\', \'' + replaceAll(replaceAll(title, '"', '&quot;'), '\'', '\\\'') + '\', \'' + video.formatObject + '\']);">' + video.formatObject + '</a></span>';
+                html = html + '<span><a href="' + video.url + '&title=' + replaceAll(title, '"', '%22') + '" onclick="_gaq.push([\'_trackEvent\', \'Download\', \'' + replaceAll(replaceAll(title, '"', '&quot;'), '\'', '\\\'') + '\', \'' + video.formatObject + '\']);">' + video.formatObject + '</a></span>';
             }
             counter++;
         }
