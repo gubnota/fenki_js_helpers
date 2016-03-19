@@ -19,7 +19,7 @@ setDiv = function(videos) {
             if (typeof video.formatObject == 'undefined') {
                 html = html + '<span><a href="' + video.url + '&title=' + replaceAll(title, '"', '%22') + '" onclick="_gaq.push([\'_trackEvent\', \'Download\', \'' + replaceAll(replaceAll(title, '"', '&quot;'), '\'', '\\\'') + '\', \'Unknown Format\']);">Unknown Format</a></span>';
             } else {
-                html = html + '<span><a href="' + video.url + '&title=' + replaceAll(title, '"', '%22') + ' [' + video.formatObject.resolution + 'p]" onclick="_gaq.push([\'_trackEvent\', \'Download\', \'' + replaceAll(replaceAll(title, '"', '&quot;'), '\'', '\\\'') + '\', \'' + video.formatObject.format + ' ' + video.formatObject.resolution + 'p\']);">' + video.formatObject.resolution + 'p ' + video.formatObject.format + '</a></span>';
+                html = html + '<span><a href="' + video.url + '&title=' + replaceAll(title, '"', '%22') + ' ' + video.formatObject + '" onclick="_gaq.push([\'_trackEvent\', \'Download\', \'' + replaceAll(replaceAll(title, '"', '&quot;'), '\'', '\\\'') + '\', \'' + video.formatObject + '\']);">' + video.formatObject + '</a></span>';
             }
             counter++;
         }
@@ -37,91 +37,36 @@ setDiv = function(videos) {
 };
 getVideos = function() {
     try {
-        var formats = {
-            1: {
-                itag: 1,
-                resolution: 240,
-                format: "MP4"
-            },
-            2: {
-                itag: 2,
-                resolution: 360,
-                format: "MP4"
-            },
-            3: {
-                itag: 3,
-                resolution: 480,
-                format: "MP4"
-            },
-            4: {
-                itag: 4,
-                resolution: 720,
-                format: "MP4"
-            },
-            5: {
-                itag: 5,
-                resolution: 1080,
-                format: "MP4"
-            },
-            6: {
-                itag: 6,
-                resolution: 2304,
-                format: "MP4"
-            },
-            7: {
-                itag: 7,
-                resolution: 240,
-                format: "WebM"
-            },
-            8: {
-                itag: 8,
-                resolution: 360,
-                format: "WebM"
-            },
-            9: {
-                itag: 9,
-                resolution: 480,
-                format: "WebM"
-            },
-            10: {
-                itag: 10,
-                resolution: 720,
-                format: "WebM"
-            },
-            11: {
-                itag: 11,
-                resolution: 1080,
-                format: "WebM"
-            },
-            12: {
-                itag: 12,
-                resolution: 2304,
-                format: "WebM"
-            },
-            13: {
-                itag: 13,
-                resolution: 520,
-                format: "MP4"
-            }
-        };
         var videos = new Array();
         var flashVarsString = ytplayer.config.args.url_encoded_fmt_stream_map;
         var streamFiles = flashVarsString.split(',');
         for (var i in streamFiles) {
             streamData = streamFiles[i].split('&');
             var url = '';
+            var type = '';
+            var quality = '';
             var sig = '';
             var itag = 0;
+//type: video/mp4, video/webm, url, itag, fallback_host, quality: medium, small, hd720
             for (var y in streamData) {
-                if (streamData[y].indexOf('itag=') === 0) {
-                    itagData = streamData[y].split('=');
-                    itag = itagData[1];
-                }
                 if (streamData[y].indexOf('url=') === 0) {
                     urlData = streamData[y].split('=');
                     url = unescape(urlData[1]);
                 }
-                if (streamData[y].indexOf('sig=') === 0) {
+                if (streamData[y].indexOf('type=') === 0) {
+                    typeData = streamData[y].split('=');
+if (typeData[1].indexOf('video/mp4') === 0) {type = "mp4";}
+else if (typeData[1].indexOf('video/webm') === 0) {type = "webm";}
+                }
+                if (streamData[y].indexOf('quality=') === 0) {
+                    qualityData = streamData[y].split('=');
+                    quality = unescape(qualityData[1]);
+                }
+                if (streamData[y].indexOf('itag=') === 0) {
+                    itagData = streamData[y].split('=');
+                    itag = itagData[1];
+                }
+                if (streamData[y].indexOf('signature=') === 0) {
                     sigData = streamData[y].split('=');
                     sig = unescape(sigData[1]);
                 }
@@ -129,8 +74,8 @@ getVideos = function() {
             }
             if (url !== '' && itag !== 0) {
                 var video = {
-                    formatObject: formats[itag],
-                    url: url + '&signature=' + sig
+                    formatObject: type+quality,
+                    url: url/* + '&signature=' + sig*/
                 };
                 videos.push(video);
             }

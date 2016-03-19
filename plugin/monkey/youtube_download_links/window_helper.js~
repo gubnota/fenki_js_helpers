@@ -38,85 +38,70 @@ setDiv = function(videos) {
 getVideos = function() {
     try {
         var formats = {
-            18: {
-                itag: 18,
-                resolution: 480,
-                format: "MP4"
-            },
-            19: {
-                itag: 19,
-                resolution: 420,
-                format: "MP4"
-            },
-            22: {
-                itag: 22,
-                resolution: 720,
-                format: "MP4"
-            },
-            37: {
-                itag: 37,
-                resolution: 1080,
-                format: "MP4"
-            },
-            38: {
-                itag: 38,
-                resolution: 2304,
-                format: "MP4"
-            },
-            43: {
-                itag: 43,
-                resolution: 360,
-                format: "WebM"
-            },
-            44: {
-                itag: 44,
-                resolution: 480,
-                format: "WebM"
-            },
-            45: {
-                itag: 45,
-                resolution: 720,
-                format: "WebM"
-            },
-            46: {
-                itag: 46,
-                resolution: 1080,
-                format: "WebM"
-            },
-            82: {
-                itag: 82,
-                resolution: 360,
-                format: "MP4"
-            },
-            83: {
-                itag: 83,
+            1: {
+                itag: 1,
                 resolution: 240,
                 format: "MP4"
             },
-            84: {
-                itag: 84,
+            2: {
+                itag: 2,
+                resolution: 360,
+                format: "MP4"
+            },
+            3: {
+                itag: 3,
+                resolution: 480,
+                format: "MP4"
+            },
+            4: {
+                itag: 4,
                 resolution: 720,
                 format: "MP4"
             },
-            85: {
-                itag: 85,
-                resolution: 520,
+            5: {
+                itag: 5,
+                resolution: 1080,
                 format: "MP4"
             },
-            100: {
-                itag: 100,
+            6: {
+                itag: 6,
+                resolution: 2304,
+                format: "MP4"
+            },
+            7: {
+                itag: 7,
+                resolution: 240,
+                format: "WebM"
+            },
+            8: {
+                itag: 8,
                 resolution: 360,
                 format: "WebM"
             },
-            101: {
-                itag: 101,
+            9: {
+                itag: 9,
                 resolution: 480,
                 format: "WebM"
             },
-            102: {
-                itag: 102,
+            10: {
+                itag: 10,
                 resolution: 720,
                 format: "WebM"
+            },
+            11: {
+                itag: 11,
+                resolution: 1080,
+                format: "WebM"
+            },
+            12: {
+                itag: 12,
+                resolution: 2304,
+                format: "WebM"
+            },
+            13: {
+                itag: 13,
+                resolution: 520,
+                format: "MP4"
             }
         };
         var videos = new Array();
