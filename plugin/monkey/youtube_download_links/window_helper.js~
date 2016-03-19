@@ -42,7 +42,7 @@ setDiv = function(videos) {
 };
 getVideos = function() {
     try {
-        var formats = {/*
+        var formats = {
             5: {
                 itag: 5,
                 resolution: 224,
@@ -62,10 +62,10 @@ getVideos = function() {
                 itag: 17,
                 resolution: 144,
                 format: "3GP"
-            },*/
+            },
             18: {
                 itag: 18,
-                resolution: 480,
+                resolution: 360,
                 format: "MP4"
             },
             19: {
@@ -77,7 +77,7 @@ getVideos = function() {
                 itag: 22,
                 resolution: 720,
                 format: "MP4"
-            },/*
+            },
             34: {
                 itag: 34,
                 resolution: 360,
@@ -92,7 +92,7 @@ getVideos = function() {
                 itag: 36,
                 resolution: 240,
                 format: "3GP"
-            },*/
+            },
             37: {
                 itag: 37,
                 resolution: 1080,
