@@ -74,9 +74,9 @@ if (v.indexOf('video/webm') === 0) {type = "webm";}
                 }
 
             }
-            if (url !== '' && itag !== 0) {
+            if (url !== '' && type !== '' && itag !== 0) {
                 var video = {
-                    formatObject: type+quality,
+                    formatObject: type+' '+quality,
                     url: url/* + '&signature=' + sig*/
                 };
                 videos.push(video);
