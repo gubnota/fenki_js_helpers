@@ -86,7 +86,7 @@ function doIt() {
     var oldLink = link.href;
     if (/^https?:\/\/.*.google\./.test(oldLink)) {
       var matches = /url\?(url|q)=(.+?)&/.exec(oldLink);
-      if (matches != null) {
+      if (matches !== null) {
         link.href = unescape(matches[2]);
       }
     }
@@ -94,18 +94,19 @@ function doIt() {
 }
 
 function doRTR() {
-  if (arguments[0] == undefined) {
+  var resultLinks = [];
+  if (arguments[0] === undefined) {
     // get all real-time result links
-    var resultLinks = $x("//div[@id='rtr']//a", XPathResult.ORDERED_NODE_SNAPSHOT_TYPE);
+    resultLinks = $x("//div[@id='rtr']//a", XPathResult.ORDERED_NODE_SNAPSHOT_TYPE);
   } else {
     // get all links from the current real-time result
-    var resultLinks = $x(arguments[0], "//a", XPathResult.ORDERED_NODE_SNAPSHOT_TYPE);
+    resultLinks = $x(arguments[0], "//a", XPathResult.ORDERED_NODE_SNAPSHOT_TYPE);
   }
   resultLinks.forEach(function(link) {  // loop over every link
-    var oldLink = link.href;
+    var oldLink = link.href; console.log(link.href);
     if (/^https?:\/\/.*.google\./.test(oldLink)) {
       var matches = /url\?(url|q)=(.+?)&/.exec(oldLink);
-      if (matches != null) {
+      if (matches !== null) {
         link.href = unescape(matches[2]);
       }
     }
