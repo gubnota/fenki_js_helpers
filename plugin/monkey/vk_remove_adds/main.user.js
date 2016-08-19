@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name       Vk remove adds
 // @namespace  http://gubnota.github.io/fenki_js_helpers/plugin/monkey/vk_remove_adds/
-// @version    0.1.3
+// @version    0.1.4
 // @downloadURL http://gubnota.github.io/fenki_js_helpers/plugin/monkey/vk_remove_adds/main.user.js
 // @description removes adds block in Vk.com
 // @include        http://*.vk.com/*
 // @include        https://*.vk.com/*
+// @include        http://vk.com/*
+// @include        https://vk.com/*
 // @copyright  2015+, Vladislav Muravyev
 // @author Vladislav Muravyev
 // @grant          none
@@ -25,33 +27,19 @@ var w = window;
     if (w.self != w.top) {
         return;
     }
-    // [4] дополнительная проверка наряду с @include
-    if (/:\/\/(new.|)vk.com/.test(w.location.href)) {
 var t = setInterval(function() {
-        //Ниже идёт непосредственно код скрипта
-        var el = document.getElementById('wall_text_name_explain_promoted_post')||undefined;
-        if (typeof el == 'undefined') {}
-        else if (el.count>0){
+        var el = document.getElementById('ads_left'); if (el !== null) el.remove();
+        el = document.getElementById('wall_text_name_explain_promoted_post')||undefined;
+        if (typeof el != 'undefined' && el.count>0) {
         el = el[0];
         el = el.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
         if (el.classList.contains('feed_row')) el.remove();
         }
-        //Ниже идёт непосредственно код скрипта
-        el = document.getElementById('ads_left')||undefined;
-        if (typeof el == 'undefined') {}
-        else{
-        var style = el.getAttribute('style')||'';
-//        style = style.replace('block','none');
-//        el.setAttribute('style',style);
-        el.style.width='0px';
-        el.innerHTML = '';
-        }
         el = document.getElementsByClassName('ads_ads_news_wrap')||undefined;
-        if (typeof el == 'undefined') {}
-        else if(el.length>0){
-            el[0].setAttribute('style','display:none;');
+        if (el !== null){
+        for(var i=0; i<el.length; i++) {
+            el[i].setAttribute('style','display:none;');
             el.innerHTML = '';
-}
-}, 1000);
-    }
+       }}
+}, 100);
 })(window);
