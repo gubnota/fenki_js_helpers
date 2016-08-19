@@ -5,6 +5,7 @@
 // @downloadURL http://gubnota.github.io/fenki_js_helpers/plugin/monkey/mail_yandex_ru_adds/main.user.js
 // @description removes adds block(s) in mail.yeah.net
 // @include      http://mail.yandex.*/*
+// @include      https://mail.yandex.*/*
 // @copyright  2016+, Vladislav Muravyev
 // @author Vladislav Muravyev
 // @grant          none
