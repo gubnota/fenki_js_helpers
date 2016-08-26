@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       mail.yandex.ru adds and news remover
 // @namespace  http://gubnota.github.io/fenki_js_helpers/plugin/monkey/mail_yandex_ru_adds/
-// @version    0.1.1
+// @version    0.1.2
 // @downloadURL http://gubnota.github.io/fenki_js_helpers/plugin/monkey/mail_yandex_ru_adds/main.user.js
 // @description removes adds block(s) in mail.yeah.net
 // @include      http://mail.yandex.*/*
@@ -15,8 +15,12 @@
 (function(){
 var t = setInterval(function(){
 
+var el = document.querySelectorAll('.b-direct_messages'); for(var i=0; i<el.length; i++) {
+el[i].style.display='none';
+}
+
 var el = document.querySelectorAll('.b-messages__message'); for(var i=0; i<el.length; i++) {
-if(el[i].getAttribute('data-id')===null) el[i].remove();
+if(el[i].getAttribute('data-id')===null) el[i].style.display='none';
 }
 
 var el = document.querySelectorAll('.b-folders__nesting'); for(var i =0; i<el.length; i++){
