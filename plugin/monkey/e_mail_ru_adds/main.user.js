@@ -16,7 +16,7 @@
 var t = setInterval(function(){
 
 var el = document.querySelectorAll('#b-sticky_left_banners'); for(var i=0; i<el.length; i++) {
-el[i].style.display='none';
+el[i].remove();
 }
     },400);
 })();
