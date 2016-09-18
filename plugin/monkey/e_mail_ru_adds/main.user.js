@@ -15,8 +15,7 @@
 (function(){
 var t = setInterval(function(){
 
-var el = document.querySelectorAll('#b-sticky_left_banners'); for(var i=0; i<el.length; i++) {
-el[i].remove();
+var el = document.getElementByID('b-slot_left_banner').remove();
 }
     },400);
 })();
