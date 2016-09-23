@@ -20,7 +20,7 @@ click_handlers='.ns-view-messages-item',/*on click which items to (re)-run hide 
 insert_button_place='.mail-Message-Toolbar-Item',/*where to insert show images button*/
 button_id='show_img',/*button id to show images*/
 button_code='<span class="mail-Message-Toolbar-Item"><span id="show_img" class="mail-Message-Toolbar-Item-Text" style="cursor:pointer;">Показать картинки</span></span>',
-button_where='BeforeStart',
+button_where='beforeBegin',
 button_from='Показ',
 button_to='Спрят',
 button_search='з',
