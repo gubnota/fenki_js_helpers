@@ -65,7 +65,9 @@ var a = document.querySelectorAll(insert_button_place);
 var b=document.getElementById(button_id);
 
 if (b === null && a.length>0){
-a[0].insertAdjacentHTML(button_where,button_code);hide_show_letter_img();
+a[0].insertAdjacentHTML(button_where,button_code);
+hide_show_letter_img();
+document.addEventListener("DOMContentLoaded", function(){hide_show_letter_img();;});
 }
 
 if (b!==null){
