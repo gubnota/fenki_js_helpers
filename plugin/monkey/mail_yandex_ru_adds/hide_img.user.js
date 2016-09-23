@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name       *mail.yandex.ru blocks all images from amazon, ebay, optional load images by click
-// @3namespace  http://gubnota.github.io/fenki_js_helpers/plugin/monkey/tencent/mail/
+// @namespace  http://gubnota.github.io/fenki_js_helpers/plugin/monkey/tencent/mail/
 // @version    0.0.2
-// @3downloadURL http://gubnota.github.io/fenki_js_helpers/plugin/monkey/tencent/mail/hide_img.user.js
+// @downloadURL http://gubnota.github.io/fenki_js_helpers/plugin/monkey/tencent/mail/hide_img.user.js
 // @description removes adds block(s) in mail.yeah.net
 // @include      http://*mail.yandex.*/*
 // @include      https://*mail.yandex.*/*

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       mail.yandex.ru adds and news remover
 // @namespace  http://gubnota.github.io/fenki_js_helpers/plugin/monkey/mail_yandex_ru_adds/
-// @version    0.1.2
+// @version    0.1.3
 // @downloadURL http://gubnota.github.io/fenki_js_helpers/plugin/monkey/mail_yandex_ru_adds/main.user.js
 // @description removes adds block(s) in mail.yeah.net
 // @include      http://mail.yandex.*/*
