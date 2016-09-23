@@ -17,10 +17,10 @@
 var imgscope='.mail-Message-Body *',/*image searching scope*/
 empty_dot="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==",/*.placedb-letter*/
 click_handlers='.ns-view-messages-item',/*on click which items to (re)-run hide images*/
-insert_button_place='.ns-view-message-toolbar',/*where to insert show images button*/
+insert_button_place='.mail-Message-Toolbar-Content_before',/*where to insert show images button*/
 button_id='show_img',/*button id to show images*/
 button_code='<span id="show_img" style="display:inline-block;cursor:pointer;">Показать картинки</span>',
-button_where='afterBegin',
+button_where='afterEnd',
 button_from='Показ',
 button_to='Спрят',
 button_search='з',
@@ -64,7 +64,7 @@ function init_find_place(){
 var a = document.querySelectorAll(insert_button_place);
 var b=document.getElementById(button_id);
 
-if (b === null && a.length>0){
+if (b !== null && a.length>0){
 a[0].insertAdjacentHTML(button_where,button_code);hide_show_letter_img();
 }
 
