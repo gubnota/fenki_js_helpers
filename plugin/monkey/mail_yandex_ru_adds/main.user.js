@@ -10,7 +10,7 @@
 // @author Vladislav Muravyev
 // @grant          none
 // @icon http://gubnota.github.io/fenki_js_helpers/plugin/monkey/mail_yandex_ru_adds/yandex.ico
-// @run-at document-end
+// @run-at document-start
 // ==/UserScript==
 (function(){
 var t = setInterval(function(){

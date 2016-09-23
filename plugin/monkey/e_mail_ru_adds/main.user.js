@@ -14,8 +14,7 @@
 // ==/UserScript==
 (function(){
 var t = setInterval(function(){
-
-var el = document.getElementByID('b-slot_left_banner').remove();
-}
-    },400);
+[].forEach.call(document.querySelectorAll('#YaDirectLine,#rb-direct-left-slot,#AdLeftInformer,.b-slot_left_banner'),function(el) {
+el.remove();});
+},400);
 })();
