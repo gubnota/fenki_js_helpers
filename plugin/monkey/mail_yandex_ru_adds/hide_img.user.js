@@ -80,9 +80,9 @@ e.target.innerText=i.replace(f,t);hide_show_letter_img();
 
 
 
-document.addEventListener("DOMContentLoaded", function(){init_find_place();});
-init_find_place();
-window.onload=function(){init_find_place();var t = setInterval(function(){init_find_place();},main_interval_reload);
-document.addEventListener('DOMNodeInserted',function(e){init_find_place();});
+document.addEventListener("DOMContentLoaded", function(){hide_show_letter_img();init_find_place();});
+hide_show_letter_img();init_find_place();
+window.onload=function(){init_find_place();var t = setInterval(function(){hide_show_letter_img();init_find_place();},main_interval_reload);
+document.addEventListener('DOMNodeInserted',function(e){hide_show_letter_img();init_find_place();});
 };
 })();
