@@ -67,10 +67,9 @@ var b=document.getElementById(button_id);
 if (b === null && a.length>0){
 a[0].insertAdjacentHTML(button_where,button_code);
 hide_show_letter_img();
-document.addEventListener("DOMContentLoaded", function(){hide_show_letter_img();;});
 }
 
-if (b!==null){
+else if (b!==null){
 b.onclick=function(e){var i=e.target.innerText;
 var t=button_to,f=button_from;
 if(i.indexOf(button_search)>-1){f=button_to;t=button_from;}
@@ -80,9 +79,9 @@ e.target.innerText=i.replace(f,t);hide_show_letter_img();
 
 
 
-document.addEventListener("DOMContentLoaded", function(){hide_show_letter_img();init_find_place();});
-hide_show_letter_img();init_find_place();
-window.onload=function(){init_find_place();var t = setInterval(function(){hide_show_letter_img();init_find_place();},main_interval_reload);
-document.addEventListener('DOMNodeInserted',function(e){hide_show_letter_img();init_find_place();});
+document.addEventListener("DOMContentLoaded", function(){init_find_place();});
+init_find_place();
+window.onload=function(){init_find_place();var t = setInterval(function(){init_find_place();},main_interval_reload);
+document.addEventListener('DOMNodeInserted',function(e){init_find_place();});
 };
 })();
