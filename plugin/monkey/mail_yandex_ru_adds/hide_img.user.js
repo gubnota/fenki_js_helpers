@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       *mail.yandex.ru blocks all images from amazon, ebay, optional load images by click
 // @namespace  http://gubnota.github.io/fenki_js_helpers/plugin/monkey/mail_yandex_ru_adds/
-// @version    0.0.4
+// @version    0.0.5
 // @downloadURL http://gubnota.github.io/fenki_js_helpers/plugin/monkey/mail_yandex_ru_adds/hide_img.user.js
 // @description removes adds block(s) in mail.yeah.net
 // @include      http://*mail.yandex.*/*
@@ -17,9 +17,9 @@
 var imgscope='.mail-Message-Body *',/*image searching scope*/
 empty_dot="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==",/*.placedb-letter*/
 click_handlers='.ns-view-messages-item',/*on click which items to (re)-run hide images*/
-insert_button_place='.mail-Message-Toolbar-Item',/*where to insert show images button*/
+insert_button_place='.ns-view-message-toolbar',/*where to insert show images button*/
 button_id='show_img',/*button id to show images*/
-button_code='<span id="show_img" class="mail-Message-Toolbar-Item-Text" style="cursor:pointer;">Показать картинки</span>',
+button_code='<span class="mail-Message-Toolbar-Item"><span id="show_img" class="mail-Message-Toolbar-Item-Text" style="cursor:pointer;">Показать картинки</span></span>',
 button_where='afterBegin',
 button_from='Показ',
 button_to='Спрят',
