@@ -19,7 +19,7 @@ click_handlers='.b-datalist__item',/*on click which items to (re)-run hide image
 insert_button_place='.noUnderLineList',/*where to insert show images button*/
 button_id='show_img',/*button id to show images*/
 button_code='<span id="show_img" style="color:#15c;cursor:pointer;text-decoration:underline">Показать картинки</span>',
-button_where='BeforeEnd',
+button_where='beforeEnd',
 button_from='Показ',
 button_to='Спрят',
 button_search='з',
