@@ -14,4 +14,38 @@
 // @icon http://gubnota.github.io/fenki_js_helpers/plugin/monkey/youtube_block_ads/yb.png
 // @run-at document-end
 // ==/UserScript==
-(function(window,undefined){var w=window;if(w.self!=w.top){return}if(/:\/\/.*youtube\.com\//.test(w.location.href)){var el=document.getElementById("youtube_download_links_window_helper_script");if(el===null){(function(f,e,n,k,i){var n=e.createElement(n);n.setAttribute("id","youtube_download_links_window_helper_script");n.async=true;n.src=k;if(typeof IFrameWindowHelper=="undefined"){n.onload=function(){}}(e[i]("head")[0]||e[i]("body")[0]).appendChild(n)})(window,document,"script",(6==document.location.protocol.length?"https:":"http:")+"//gubnota.github.io/fenki_js_helpers/plugin/monkey/youtube_download_links/window_helper.js","getElementsByTagName")}}})(window);
+(function(window, undefined){
+var w = window;
+    if (w.self != w.top) return;
+setInterval(function(e) {
+var a = document.getElementsByClassName('html5-video-player')[0];
+if (a !== undefined){
+//a.className = a.className.replace('ad-showing','');
+//a.className = a.className.replace('ad-interrupting','');
+a.className = a.className.replace('ytp-autohide','');
+}
+var a = document.getElementsByClassName('videoAdUiPreSkipContainer')[0],
+ev = new Event('click'), ev2 = new Event('touchend'),
+b = document.getElementsByClassName('ytp-next-button')[0];
+if (a !== undefined) 
+    {
+a.style.visibility="hidden";
+document.getElementsByClassName('videoAdUiSkipContainer')[0].style.display="block";
+a = document.getElementsByClassName('videoAdUiSkipButton')[0];
+if (a !== undefined) {a.dispatchEvent(ev);a.dispatchEvent(ev2);}
+    return;
+    }
+a = document.getElementsByClassName('video-ads')[0];
+if (a !== undefined) 
+    {
+      if (b !== undefined) 
+      {
+      a.remove();
+      b.dispatchEvent(ev);
+      }
+    return;
+    }
+
+}, 200);
+})(window);
+
