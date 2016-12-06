@@ -14,7 +14,7 @@
 // ==/UserScript==
 (function(){
 var t = setInterval(function(){
-
+var a = document.querySelectorAll('.mail-FolderList'); if (a.length>1) {for(var i=0; i<a.length; i++){if (i!==3) {a[i].style="background:#fff !important;opacity:0;height:1px !important;min-height:1px !important;overflow:hidden !important";}}}
 var el = document.querySelectorAll('.b-direct_messages'); for(var i=0; i<el.length; i++) {
 el[i].style.display='none';
 }
