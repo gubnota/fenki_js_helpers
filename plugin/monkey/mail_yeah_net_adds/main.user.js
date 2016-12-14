@@ -4,9 +4,9 @@
 // @version    0.1.3
 // @downloadURL http://gubnota.github.io/fenki_js_helpers/plugin/monkey/mail_yeah_net_adds/main.user.js
 // @description removes adds block(s) in mail.yeah.net
-// @include      http://mail.yeah.net/*
-// @include      http://mail.126.com/*
-// @include      http://mail.163.com/*
+// @include      http://*mail.yeah.net/*
+// @include      http://*mail.126.com/*
+// @include      http://*mail.163.com/*
 // @copyright  2015+, Vladislav Muravyev
 // @author Vladislav Muravyev
 // @grant          none
