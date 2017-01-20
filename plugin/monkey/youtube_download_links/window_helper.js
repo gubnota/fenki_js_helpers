@@ -40,6 +40,7 @@ getVideos = function() {
         var videos = new Array();
         var flashVarsString = ytplayer.config.args.url_encoded_fmt_stream_map;
         var streamFiles = flashVarsString.split(',');
+        console.log(streamFiles);
         for (var i in streamFiles) {
             streamData = streamFiles[i].split('&');
             var url = '';
