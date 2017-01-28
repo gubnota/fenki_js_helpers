@@ -104,7 +104,18 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
                 'font-weight:bold',
                 'font-size:.85em',
             ].join(';') + '}' + '#' + ShutterPlacesIframeId + ' td{' + ['border-width:0 2px 0 0', 'border:solid #ece4d8', 'vertical-align:middle', 'text-align:center'].join(';') + '}' + '#' + ShutterPlacesIframeId + ' table:after{' + ['content:" "', 'display:block', 'width:100%', 'height:100px'].join(';') + '}' + '#' + ShutterPlacesIframeId + ' td.thumb img{' + ['min-width:50px', 'min-height:50px'].join(';') + '}';
-
+background-size: cover;
+            css.innerHTML += ' #download_map{background-size:contain}';
+            css.innerHTML += ' #download_map.m0{background-image:url(//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/map_0.png)}';
+            css.innerHTML += ' #download_map.m1{background-image:url(//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/map_1.png)}';
+            css.innerHTML += ' #download_map.m2{background-image:url(//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/map_2.png)}';
+            css.innerHTML += ' #download_map.m3{background-image:url(//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/map_3.png)}';
+            css.innerHTML += ' #download_map.m4{background-image:url(//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/map_4.png)}';
+            css.innerHTML += ' #download_map.m5{background-image:url(//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/map_5.png)}';
+            css.innerHTML += ' #download_map.m6{background-image:url(//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/map_6.png)}';
+            css.innerHTML += ' #download_map.m7{background-image:url(//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/map_7.png)}';
+            css.innerHTML += ' #download_map.m8{background-image:url(//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/map_8.png)}';
+            css.innerHTML += ' #download_map.m9{background-image:url(//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/map_9.png)}';
             var dialog = document.createElement('div');
             dialog.style.cssText = dialogStyle;
             dialog.id = 'translate';
@@ -140,6 +151,23 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
         function _dismissLinkClick() {
             _close();
             return false;
+        }
+
+        function _ChangeMapOnClick() {
+      var m = document.getElementById('download_map');
+      if (m != null)  {
+        m.onclick=function(e){_ChangeMapOnClickHandler(e,m);}
+        m.ontouchend=function(e){_ChangeMapOnClickHandler(e,m);}
+        }
+        }
+
+        function _ChangeMapOnClickHandler(e,m) {
+        if(m.classList.length>0){
+            m.classList=[];
+        }
+        else {
+            m.classList.add('m'+parseInt((Math.random()*10)));
+            }
         }
 
         function _showShutterPlacesWindowHelperScript(dismissText, linkHref) {
