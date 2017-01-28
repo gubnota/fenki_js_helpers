@@ -188,7 +188,6 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
 
 
         function Dialog(_buttonText, dismissText, _url) {
-            _ChangeMapOnClick();
             Button(_buttonText || param.buttonText, dismissText || param.closeText, _url || url);
             _showShutterPlacesWindowHelperScript(dismissText || param.closeText, _url || url);
             ShutterPlacesWindowHelperScript.draw_table();
@@ -211,6 +210,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
         }
 
         function Button(_param) {
+          _ChangeMapOnClick();
           if (typeof _param === 'string') url = _param;
           for (var i in _param) { param[i] = _param[i]; }
             var ButtonElem = document.getElementById(buttonId);
