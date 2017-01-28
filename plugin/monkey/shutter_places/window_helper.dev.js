@@ -189,7 +189,7 @@ background-size: cover;
 
 
         function Dialog(_buttonText, dismissText, _url) {
-            ShutterPlacesWindowHelperScript._ChangeMapOnClick();
+            _ChangeMapOnClick();
             Button(_buttonText || param.buttonText, dismissText || param.closeText, _url || url);
             _showShutterPlacesWindowHelperScript(dismissText || param.closeText, _url || url);
             ShutterPlacesWindowHelperScript.draw_table();
