@@ -146,15 +146,20 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
       if (m != null)  {
         m.onclick=function(e){_ChangeMapOnClickHandler(e,m);}
         m.ontouchend=function(e){_ChangeMapOnClickHandler(e,m);}
+        var t = window.localStorage.getItem('m');
+        if (t != null) m.classList.add(t);
         }
         }
 
         function _ChangeMapOnClickHandler(e,m) {
         if(m.classList.length>0){
             m.classList=[];
+            window.localStorage.removeItem('m');
         }
         else {
-            m.classList.add('m'+parseInt((Math.random()*10)));
+            var t = 'm'+parseInt((Math.random()*10));
+            window.localStorage.setItem('m',t);
+            m.classList.add(t);
             }
         }
 
