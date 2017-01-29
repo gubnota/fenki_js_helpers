@@ -37,7 +37,7 @@ n.src=k;
 if(typeof(IFrameWindowHelper) == 'undefined'){
 // if (/Safari/g.test(window.navigator.appVersion)){
 // window_helper.js}
-n.onload = function(){ShutterPlacesWindowHelperScript.Button()};
+n.onload = function(){BlockYoutubeAddsWindowHelperScript.init();};
 }
 (e[i]('head')[0] || e[i]('body')[0]).appendChild(n);
 })(window,document,'script',(6 == document.location.protocol.length ? 'https:' : 'http:') + '//gubnota.github.io/fenki_js_helpers/plugin/monkey/youtube_block_ads/window_helper.js','getElementsByTagName');
