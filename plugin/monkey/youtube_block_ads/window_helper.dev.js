@@ -1,5 +1,5 @@
 (function(window) {
-    if (window !== top) return;
+//    if (window !== top) return;
     if ( !! window.BlockYoutubeAddsWindowHelperScript) {
         return window.BlockYoutubeAddsWindowHelperScript;
     }
