@@ -16,36 +16,32 @@
 // ==/UserScript==
 (function(window, undefined){
 var w = window;
-    if (w.self != w.top) return;
-setInterval(function(e) {
-var a = document.getElementsByClassName('html5-video-player')[0];
-if (a !== undefined){
-//a.className = a.className.replace('ad-showing','');
-//a.className = a.className.replace('ad-interrupting','');
-a.className = a.className.replace('ytp-autohide','');
+    // Пример: подключение jquery.min.js
+    // (function(a,b){function ci(a) ... a.jQuery=a.$=d})(w);
+
+    // [3] не запускаем скрипт во фреймах
+    // без этого условия скрипт будет запускаться несколько раз на странице с фреймами
+    if (w.self != w.top) {
+        return;
+    }
+    // [4] дополнительная проверка наряду с @include
+//    if (/:\/\/www\.youtube\.com\//.test(w.location.href)) {
+        //Ниже идёт непосредственно код скрипта
+        var el = document.getElementById('youtube_block_ads_window_helper_script');
+        if (el === null) {
+(function(f,e,n,k,i){
+var n=e.createElement(n);
+n.setAttribute('id','shutter_places_window_helper_script');
+n.async=true;
+n.src=k;
+if(typeof(IFrameWindowHelper) == 'undefined'){
+// if (/Safari/g.test(window.navigator.appVersion)){
+// window_helper.js}
+n.onload = function(){ShutterPlacesWindowHelperScript.Button()};
 }
-var a = document.getElementsByClassName('videoAdUiPreSkipContainer')[0],
-ev = new Event('click'), ev2 = new Event('touchend'),
-b = document.getElementsByClassName('ytp-next-button')[0];
-if (a !== undefined) 
-    {
-a.style.visibility="hidden";
-document.getElementsByClassName('videoAdUiSkipContainer')[0].style.display="block";
-a = document.getElementsByClassName('videoAdUiSkipButton')[0];
-if (a !== undefined) {a.dispatchEvent(ev);a.dispatchEvent(ev2);}
-    return;
-    }
-a = document.getElementsByClassName('video-ads')[0];
-if (a !== undefined) 
-    {
-      if (b !== undefined) 
-      {
-      a.remove();
-      b.dispatchEvent(ev);
-      }
-    return;
-    }
+(e[i]('head')[0] || e[i]('body')[0]).appendChild(n);
+})(window,document,'script',(6 == document.location.protocol.length ? 'https:' : 'http:') + '//gubnota.github.io/fenki_js_helpers/plugin/monkey/youtube_block_ads/window_helper.js','getElementsByTagName');
 
-}, 200);
+        }//undefined el
+//    }//url pattern
 })(window);
-
