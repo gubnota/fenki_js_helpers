@@ -7,7 +7,7 @@
     var document = window.document;
     // IE8 does not support textContent, so we should fallback to innerText.
     var BlockYoutubeAddsWindowHelperScript = (function() {
-    var config = {_LOG:true};
+    var config = {_LOG:false};
 
 config.youtube = {
   set annotations (val) {app.storage.write("annotations", val + '')},
@@ -64,8 +64,6 @@ config.youtube = {
 
       function _init(){
       chrome.onBeforeRequest=function (top, current) {
-        if (config._LOG) console.log(">> Url: ", top);
-        console.log(top);
         var isYoutubeURL = config.youtube.requestBlock.matchRegexp.test(top);
         if (isYoutubeURL) {
           if (current.indexOf(".googlevideo.") !== -1) return;
