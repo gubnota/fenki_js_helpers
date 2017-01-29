@@ -63,9 +63,9 @@ config.youtube = {
       };
 
       function _init(){
-        console.log(config);
       chrome.onBeforeRequest=function (top, current) {
         if (config._LOG) console.log(">> Url: ", top);
+        console.log(top);
         var isYoutubeURL = config.youtube.requestBlock.matchRegexp.test(top);
         if (isYoutubeURL) {
           if (current.indexOf(".googlevideo.") !== -1) return;
