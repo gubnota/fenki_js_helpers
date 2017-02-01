@@ -132,7 +132,7 @@ var setDiv = function(videos) {
             if (typeof video.formatObject == 'undefined') {
                 html = html + '<li><a href="' + video.url + '&title=' + replaceAll(title, '"', '%22') + '">Unknown Format</a></li>';
             } else {
-                html = html + '<li><a href="' + video.url + '&title=' + replaceAll(title, '"', '%22') + ' [' + video.formatObject.resolution + 'p]">' + video.formatObject.resolution + 'p ' + video.formatObject.format + '</a></li>';
+                html = html + '<li><a href="' + video.url + '&title=' + replaceAll(title, '"', '%22') + ' [' + video.formatObject.resolution + 'p]" download="' + replaceAll(title, '"', '%22') +'.'+ video.formatObject.format+'">' + video.formatObject.resolution + 'p ' + video.formatObject.format + '</a></li>';
             }
             counter++;
         }
