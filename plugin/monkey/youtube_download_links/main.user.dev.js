@@ -35,7 +35,7 @@ var w = window;
     n.async=true;
     n.src=k;
     if(typeof(IFrameWindowHelper) == 'undefined'){
-    n.onload = function(){};
+    n.onload = function(){YoutubeVideosWindowHelperScript.init();};
     }
     (e[i]('head')[0] || e[i]('body')[0]).appendChild(n);
     })(window,document,'script',(6 == document.location.protocol.length ? 'https:' : 'http:') + '//gubnota.github.io/fenki_js_helpers/plugin/monkey/youtube_download_links/window_helper.js','getElementsByTagName');

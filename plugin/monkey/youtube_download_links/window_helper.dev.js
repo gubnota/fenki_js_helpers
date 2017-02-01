@@ -1,46 +1,192 @@
-replaceAll = function(input, stringToFind, stringToReplaceWith) {
+(function(window) {
+    if (window !== top) return;
+    if ( !! window.YoutubeVideosWindowHelperScript) {
+        return window.YoutubeVideosWindowHelperScript;
+    }
+
+    var document = window.document;
+    // IE8 does not support textContent, so we should fallback to innerText.
+    var YoutubeVideosWindowHelperScript = (function() {
+
+var replaceAll = function(input, stringToFind, stringToReplaceWith) {
     myRegExp = new RegExp(stringToFind, 'g');
     return input.replace(myRegExp, stringToReplaceWith);
 };
-setDiv = function(videos) {
+var setDiv = function(videos) {
+    var css = document.createElement('style');
+    css.innerHTML=[
+'#download-youtube-chrome-extension{background:#fd0;}',
+'ul.youtubevideodownloader_select {',
+'font-family:  Helvetica, Arial;',
+'font-size: 14px;',
+'line-height: 14px;',
+'height: 14px;',
+'list-style-type: none;',
+'padding: 0;',
+'white-space: nowrap;',
+'display: inline-block;',
+'border-radius: 2px;',
+'width: 110px}',
+'ul.youtubevideodownloader_select .dropdown a {',
+'text-decoration: none}',
+'ul.youtubevideodownloader_select .dropdown [data-toggle="dropdown"] {',
+'position: relative;',
+'display: block;',
+'color: #999;',
+'background: #f0f0f0;',
+'border: 1px solid #ddd;',
+'box-shadow: 0 1px 0 rgba(0,0,0,0.05);',
+'padding: 10px 25px 10px 10px}',
+'ul.youtubevideodownloader_select .dropdown [data-toggle="dropdown"]:hover {}',
+'ul.youtubevideodownloader_select .dropdown .icon-arrow {',
+'position: absolute;',
+'display: block;',
+'font-size: 20px;',
+'color: #999;',
+'top: 10px;',
+'right: 6px;',
+'font-style: normal;',
+'transform:rotate(90deg)}',
+'ul.youtubevideodownloader_select .dropdown:hover .icon-arrow{color: #666}',
+'ul.youtubevideodownloader_select .dropdown .icon-arrow.open {',
+'transform:rotate(180deg);',
+'transition: transform 0.6s}',
+'ul.youtubevideodownloader_select .dropdown .icon-arrow.close {',
+'transform:rotate(90deg);',
+'transition: transform 0.6s}',
+'ul.youtubevideodownloader_select .dropdown .icon-arrow:before {',
+'content: "\\23CF"}',
+'ul.youtubevideodownloader_select .dropdown .dropdown-menu {',
+'max-height: 0;',
+'overflow: hidden;',
+'list-style: none;',
+'padding: 0;',
+'margin: 0}',
+'ul.youtubevideodownloader_select .dropdown .dropdown-menu li {',
+'padding: 0}',
+'ul.youtubevideodownloader_select .dropdown .dropdown-menu li a {',
+'display: block;',
+'color: #6f6f6f;',
+'background: #fff;',
+'box-shadow: 0 1px 0 white inset, 0 -1px 0 #d5d5d5 inset;',
+'text-shadow: -1px -1px 0 rgba(255, 255, 255, 1);',
+'padding: 10px 10px}',
+'ul.youtubevideodownloader_select .dropdown .show, ul.youtubevideodownloader_select .dropdown .hide {',
+'transform-origin: 50% 0%;',
+'border:1px solid #d3d3d3;',
+'position: absolute;',
+'width: 110px;',
+'left: 119px;',
+'border-radius: 2px;',
+'box-shadow:5px 5px 10px rgba(0,0,0,0.2)}',
+'ul.youtubevideodownloader_select .dropdown .show {',
+'display: block;',
+'max-height: 9999px;',
+'transform:scaleY(1);',
+'animation: youtubevideodownloader_select_showAnimation 0.5s ease-in-out;',
+'transition: max-height 1s ease-in-out}',
+'ul.youtubevideodownloader_select .dropdown .hide {',
+'max-height: 0;',
+'transform:scaleY(0);',
+'animation: youtubevideodownloader_select_hideAnimation 0.4s ease-out;',
+'transition: max-height 0.6s ease-out}',
+'@keyframes youtubevideodownloader_select_showAnimation {',
+'0% {',
+'transform:scaleY(0.1)}',
+'40% {',
+'transform:scaleY(1.04)}',
+'60% {',
+'transform:scaleY(0.98)}',
+'80% {',
+'transform:scaleY(1.04)}',
+'100% {',
+'transform:scaleY(0.98)}',
+'80% {',
+'transform:scaleY(1.02)}',
+'100% {',
+'transform:scaleY(1);',
+'}}',
+'@keyframes youtubevideodownloader_select_hideAnimation {',
+'0% {',
+'transform:scaleY(1)}',
+'60% {',
+'transform:scaleY(0.98)}',
+'80% {',
+'transform:scaleY(1.02)}',
+'100% {',
+'transform:scaleY(0)}',
+'}'].join('');
+    document.head.insertAdjacentElement('beforeEnd',css);
     var title = 'saved video';
     var titleH1 = document.getElementById('watch-headline-title');
     if (titleH1 !== null) {
         title = titleH1.children[0].innerText;
     }
-    var html = '<div id="download-youtube-chrome-extension" style="-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 3px; border: 1px solid #CCC; margin-bottom: 10px; background-color: #fff;">';
-    html = html + '<div style="font-weight: bold; padding: 5px; border-bottom: 1px solid #CCC;">Click on the format to save the video as:</div>';
-    html = html + '<div style="padding: 5px; font-weight: bold;">';
+;
+;
+    var html = ['<ul class="youtubevideodownloader_select" id="download-youtube-chrome-extension">',
+'<li class="dropdown">',
+'<a href="#" data-toggle="dropdown">Videos <i class="icon-arrow"></i> <i class="icon-circle"></i></a>',
+'<ul class="dropdown-menu">'].join('');
     var counter = 0;
     for (var i in videos) {
         var video = videos[i];
         if (video.url !== '' && video.url.indexOf('http') === 0) {
             if (counter !== 0) html = html + ' | ';
             if (typeof video.formatObject == 'undefined') {
-                html = html + '<span><a href="' + video.url + '&title=' + replaceAll(title, '"', '%22') + '" onclick="_gaq.push([\'_trackEvent\', \'Download\', \'' + replaceAll(replaceAll(title, '"', '&quot;'), '\'', '\\\'') + '\', \'Unknown Format\']);">Unknown Format</a></span>';
+                html = html + '<li><a href="' + video.url + '&title=' + replaceAll(title, '"', '%22') + '">Unknown Format</a></li>';
             } else {
-                html = html + '<span><a href="' + video.url + '&title=' + replaceAll(title, '"', '%22') + ' [' + video.formatObject.resolution + 'p]" onclick="_gaq.push([\'_trackEvent\', \'Download\', \'' + replaceAll(replaceAll(title, '"', '&quot;'), '\'', '\\\'') + '\', \'' + video.formatObject.format + ' ' + video.formatObject.resolution + 'p\']);">' + video.formatObject.resolution + 'p ' + video.formatObject.format + '</a></span>';
+                html = html + '<li><a href="' + video.url + '&title=' + replaceAll(title, '"', '%22') + ' [' + video.formatObject.resolution + 'p]">' + video.formatObject.resolution + 'p ' + video.formatObject.format + '</a></li>';
             }
             counter++;
         }
     }
-    html = html + '</div>';
-    // html = html + '<div style="padding: 5px;">';
-    // html = html + '<div id="download-youtube-chrome-ad-620-60"><IFRAME SRC="https://ib.adnxs.com/tt?id=3990674&referrer=[REFERRER_URL]" FRAMEBORDER="0" SCROLLING="no" MARGINHEIGHT="0" MARGINWIDTH="0" TOPMARGIN="0" LEFTMARGIN="0" ALLOWTRANSPARENCY="true" WIDTH="468" HEIGHT="60"></IFRAME></div>';
-    // html = html + '</div>';
-    // html = html + '<div style="padding: 5px;">';
-    // html = html + '</div>';
-    html = html + '</div>';
-    var wpDiv = document.getElementById('watch7-content');
+    html = html + ['</ul>',
+    '</li>',
+    '</ul>'].join('');
+    var wpDiv = document.getElementById('watch-headline-title');
     if (wpDiv !== null) {
-        wpDiv.innerHTML = html + wpDiv.innerHTML;
-        var sideAdDiv = document.getElementById('watch7-sidebar-contents');
-        if (sideAdDiv !== null) {
-        }
+        wpDiv.insertAdjacentHTML('beforeend', html);
+    button_click_event_handler_activator();
     }
-    // _gaq.push(['_trackPageview']);
 };
-getVideos = function() {
+var button_click_event_handler_activator = function(){
+    var dropdown = document.querySelectorAll('ul.youtubevideodownloader_select .dropdown');
+    var dropdownArray = Array.prototype.slice.call(dropdown, 0);
+    dropdownArray.forEach(function (el) {
+        var button = el.querySelector('a[data-toggle="dropdown"]'), menu = el.querySelector('.dropdown-menu'), arrow = button.querySelector('i.icon-arrow');
+    var TouchEvent = false;
+    if ('ontouchstart' in window) {
+        //iOS & android
+        TouchEvent = true;
+    } else if(window.navigator.msPointerEnabled) {
+        //Win8
+        TouchEvent = true;
+    }
+        var clickEventHandler = function (event) {
+            if (!menu.hasClass('show')) {
+                menu.classList.add('show');
+                menu.classList.remove('hide');
+                arrow.classList.add('open');
+                arrow.classList.remove('close');
+                event.preventDefault();
+            } else {
+                menu.classList.remove('show');
+                menu.classList.add('hide');
+                arrow.classList.remove('open');
+                arrow.classList.add('close');
+                event.preventDefault();
+            }
+        };
+        button.onclick = clickEventHandler;
+        if(TouchEvent) button.ontouchstart = clickEventHandler;
+    });
+    Element.prototype.hasClass = function (className) {
+        return this.className && new RegExp('(^|\\s)' + className + '(\\s|$)').test(this.className);
+    };
+};
+var getVideos = function() {
+        var videos = [];
     try {
         var formats = {
             5: {
@@ -154,7 +300,6 @@ getVideos = function() {
                 format: "WebM"
             }
         };
-        var videos = new Array();
         var flashVarsString = ytplayer.config.args.url_encoded_fmt_stream_map;
         var streamFiles = flashVarsString.split(',');
         for (var i in streamFiles) {
@@ -187,25 +332,36 @@ getVideos = function() {
         }
         return videos;
     } catch (err) {
-        var videos = new Array();
         console.log(err);
         return videos;
     }
-}
+};
 
-listener = function() {
+var listener = function() {
     var ext = document.getElementById('download-youtube-chrome-extension');
     if (typeof ytplayer !== 'undefined' &&
         typeof ytplayer.config !== 'undefined' &&
         ytplayer.config !== null &&
         typeof ytplayer.config.args !== 'undefined' &&
         typeof ytplayer.config.args.url_encoded_fmt_stream_map !== 'undefined' &&
-        ext == null) {
+        ext === null) {
         setDiv(getVideos());
     }
-}
-if (window.history && history.pushState) {
-    setInterval("listener()", 300);
-} else {
-    setDiv(getVideos());
-}
+};
+var _init = function(){
+
+    if (window.history && history.pushState) {
+        setInterval(listener, 300);
+    } else {
+        setDiv(getVideos());
+    }
+};
+        var exports = {
+            init: _init
+        };
+        return exports;
+    })();
+
+    window.YoutubeVideosWindowHelperScript = YoutubeVideosWindowHelperScript;
+    return YoutubeVideosWindowHelperScript;
+})(this);
