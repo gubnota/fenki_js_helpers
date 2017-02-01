@@ -15,7 +15,6 @@ var replaceAll = function(input, stringToFind, stringToReplaceWith) {
 var setDiv = function(videos) {
     var css = document.createElement('style');
     css.innerHTML=[
-'#download-youtube-chrome-extension{background:#fd0;}',
 'ul.youtubevideodownloader_select {',
 'font-family:  Helvetica, Arial;',
 'font-size: 14px;',
@@ -74,9 +73,7 @@ var setDiv = function(videos) {
 'ul.youtubevideodownloader_select .dropdown .show, ul.youtubevideodownloader_select .dropdown .hide {',
 'transform-origin: 50% 0%;',
 'border:1px solid #d3d3d3;',
-'position: absolute;',
-'width: 110px;',
-'left: 119px;',
+'width: 108px;',
 'border-radius: 2px;',
 'box-shadow:5px 5px 10px rgba(0,0,0,0.2)}',
 'ul.youtubevideodownloader_select .dropdown .show {',
@@ -132,7 +129,6 @@ var setDiv = function(videos) {
     for (var i in videos) {
         var video = videos[i];
         if (video.url !== '' && video.url.indexOf('http') === 0) {
-            if (counter !== 0) html = html + ' | ';
             if (typeof video.formatObject == 'undefined') {
                 html = html + '<li><a href="' + video.url + '&title=' + replaceAll(title, '"', '%22') + '">Unknown Format</a></li>';
             } else {
