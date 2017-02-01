@@ -163,7 +163,7 @@ var button_click_event_handler_activator = function(){
         var clickEventHandler2 = function (event) {
             event.preventDefault();
             var link = event.target;
-            var download = link.getAttribute('title');
+            var download = link.getAttribute('download');
             var requestUrl = link.getAttribute('href');
             var xhr = new XMLHttpRequest();
             xhr.open("GET", requestUrl);
