@@ -130,9 +130,9 @@ var setDiv = function(videos) {
         var video = videos[i];
         if (video.url !== '' && video.url.indexOf('http') === 0) {
             if (typeof video.formatObject == 'undefined') {
-                html = html + '<li><a href="' + video.url + '&title=' + replaceAll(title, '"', '%22') + '">Unknown Format</a></li>';
+                html = html + '<li><a href="' + video.url + '">Unknown Format</a></li>';
             } else {
-                html = html + '<li><a href="' + video.url + '&title=' + replaceAll(title, '"', '%22') + ' [' + video.formatObject.resolution + 'p]" download="' + replaceAll(title, '"', '%22') +'.'+ video.formatObject.format+'">' + video.formatObject.resolution + 'p ' + video.formatObject.format + '</a></li>';
+                html = html + '<li><a href="' + video.url + ' [' + video.formatObject.resolution + 'p]" download="' + replaceAll(title, '"', '%22') +'.'+ video.formatObject.format.toLocaleLowerCase()+'">' + video.formatObject.resolution + 'p ' + video.formatObject.format + '</a></li>';
             }
             counter++;
         }
@@ -147,10 +147,6 @@ var setDiv = function(videos) {
     }
 };
 var button_click_event_handler_activator = function(){
-    var dropdown = document.querySelectorAll('ul.youtubevideodownloader_select .dropdown');
-    var dropdownArray = Array.prototype.slice.call(dropdown, 0);
-    dropdownArray.forEach(function (el) {
-        var button = el.querySelector('a[data-toggle="dropdown"]'), menu = el.querySelector('.dropdown-menu'), arrow = button.querySelector('i.icon-arrow');
     var TouchEvent = false;
     if ('ontouchstart' in window) {
         //iOS & android
@@ -159,6 +155,45 @@ var button_click_event_handler_activator = function(){
         //Win8
         TouchEvent = true;
     }
+    var dropdown = document.querySelectorAll('ul.youtubevideodownloader_select .dropdown');
+    var links = document.querySelectorAll('ul.youtubevideodownloader_select ul.dropdown-menu li a');
+    var dropdownArray = Array.prototype.slice.call(dropdown, 0);
+    var linksArray = Array.prototype.slice.call(links, 0);
+    linksArray.forEach(function (el) {
+        var clickEventHandler2 = function (event) {
+            event.preventDefault();
+            var link = event.target;
+            link.download = link.getAttribute('title');
+            link.click();
+            // var xhr = new XMLHttpRequest();
+            // xhr.open("GET", requestUrl);
+            // xhr.responseType = "blob";
+            // xhr.onload = function () {
+            //     if (this.status === 200) {
+            //         var blob = new Blob([this.response], {type: "video/mp4"});//
+            //         //Create a link element, hide it, direct
+            //         //it towards the blob, and then 'click' it programatically
+            //         let a = document.createElement("a");
+            //         a.style = "display: none";
+            //         document.body.appendChild(a);
+            //         //Create a DOMString representing the blob
+            //         //and point the link element towards it
+            //         let url = window.URL.createObjectURL(blob);
+            //         a.href = url;
+            //         a.download = 'Love.mp4';
+            //         //programatically click the link to trigger the download
+            //         a.click();
+            //         //release the reference to the file by revoking the Object URL
+            //         window.URL.revokeObjectURL(url);
+            //     }
+            // };
+            // xhr.send();
+        }
+        el.onclick = clickEventHandler2;
+        if(TouchEvent) el.ontouchstart = clickEventHandler2;
+    });
+    dropdownArray.forEach(function (el) {
+        var button = el.querySelector('a[data-toggle="dropdown"]'), menu = el.querySelector('.dropdown-menu'), arrow = button.querySelector('i.icon-arrow');
         var clickEventHandler = function (event) {
             if (!menu.hasClass('show')) {
                 menu.classList.add('show');
@@ -321,7 +356,7 @@ var getVideos = function() {
             if (url !== '' && itag !== 0) {
                 var video = {
                     formatObject: formats[itag],
-                    url: url + '&signature=' + sig
+                    url: url// + '&signature=' + sig
                 };
                 videos.push(video);
             }
