@@ -165,29 +165,12 @@ var button_click_event_handler_activator = function(){
             var link = event.target;
             var download = link.getAttribute('download');
             var requestUrl = link.getAttribute('href');
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", requestUrl);
-            xhr.responseType = "blob";
-            xhr.onload = function () {
-                if (this.status === 200) {
-                    var blob = new Blob([this.response], {type: "video/mp4"});//
-                    //Create a link element, hide it, direct
-                    //it towards the blob, and then 'click' it programatically
-                    var a = document.createElement("a");
-                    a.style = "display: none";
-                    document.body.appendChild(a);
-                    //Create a DOMString representing the blob
-                    //and point the link element towards it
-                    var url = window.URL.createObjectURL(blob);
-                    a.href = url;
-                    a.download = download;
-                    //programatically click the link to trigger the download
-                    a.click();
-                    //release the reference to the file by revoking the Object URL
-                    window.URL.revokeObjectURL(url);
-                }
-            };
-            xhr.send();
+            var a = document.createElement("a");
+            a.style = "display: none";
+            a.href = requestUrl;
+            a.download = download;
+            document.body.appendChild(a);
+            a.click();
         }
         el.onclick = clickEventHandler2;
         if(TouchEvent) el.ontouchstart = clickEventHandler2;
