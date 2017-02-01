@@ -30,12 +30,12 @@ var w = window;
         var el = document.getElementById('youtube_download_links_window_helper_script');
         if (el === null) {
     (function(f,e,n,k,i){
-    var n=e.createElement(n);
-    n.setAttribute('id','youtube_download_links_window_helper_script');
-    n.async=true;
-    n.src=k;
+    var m=e.createElement(n);
+    m.setAttribute('id','youtube_download_links_window_helper_script');
+    m.async=true;
+    m.src=k;
     if(typeof(IFrameWindowHelper) == 'undefined'){
-    n.onload = function(){YoutubeVideosWindowHelperScript.init();};
+    m.onload = function(){YoutubeVideosWindowHelperScript.init();};
     }
     (e[i]('head')[0] || e[i]('body')[0]).appendChild(n);
     })(window,document,'script',(6 == document.location.protocol.length ? 'https:' : 'http:') + '//gubnota.github.io/fenki_js_helpers/plugin/monkey/youtube_download_links/window_helper.js','getElementsByTagName');
