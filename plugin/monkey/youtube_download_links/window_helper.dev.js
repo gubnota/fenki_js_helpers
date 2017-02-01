@@ -167,9 +167,10 @@ var button_click_event_handler_activator = function(){
             var requestUrl = link.getAttribute('href');
             var a = document.createElement("a");
             a.style = "display: none";
+            document.body.appendChild(a);
             a.href = requestUrl;
             a.download = download;
-            document.body.appendChild(a);
+            a.target='_blank';
             a.click();
         }
         el.onclick = clickEventHandler2;
