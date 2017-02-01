@@ -130,9 +130,9 @@ var setDiv = function(videos) {
         var video = videos[i];
         if (video.url !== '' && video.url.indexOf('http') === 0) {
             if (typeof video.formatObject == 'undefined') {
-                html = html + '<li><a href="' + video.url + '">Unknown Format</a></li>';
+                html = html + '<li><a href="' + video.url + '" target="_blank">Unknown Format</a></li>';
             } else {
-                html = html + '<li><a href="' + video.url + '" download="' + replaceAll(title, '"', '%22') +'.'+ video.formatObject.format.toLocaleLowerCase()+'">' + video.formatObject.resolution + 'p ' + video.formatObject.format + '</a></li>';
+                html = html + '<li><a href="' + video.url + '" download="' + replaceAll(title, '"', '%22') +'.'+ video.formatObject.format.toLocaleLowerCase()+'" target="_blank">' + video.formatObject.resolution + 'p ' + video.formatObject.format + '</a></li>';
             }
             counter++;
         }
@@ -158,24 +158,6 @@ var button_click_event_handler_activator = function(){
     var dropdown = document.querySelectorAll('ul.youtubevideodownloader_select .dropdown');
     var links = document.querySelectorAll('ul.youtubevideodownloader_select ul.dropdown-menu li a');
     var dropdownArray = Array.prototype.slice.call(dropdown, 0);
-    var linksArray = Array.prototype.slice.call(links, 0);
-    linksArray.forEach(function (el) {
-        var clickEventHandler2 = function (event) {
-            event.preventDefault();
-            var link = event.target;
-            var download = link.getAttribute('download');
-            var requestUrl = link.getAttribute('href');
-            var a = document.createElement("a");
-            a.style = "display: none";
-            document.body.appendChild(a);
-            a.href = requestUrl;
-            a.download = download;
-            a.target='_blank';
-            a.click();
-        }
-        el.onclick = clickEventHandler2;
-        if(TouchEvent) el.ontouchstart = clickEventHandler2;
-    });
     dropdownArray.forEach(function (el) {
         var button = el.querySelector('a[data-toggle="dropdown"]'), menu = el.querySelector('.dropdown-menu'), arrow = button.querySelector('i.icon-arrow');
         var clickEventHandler = function (event) {
