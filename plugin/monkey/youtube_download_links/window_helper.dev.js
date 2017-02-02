@@ -145,6 +145,19 @@ var setDiv = function(videos) {
         wpDiv.insertAdjacentHTML('beforeend', html);
     button_click_event_handler_activator();
     }
+    subtitles();
+};
+var subtitles = function(){
+var origOpen = XMLHttpRequest.prototype.open;
+XMLHttpRequest.prototype.open = function() {
+this.addEventListener('load', function() {
+if (this.responseURL.search('timedtext')!=-1)
+{var d0 = document.getElementById('download-youtube-chrome-extension-subtitles');
+if (!d0){
+var d1=document.querySelector('#download-youtube-chrome-extension ul');
+d1.insertAdjacentHTML('beforeend', '<li id="download-youtube-chrome-extension-subtitles"><a href="'+this.responseURL+'" download>Subtitles</a></li>');
+}else {d0.href=this.responseURL;}}
+});origOpen.apply(this, arguments);};
 };
 var button_click_event_handler_activator = function(){
     var TouchEvent = false;
