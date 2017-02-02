@@ -132,7 +132,7 @@ var setDiv = function(videos) {
             if (typeof video.formatObject == 'undefined') {
                 html = html + '<li><a href="' + video.url + '" target="_blank">Unknown Format</a></li>';
             } else {
-                html = html + '<li><a href="' + video.url + '" download="' + encodeURI(title) +'.'+ video.formatObject.format.toLocaleLowerCase()+'" target="_blank">' + video.formatObject.resolution + 'p ' + video.formatObject.format + '</a></li>';
+                html = html + '<li><a href="' + video.url + '&title='+encodeURI(title)+'" download="' + encodeURI(title) +'.'+ video.formatObject.format.toLocaleLowerCase()+'" target="_blank">' + video.formatObject.resolution + 'p ' + video.formatObject.format + '</a></li>';
             }
             counter++;
         }
@@ -335,7 +335,7 @@ var getVideos = function() {
             if (url !== '' && itag !== 0) {
                 var video = {
                     formatObject: formats[itag],
-                    url: url + '&title='+encodeURI(title)// + '&signature=' + sig
+                    url: url// + '&signature=' + sig
                 };
                 videos.push(video);
             }
