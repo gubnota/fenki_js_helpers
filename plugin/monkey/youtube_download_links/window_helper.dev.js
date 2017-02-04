@@ -132,7 +132,7 @@ var setDiv = function(videos) {
             if (typeof video.formatObject == 'undefined') {
                 html = html + '<li><a href="' + video.url + '" target="_blank">Unknown Format</a></li>';
             } else {
-                html = html + '<li><a href="' + video.url + '&title='+encodeURI(title)+'" download="' + encodeURI(title) +'.'+ video.formatObject.format.toLocaleLowerCase()+'" target="_blank">' + video.formatObject.resolution + 'p ' + video.formatObject.format + '</a></li>';
+                html = html + '<li><a href="' + video.url + '" download="' + title.replace('"','%22') +'.'+ video.formatObject.format.toLocaleLowerCase()+'" target="_blank">' + video.formatObject.resolution + 'p ' + video.formatObject.format + '</a></li>';
             }
             counter++;
         }
@@ -155,7 +155,7 @@ for(i = 0; i < k.length; i++)
     k[i].onclick = function(e){
         e.preventDefault();
         var a = document.createElement("a");
-        a.setAttribute( "download", e.target.title );
+        a.setAttribute( "download", e.target.getAttribute('title') );
         a.setAttribute( "href", e.target.href );
         console.log(e.target,a);
         document.body.appendChild(a);
