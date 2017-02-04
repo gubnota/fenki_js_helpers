@@ -146,23 +146,28 @@ var setDiv = function(videos) {
     button_click_event_handler_activator();
     }
     subtitles();
-    video_download_click_handler();
+//    video_download_click_handler();
 };
 var video_download_click_handler=function(){
 var k = document.querySelectorAll('#download-youtube-chrome-extension ul li a');
 for(i = 0; i < k.length; i++)
 {
     k[i].onclick = function(event){
-        event.preventDefault();
-        var a = document.createElement("a");
-        a.setAttribute( "download", event.target.getAttribute('title') );
-        a.setAttribute( "href", event.target.href );
-        document.body.appendChild(a);
-        console.log([event.target,a]);
-        var theEvent = document.createEvent("MouseEvent");
-        theEvent.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-        a.dispatchEvent(theEvent);
-        document.body.removeChild(a);
+        // event.preventDefault();
+        // var a = document.createElement("a");
+        // var title = 'saved video';
+        // var titleH1 = document.getElementById('watch-headline-title');
+        // if (titleH1 !== null) {
+        //     title = titleH1.children[0].innerText;
+        // }
+        // a.setAttribute( "download", title );
+        // a.setAttribute( "href", event.target.href );
+        // document.body.appendChild(a);
+        // console.log([event.target,a]);
+        // var theEvent = document.createEvent("MouseEvent");
+        // theEvent.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+        // a.dispatchEvent(theEvent);
+        // document.body.removeChild(a);
         }
 }
 };
