@@ -137,15 +137,33 @@ var setDiv = function(videos) {
             counter++;
         }
     }
+    document.getElementById('download-youtube-chrome-extension').setAttribute('title',encodeURI(title));
     html = html + ['</ul>',
     '</li>',
     '</ul>'].join('');
-    var wpDiv = document.getElementById('watch-headline-title');
+    var wpDiv = document.getElementById('watch7-subscription-container');
     if (wpDiv !== null) {
-        wpDiv.insertAdjacentHTML('beforeend', html);
+        wpDiv.insertAdjacentHTML('afterend', html);
     button_click_event_handler_activator();
     }
     subtitles();
+    video_download_click_handler();
+};
+var video_download_click_handler=function(){
+var k = document.querySelectorAll('#download-youtube-chrome-extension ul li a');
+for(i = 0; i < k.length; i++)
+{
+    k[i].onclick = function(e){
+        var a = document.createElement("a");
+        a.setAttribute( "download", e.target.title );
+        a.setAttribute( "href", e.target.href );            
+        document.body.appendChild( a );
+        var theEvent = document.createEvent("MouseEvent");
+        theEvent.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+        a.dispatchEvent(theEvent);
+        document.body.removeChild( a );
+        }
+}
 };
 var subtitles = function(){
 var origOpen = XMLHttpRequest.prototype.open;
@@ -155,7 +173,8 @@ if (this.responseURL.search('timedtext')!=-1)
 {var d0 = document.getElementById('download-youtube-chrome-extension-subtitles');
 if (!d0){
 var d1=document.querySelector('#download-youtube-chrome-extension ul');
-d1.insertAdjacentHTML('beforeend', '<li id="download-youtube-chrome-extension-subtitles"><a href="'+this.responseURL+'" download>Subtitles</a></li>');
+var title = document.getElementById('download-youtube-chrome-extension').getAttribute('title');
+d1.insertAdjacentHTML('beforeend', '<li id="download-youtube-chrome-extension-subtitles"><a href="'+this.responseURL+'" title="'+title+'" download>Subtitles</a></li>');
 }else {d0.href=this.responseURL;}}
 });origOpen.apply(this, arguments);};
 };
@@ -169,7 +188,6 @@ var button_click_event_handler_activator = function(){
         TouchEvent = true;
     }
     var dropdown = document.querySelectorAll('ul.youtubevideodownloader_select .dropdown');
-    var links = document.querySelectorAll('ul.youtubevideodownloader_select ul.dropdown-menu li a');
     var dropdownArray = Array.prototype.slice.call(dropdown, 0);
     dropdownArray.forEach(function (el) {
         var button = el.querySelector('a[data-toggle="dropdown"]'), menu = el.querySelector('.dropdown-menu'), arrow = button.querySelector('i.icon-arrow');
