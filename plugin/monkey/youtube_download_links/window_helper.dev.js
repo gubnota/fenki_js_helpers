@@ -153,14 +153,16 @@ var k = document.querySelectorAll('#download-youtube-chrome-extension ul li a');
 for(i = 0; i < k.length; i++)
 {
     k[i].onclick = function(e){
+        e.preventDefault();
         var a = document.createElement("a");
         a.setAttribute( "download", e.target.title );
-        a.setAttribute( "href", e.target.href );            
-        document.body.appendChild( a );
+        a.setAttribute( "href", e.target.href );
+        console.log(a);
+        document.body.appendChild(a);
         var theEvent = document.createEvent("MouseEvent");
         theEvent.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
         a.dispatchEvent(theEvent);
-        document.body.removeChild( a );
+        document.body.removeChild(a);
         }
 }
 };
