@@ -137,7 +137,6 @@ var setDiv = function(videos) {
             counter++;
         }
     }
-    document.getElementById('download-youtube-chrome-extension').setAttribute('title',encodeURI(title));
     html = html + ['</ul>',
     '</li>',
     '</ul>'].join('');
@@ -173,8 +172,12 @@ if (this.responseURL.search('timedtext')!=-1)
 {var d0 = document.getElementById('download-youtube-chrome-extension-subtitles');
 if (!d0){
 var d1=document.querySelector('#download-youtube-chrome-extension ul');
-var title = document.getElementById('download-youtube-chrome-extension').getAttribute('title');
-d1.insertAdjacentHTML('beforeend', '<li id="download-youtube-chrome-extension-subtitles"><a href="'+this.responseURL+'" title="'+title+'" download>Subtitles</a></li>');
+    var title = 'saved video';
+    var titleH1 = document.getElementById('watch-headline-title');
+    if (titleH1 !== null) {
+        title = titleH1.children[0].innerText;
+    }
+d1.insertAdjacentHTML('beforeend', '<li id="download-youtube-chrome-extension-subtitles"><a href="'+this.responseURL+'" title="'+title+'" download="'+title+'.asr3">Subtitles</a></li>');
 }else {d0.href=this.responseURL;}}
 });origOpen.apply(this, arguments);};
 };
