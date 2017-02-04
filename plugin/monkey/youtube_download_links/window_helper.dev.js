@@ -152,13 +152,13 @@ var video_download_click_handler=function(){
 var k = document.querySelectorAll('#download-youtube-chrome-extension ul li a');
 for(i = 0; i < k.length; i++)
 {
-    k[i].onclick = function(e){
-        e.preventDefault();
+    k[i].onclick = function(event){
+        event.preventDefault();
         var a = document.createElement("a");
-        a.setAttribute( "download", e.target.getAttribute('title') );
-        a.setAttribute( "href", e.target.href );
-        console.log(e.target,a);
+        a.setAttribute( "download", event.target.getAttribute('title') );
+        a.setAttribute( "href", event.target.href );
         document.body.appendChild(a);
+        console.log([event.target,a]);
         var theEvent = document.createEvent("MouseEvent");
         theEvent.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
         a.dispatchEvent(theEvent);
