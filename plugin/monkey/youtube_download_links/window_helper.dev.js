@@ -179,7 +179,7 @@ var d1=document.querySelector('#download-youtube-chrome-extension ul');
     if (titleH1 !== null) {
         title = titleH1.children[0].innerText;
     }
-d1.insertAdjacentHTML('beforeend', '<li id="download-youtube-chrome-extension-subtitles"><a href="'+this.responseURL+'" title="'+title+'" download="'+title+'.asr3">Subtitles</a></li>');
+d1.insertAdjacentHTML('beforeend', '<li id="download-youtube-chrome-extension-subtitles"><a href="'+this.responseURL+'" title="'+title.replace('"','%22')+'" download="'+title.replace('"','%22')+'.asr3">Subtitles</a></li>');
 }else {d0.href=this.responseURL;}}
 });origOpen.apply(this, arguments);};
 };
