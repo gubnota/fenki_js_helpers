@@ -140,9 +140,9 @@ var setDiv = function(videos) {
     html = html + ['</ul>',
     '</li>',
     '</ul>'].join('');
-    var wpDiv = document.getElementById('watch7-subscription-container');
+    var wpDiv = document.getElementById('watch8-sentiment-actions');
     if (wpDiv !== null) {
-        wpDiv.insertAdjacentHTML('afterend', html);
+        wpDiv.insertAdjacentHTML('afterbegin', html);
     button_click_event_handler_activator();
     }
     subtitles();
