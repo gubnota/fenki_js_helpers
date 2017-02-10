@@ -229,7 +229,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
 
             var css = document.createElement('style');
             css.innerHTML = ['#' + buttonId + '{position:fixed',
-                'padding:11px 16px 10px',
+                'padding:11px 11px 22px',
                 'background:#e0e1e2',
                 'background: linear-gradient(to bottom, #e0e1e2 0, #ffffff 100%) repeat scroll 0 0 transparent;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=\'#e0e1e2\', endColorstr=\'#ffffff\', GradientType=0)',
                 'color:#666',
@@ -240,7 +240,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
                 'border-width:2px',
                 'border-style:solid',
                 'border-color:#cccccc',
-                'left:-22px',
+                'right:-22px',
                 'max-width:200px',
                 'cursor: pointer',
                 'font-family:Ubuntu, "PT Sans", Arial, sans-serif',
@@ -249,11 +249,11 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
                 'z-index:9999',
                 'line-height:11px',
                 'height:15px',
-                'transform:rotate(90deg)',
+                'transform:rotate(-90deg)',
                 'overflow:hidden',
                 'text-align:center'
             ].join(';') + '}';
-            css.innerHTML += '#' + buttonId + ':hover{' + ['left:-21px'].join(';') + '}';
+            css.innerHTML += '#' + buttonId + ':hover{' + ['right:-21px'].join(';') + '}';
             css.innerHTML += ' #download_map{background-size:contain}';
             css.innerHTML += ' #download_map.m0{background-image:url(//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/map_0.png)}';
             css.innerHTML += ' #download_map.m1{background-image:url(//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/map_1.png)}';
