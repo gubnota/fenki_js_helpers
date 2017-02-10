@@ -4,7 +4,7 @@
 // @version    0.1.6
 // @downloadURL http://gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/main.user.js
 // @description Shows Shutterstock buyers places map spots one-by-one table
-// @include        http*://submit.shutterstock.com/home.mhtml*
+// @include        http*://submit.shutterstock.com/dashboard*
 // @copyright  2015+, Vladislav Muravyev
 // @author Vladislav Muravyev
 // @grant          none
@@ -22,7 +22,7 @@ var w = window;
         return;
     }
     // [4] дополнительная проверка наряду с @include
-    if (/:\/\/submit\.shutterstock\.com\/home.mhtml/.test(w.location.href)) {
+    if (/:\/\/submit\.shutterstock\.com\//.test(w.location.href)) {
         //Ниже идёт непосредственно код скрипта
         var el = document.getElementById('shutter_places_window_helper_script');
         if (el === null) {
