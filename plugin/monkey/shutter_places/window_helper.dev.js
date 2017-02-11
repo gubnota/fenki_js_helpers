@@ -329,7 +329,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
                             else {var place = dic[lang][7]}
                             data[i].thumb_url = 'https://thumb1.shutterstock.com/display_pic_with_logo/0/0/'+data[i].media_id+'.jpg';
                             jQuery('#' + ShutterPlacesIframeId + ' table').append('<tr id="ph' + data[i].media_id + '_' + i + '" style="max-height:40px;">' + '<td class="thumb" style="width:105px"><a href="http://www.shutterstock.com/pic-' + data[i].media_id + '/index.html" target="_blank"><img src="' + data[i].thumb_url + '"></a></td>' + '<td class="similar"><a href="http://www.shutterstock.com/similar-' + data[i].media_id + '/index.html" target="_blank">Shutterstock</a></td>' + '<td class="google"><a href="https://www.google.com/searchbyimage?&amp;image_url=' + window.encodeURI('http://thumb101.shutterstock.com/display_pic_with_logo/0/0/' + data[i].media_id + '.jpg') + '" target="_blank">Google images</a></td>' + '<td class="time" style="max-width:80px">' + data[i].time + '</td>' + '<td class="place" style="max-width:100px;">' + place + '</td>' + '</tr>');
-                            if(data[i].coordinates[0] !== undefined && data[i].coordinates[1] !== null)
+                            if(data[i].city == undefined && data[i].coordinates[0] !== undefined && data[i].coordinates[1] !== null)
                             ShutterPlacesWindowHelperScript.resolve_place(jQuery('#' + ShutterPlacesIframeId + ' table #ph' + data[i].media_id + '_' + i + ' .place a'), data[i].coordinates[0], data[i].coordinates[1], 11);
                         };
                     },
