@@ -312,7 +312,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
                     url: url,
                     type: 'POST',
                     data: {
-                        component_path: "download_map/recent_downloads.mh"
+                        component_path: "/api/user/downloads/map"
                     },
                     success: function(data) {
                         for (var i = 0; data.length > i; i++) {//data.length - 1
