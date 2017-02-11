@@ -55,7 +55,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
         var dismissLinkId = 'ShutterPlacesDismiss' + id;
         var buttonId = 'ShutterPlacesButtonOpen' + id;
         var lang = 'en';
-        var url = "/api/user/downloads/map"; //"http://gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/response.json";
+        var url = "https://submit.shutterstock.com/api/user/downloads/map"; //"http://gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/response.json";
         var keys = ['buttonText','closeText','thumbText','similarText','utilizesText','timeText','placeText'];
         var dic = 
         {'en':['Places','Collapse','Thumbnail','Similar on Site','Who utilizes picture','Time','Place','Undefined'],
