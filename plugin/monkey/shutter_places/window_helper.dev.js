@@ -71,7 +71,16 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
         'jp':['場所','隠す','サムネイル','サイト上内サイト','誰が絵を利用','時間','場所','未定義']
         };
         var param = {buttonText:dic['en'][0], closeText:dic['en'][1], url:url};
-
+        function _sort(stock){
+            for (var i = 1; i<stock.length; i++){
+                if (stock[i].time < stock[i-1].time) {
+                    var new_stock = stock[i];
+                    stock[i] = stock[i-1];
+                    stock[i-1] = new_stock;
+                }
+            }
+            return stock;
+        }
         function _localStorage(data,limit,skip){
             if (data !== undefined && data.length>0){
             for (var i = data.length - 1; i >= 0; i--) {
@@ -96,18 +105,12 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
                         }
                         if (!found) stock.push(data[j]);
                         }
-
-                        for (var i = 1; i<stock.length; i++){
-                            if (stock[i].time < stock[i-1].time) {
-                                var new_stock = stock[i];
-                                stock[i] = stock[i-1];
-                                stock[i-1] = new_stock;
-                            }
-                        }
+                        stock = _sort(stock);
                         window.localStorage.setItem('shutter_places', JSON.stringify(stock));
                     }
                 }
                 else {
+                        data = _sort(data);
                         window.localStorage.setItem('shutter_places', JSON.stringify(data));
                 }
             }
