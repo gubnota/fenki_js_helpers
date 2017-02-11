@@ -103,7 +103,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
                 'font-family:"Open Sans",Myriad,Calibri,sans-serif',
                 'font-weight:bold',
                 'font-size:.85em',
-            ].join(';') + '}' + '#' + ShutterPlacesIframeId + ' td{' + ['border-width:0 2px 0 0', 'border:solid #ece4d8', 'vertical-align:middle', 'text-align:center'].join(';') + '}' + '#' + ShutterPlacesIframeId + ' table:after{' + ['content:" "', 'display:block', 'width:100%', 'height:100px'].join(';') + '}' + '#' + ShutterPlacesIframeId + ' td.thumb img{' + ['min-width:50px', 'min-height:50px'].join(';') + '}';
+            ].join(';') + '}' + '#' + ShutterPlacesIframeId + ' td{' + ['border-width:0 2px 0 0', 'border:solid #ece4d8', 'vertical-align:middle', 'text-align:center'].join(';') + '}' + '#' + ShutterPlacesIframeId + ' table:after{' + ['content:" "', 'display:block', 'width:100%', 'height:100px'].join(';') + '}' + '#' + ShutterPlacesIframeId + ' td.thumb img{' + ['min-width:50px', 'min-height:50px', 'max-width:100px'].join(';') + '}';
             var dialog = document.createElement('div');
             dialog.style.cssText = dialogStyle;
             dialog.id = 'translate';
