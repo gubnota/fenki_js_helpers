@@ -72,6 +72,44 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
         };
         var param = {buttonText:dic['en'][0], closeText:dic['en'][1], url:url};
 
+        function _localStorage(data,limit,skip){
+            if (data !== undefined && data.length>0){
+            for (var i = data.length - 1; i >= 0; i--) {
+                data[i].time = parseInt((new Date(data[i].time).getTime()/1000).toFixed());
+                if (data[i].media_type == 'image') delete data[i].media_type;
+                if (data[i].aspect !== undefined) delete data[i].aspect;
+                if (data[i].region !== undefined) delete data[i].region;
+            }
+            }
+            if (window.localStorage !== undefined) {
+                if ((window.localStorage.getItem('shutter_places')+"").substr(0,2)=='[{')
+                {
+                    var stock = JSON.parse(window.localStorage.getItem('shutter_places'));
+                    if (typeof stock != 'undefined' && stock.length>0)
+                    {
+                        for (var j = data.length - 1; j >= 0; j--)
+                        {
+                        var found = false;
+                        for (var i = 0; i<stock.length; i++)
+                        {
+                            if (stock[i].time == data[j].time && stock[i].media_id == data[j].media_id) {found = true; break;}
+                        }
+                        if (!found) stock.push(data[j]);
+                        }
+
+                        for (var i = 1; i<stock.length; i++){
+                            if (stock[i].time < stock[i-1].time) {
+                                var new_stock = stock[i];
+                                stock[i] = stock[i-1];
+                                stock[i-1] = new_stock;
+                            }
+                        }
+                        window.localStorage.setItem('shutter_places', JSON.stringify(stock));
+                    }
+                }
+            }
+            return data;
+        }
         function _createDialogElement(dismissText, linkHref) {
             var glassStyle = 'position:fixed;width:100%;height:100%;z-index:9999;' +
                 'top:0;left:0;opacity:0.3;filter:alpha(opacity=30);' +
@@ -318,7 +356,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
                         for (var i = 0; data.length > i; i++) {//data.length - 1
                             if (jQuery('#' + ShutterPlacesIframeId + ' table .' + data[i].media_id) === null) continue; // если уже есть такой id
                             var place = dic[lang][7];//vm20150528
-                            var time = new Date(parseInt((new Date(data[i].time).getTime()/1000).toFixed())*1000);
+                            var time = new Date(data[i].time*1000);
                             if (data[i].city != undefined) place = data[i].country + ', ' + data[i].region + ', ' + data[i].city;
                             if (data[i].coordinates[0] !== null && data[i].coordinates[1] !== null) {
                                 // https://www.google.com/maps/dir//-20.4810998,-54.635534/@-21.3840774,-58.2390497,3z
