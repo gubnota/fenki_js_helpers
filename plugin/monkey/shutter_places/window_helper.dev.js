@@ -318,6 +318,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
                         for (var i = 0; data.length > i; i++) {//data.length - 1
                             if (jQuery('#' + ShutterPlacesIframeId + ' table .' + data[i].media_id) === null) continue; // если уже есть такой id
                             var place = dic[lang][7];//vm20150528
+                            var time = new Date(parseInt((new Date(data[i].time).getTime()/1000).toFixed())*1000);
                             if (data[i].city != undefined) place = data[i].country + ', ' + data[i].region + ', ' + data[i].city;
                             if (data[i].coordinates[0] !== null && data[i].coordinates[1] !== null) {
                                 // https://www.google.com/maps/dir//-20.4810998,-54.635534/@-21.3840774,-58.2390497,3z
@@ -328,8 +329,8 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
                             }
                             else {var place = dic[lang][7]}
                             data[i].thumb_url = 'https://thumb1.shutterstock.com/display_pic_with_logo/0/0/'+data[i].media_id+'.jpg';
-                            jQuery('#' + ShutterPlacesIframeId + ' table').append('<tr id="ph' + data[i].media_id + '_' + i + '" style="max-height:40px;">' + '<td class="thumb" style="width:105px"><a href="http://www.shutterstock.com/pic-' + data[i].media_id + '/index.html" target="_blank"><img src="' + data[i].thumb_url + '"></a></td>' + '<td class="similar"><a href="http://www.shutterstock.com/similar-' + data[i].media_id + '/index.html" target="_blank">Shutterstock</a></td>' + '<td class="google"><a href="https://www.google.com/searchbyimage?&amp;image_url=' + window.encodeURI('http://thumb101.shutterstock.com/display_pic_with_logo/0/0/' + data[i].media_id + '.jpg') + '" target="_blank">Google images</a></td>' + '<td class="time" style="max-width:80px">' + data[i].time + '</td>' + '<td class="place" style="max-width:100px;">' + place + '</td>' + '</tr>');
-                            if(data[i].city == undefined && data[i].coordinates[0] !== undefined && data[i].coordinates[1] !== null)
+                            jQuery('#' + ShutterPlacesIframeId + ' table').append('<tr id="ph' + data[i].media_id + '_' + i + '" style="max-height:40px;">' + '<td class="thumb" style="width:105px"><a href="http://www.shutterstock.com/pic-' + data[i].media_id + '/index.html" target="_blank"><img src="' + data[i].thumb_url + '"></a></td>' + '<td class="similar"><a href="http://www.shutterstock.com/similar-' + data[i].media_id + '/index.html" target="_blank">Shutterstock</a></td>' + '<td class="google"><a href="https://www.google.com/searchbyimage?&amp;image_url=' + window.encodeURI('http://thumb101.shutterstock.com/display_pic_with_logo/0/0/' + data[i].media_id + '.jpg') + '" target="_blank">Google images</a></td>' + '<td class="time" style="max-width:80px">' + time + '</td>' + '<td class="place" style="max-width:100px;">' + place + '</td>' + '</tr>');
+                            if(data[i].city !== undefined && data[i].coordinates[0] !== undefined && data[i].coordinates[1] !== null)
                             ShutterPlacesWindowHelperScript.resolve_place(jQuery('#' + ShutterPlacesIframeId + ' table #ph' + data[i].media_id + '_' + i + ' .place a'), data[i].coordinates[0], data[i].coordinates[1], 11);
                         };
                     },
