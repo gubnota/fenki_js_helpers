@@ -55,7 +55,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
         var dismissLinkId = 'ShutterPlacesDismiss' + id;
         var buttonId = 'ShutterPlacesButtonOpen' + id;
         var lang = 'en';
-        var url = "//submit.shutterstock.com/show_component.mhtml"; //"http://gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/response.json";
+        var url = "/api/user/downloads/map"; //"http://gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/response.json";
         var keys = ['buttonText','closeText','thumbText','similarText','utilizesText','timeText','placeText'];
         var dic = 
         {'en':['Places','Collapse','Thumbnail','Similar on Site','Who utilizes picture','Time','Place','Undefined'],
@@ -310,10 +310,10 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
             if (t.length < 1) {
                 jQuery.ajax({
                     url: url,
-                    type: 'POST',
-                    data: {
-                        component_path: "/api/user/downloads/map"
-                    },
+                    type: 'GET',
+                    // data: {
+                    //     component_path: "download_map/recent_downloads.mh"
+                    // },
                     success: function(data) {
                         for (var i = 0; data.length > i; i++) {//data.length - 1
                             if (jQuery('#' + ShutterPlacesIframeId + ' table .' + data[i].media_id) === null) continue; // если уже есть такой id
