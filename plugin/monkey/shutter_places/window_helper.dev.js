@@ -107,6 +107,9 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
                         window.localStorage.setItem('shutter_places', JSON.stringify(stock));
                     }
                 }
+                else {
+                        window.localStorage.setItem('shutter_places', JSON.stringify(data));
+                }
             }
             return data;
         }
