@@ -364,17 +364,17 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
                             if (jQuery('#' + ShutterPlacesIframeId + ' table .' + data[i].media_id) === null) continue; // если уже есть такой id
                             var place = dic[lang][7];//vm20150528
                             var time = new Date(data[i].time*1000);
-                            var coordinates = '';
+                            var coordinates = ''; var badge = 'Google maps';
                             if (data[i].coordinates[0] && data[i].coordinates[1]) {
                                 // https://www.google.com/maps/dir//-20.4810998,-54.635534/@-21.3840774,-58.2390497,3z
 //                                place = 'https://www.google.com/maps/@' + data[i].latitude + ',' + data[i].longitude + ',11z';
                                 place = data[i].coordinates[0] + ',' + data[i].coordinates[1];
                                 coordinates = place;
                             }
-                            if (data[i].country && data[i].city) {place = data[i].country + ', ' + data[i].city;}
+                            if (data[i].country && data[i].city) {place = data[i].country + ', ' + data[i].city; badge = place;}
                             if (data[i].coordinates[0] && data[i].coordinates[1]) {
                                 place = 'https://www.google.com/maps/dir//' + place + '/@' + coordinates + ',3z';
-                                place = '<a href="' + place + '" target="_blank">Google maps</a>';
+                                place = '<a href="' + place + '" target="_blank">'+badge+'</a>';
                             }
                             else {var place = dic[lang][7]}
                             data[i].thumb_url = 'https://thumb1.shutterstock.com/display_pic_with_logo/0/0/'+data[i].media_id+'.jpg';
