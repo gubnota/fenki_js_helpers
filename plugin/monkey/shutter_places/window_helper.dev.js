@@ -188,14 +188,14 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
         function _ChangeMapOnClick() {
       var m = document.getElementById('download-map');
       if (m != null)  {
-        m.onclick=function(e){_ChangeMapOnClickHandler(e,m,true);}
-        m.ontouchend=function(e){_ChangeMapOnClickHandler(e,m,true);}
+        m.onclick=function(e){_ChangeMapOnClickHandler(m,true);}
+        m.ontouchend=function(e){_ChangeMapOnClickHandler(m,true);}
         var t = window.localStorage.getItem('m');
-        if (t == null || t<9) _ChangeMapOnClickHandler(e,m,false);
+        if (t == null || t<9) _ChangeMapOnClickHandler(m,false);
         }
         }
 
-        function _ChangeMapOnClickHandler(e,m,l) {
+        function _ChangeMapOnClickHandler(m,l) {
         var t = window.localStorage.getItem('m');
         if (t == null || t>9) {
     var a = document.querySelectorAll('.leaflet-zoom-animated g path');
