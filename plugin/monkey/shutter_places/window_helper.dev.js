@@ -186,7 +186,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
         }
 
         function _ChangeMapOnClick() {
-      var m = document.getElementById('download_map');
+      var m = document.querySelector('.leaflet-zoom-animated');
       if (m != null)  {
         m.onclick=function(e){_ChangeMapOnClickHandler(e,m);}
         m.ontouchend=function(e){_ChangeMapOnClickHandler(e,m);}
