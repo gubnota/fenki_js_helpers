@@ -186,7 +186,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
         }
 
         function _ChangeMapOnClick() {
-      var m = document.querySelector('.leaflet-zoom-animated');
+      var m = document.getElementById('download-map');
       if (m != null)  {
         m.onclick=function(e){_ChangeMapOnClickHandler(e,m);}
         m.ontouchend=function(e){_ChangeMapOnClickHandler(e,m);}
@@ -197,11 +197,12 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
 
         function _ChangeMapOnClickHandler(e,m) {
         var t = window.localStorage.getItem('m');
-        if (t == null) {
+        if (t == null || t>9) {
     var a = document.querySelectorAll('.leaflet-zoom-animated g path');
     for (var i = 0; i< a.length; i++){
     a[i].setAttribute('fill','rgb('+(Math.random()*255^1)+','+(Math.random()*255^1)+','+(Math.random()*255^1)+')');
         }
+        window.localStorage.setItem('m',window.localStorage.getItem('m')+1);
         }
         else {
             window.localStorage.removeItem('m');
