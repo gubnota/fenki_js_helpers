@@ -300,17 +300,6 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
                 'text-align:center'
             ].join(';') + '}';
             css.innerHTML += '#' + buttonId + ':hover{' + ['right:-21px'].join(';') + '}';
-            css.innerHTML += ' #download_map{background-size:contain}';
-            css.innerHTML += ' #download_map.m0{background-image:url(//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/map_0.png)}';
-            css.innerHTML += ' #download_map.m1{background-image:url(//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/map_1.png)}';
-            css.innerHTML += ' #download_map.m2{background-image:url(//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/map_2.png)}';
-            css.innerHTML += ' #download_map.m3{background-image:url(//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/map_3.png)}';
-            css.innerHTML += ' #download_map.m4{background-image:url(//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/map_4.png)}';
-            css.innerHTML += ' #download_map.m5{background-image:url(//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/map_5.png)}';
-            css.innerHTML += ' #download_map.m6{background-image:url(//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/map_6.png)}';
-            css.innerHTML += ' #download_map.m7{background-image:url(//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/map_7.png)}';
-            css.innerHTML += ' #download_map.m8{background-image:url(//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/map_8.png)}';
-            css.innerHTML += ' #download_map.m9{background-image:url(//gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/map_9.png)}';
             el.id = buttonId;
             el.innerHTML = param.buttonText;
             document.body.appendChild(css.cloneNode(true));
