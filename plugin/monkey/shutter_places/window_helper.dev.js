@@ -205,12 +205,13 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
         }
         else if (t=='a')
         {
-            color= 10+Math.random()*117^1;
+            color= 120+Math.random()*87^1;
             color = 'rgb('+color+','+color+','+color+')';
         }
         a[i].setAttribute('fill',color);
         }
-        var res = ((t==null || t == "null")?'a':'b');
+        if (t==null || t=="null") res='a';
+        if (t=='a') res='b';
         if (t=='b') res=null;
         if (l) window.localStorage.setItem('m',res);
         };
