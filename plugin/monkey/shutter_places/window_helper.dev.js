@@ -202,7 +202,8 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
     for (var i = 0; i< a.length; i++){
     a[i].setAttribute('fill','rgb('+(Math.random()*255^1)+','+(Math.random()*255^1)+','+(Math.random()*255^1)+')');
         }
-        if (l) window.localStorage.setItem('m','b');
+        var res = (t==null?'a':'b');
+        if (l) window.localStorage.setItem('m',res);
         }
         else {
             if (l) window.localStorage.removeItem('m');
