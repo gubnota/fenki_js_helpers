@@ -191,7 +191,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
         m.onclick=function(e){_ChangeMapOnClickHandler(m,true);}
         m.ontouchend=function(e){_ChangeMapOnClickHandler(m,true);}
         var t = window.localStorage.getItem('m');
-        if (t == null || t=='a') _ChangeMapOnClickHandler(m,false);
+        if (t == null || t == "null" || t=='a') _ChangeMapOnClickHandler(m,false);
         }
         }
 
@@ -200,7 +200,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
     var a = document.querySelectorAll('.leaflet-zoom-animated g path');
     for (var i = 0; i< a.length; i++){
         var color = '#dddddd';
-        if (t == null) {
+        if (t == null || t == "null") {
             color = 'rgb('+(Math.random()*255^1)+','+(Math.random()*255^1)+','+(Math.random()*255^1)+')';
         }
         else if (t=='a')
@@ -210,7 +210,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
         }
         a[i].setAttribute('fill',color);
         }
-        var res = (t==null?'a':'b');
+        var res = ((t==null || t == "null")?'a':'b');
         if (t=='b') res=null;
         if (l) window.localStorage.setItem('m',res);
         };
