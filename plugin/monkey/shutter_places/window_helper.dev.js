@@ -191,20 +191,21 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
         m.onclick=function(e){_ChangeMapOnClickHandler(e,m);}
         m.ontouchend=function(e){_ChangeMapOnClickHandler(e,m);}
         var t = window.localStorage.getItem('m');
-        if (t != null) m.classList.add(t);
+        if (t != null) _ChangeMapOnClickHandler(e,m);
         }
         }
 
         function _ChangeMapOnClickHandler(e,m) {
-        if(m.classList.length>0){
-            m.classList=[];
-            window.localStorage.removeItem('m');
+        var t = window.localStorage.getItem('m');
+        if (t == null) {
+    var a = document.querySelectorAll('.leaflet-zoom-animated g path');
+    for (var i = 0; i< a.length; i++){
+    a[i].setAttribute('fill','rgb('+(Math.random()*255^1)+','+(Math.random()*255^1)+','+(Math.random()*255^1)+')');
+        }
         }
         else {
-            var t = 'm'+parseInt((Math.random()*10));
-            window.localStorage.setItem('m',t);
-            m.classList.add(t);
-            }
+            window.localStorage.removeItem('m');
+        }
         }
 
         function _showShutterPlacesWindowHelperScript(dismissText, linkHref) {
@@ -371,7 +372,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
                                 place = data[i].coordinates[0] + ',' + data[i].coordinates[1];
                                 coordinates = place;
                             }
-                            if (data[i].country && data[i].city) {place = data[i].country + ', ' + data[i].city; badge = place;}
+                            if (data[i].country) {place = data[i].country; if(data[i].city) {place += ', ' + data[i].city;} badge = place;}
                             if (data[i].coordinates[0] && data[i].coordinates[1]) {
                                 place = 'https://www.google.com/maps/dir//' + place + '/@' + coordinates + ',3z';
                                 place = '<a href="' + place + '" target="_blank">'+badge+'</a>';
