@@ -122,7 +122,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
                 'background-color:#000;';
             var dialogStyle = 'z-index:10000;position:fixed;top:0';
             var contentStyle = 'position:fixed;height:100%;width:100%;' +
-                'background-color:#5B7F98;padding:10px 0;box-shadow:4px 4px 25px #888;font: 15px/17px "PT Sans",Arial;z-index: 10000;';
+                'background-color:#fff6e9;padding:10px 0;box-shadow:4px 4px 25px #888;font: 15px/17px "PT Sans",Arial;z-index: 10000;';
             //border:5px solid #193441;
             var ShutterPlacesWindowHelperScriptElement = document.createElement('div');
             ShutterPlacesWindowHelperScriptElement.id = ShutterPlacesWindowHelperScriptId;
@@ -150,7 +150,7 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
             ].join(';') + '}' + '#' + ShutterPlacesIframeId + ' td{' + ['border-width:0 2px 0 0', 'border:solid #ece4d8', 'vertical-align:middle', 'text-align:center'].join(';') + '}' + '#' + ShutterPlacesIframeId + ' table:after{' + ['content:" "', 'display:block', 'width:100%', 'height:100px'].join(';') + '}' + '#' + ShutterPlacesIframeId + ' td.thumb img{' + ['min-width:50px', 'min-height:50px', 'max-width:100px'].join(';') + '}';
             var dialog = document.createElement('div');
             dialog.style.cssText = dialogStyle;
-            dialog.id = 'translate';
+            dialog.id = ShutterPlacesWindowHelperScriptId+'dialog';
             var dismissLink = _createDismissLink(dismissText || param.closeText);
             dismissLink.style.cssText = dismissLink.style.cssText + ';display:block;background-color:#193441;' +
                 'text-align:center;padding:4px;font:normal 15px/17px \'PT Sans\',Arial';
@@ -283,30 +283,26 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
             var css = document.createElement('style');
             css.innerHTML = ['#' + buttonId + '{position:fixed',
                 'padding:11px 11px 22px',
-                'background:#e0e1e2',
-                'background: linear-gradient(to bottom, #e0e1e2 0, #ffffff 100%) repeat scroll 0 0 transparent;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=\'#e0e1e2\', endColorstr=\'#ffffff\', GradientType=0)',
-                'color:#666',
+                'background:#c33',
+                'color:#fff',
                 'font-size:14px',
                 'font-weight:800',
                 'margin:0',
-                'border-radius:5px',
-                'border-width:2px',
-                'border-style:solid',
-                'border-color:#cccccc',
+                'border-radius:3px',
                 'right:-22px',
                 'max-width:200px',
                 'cursor: pointer',
-                'font-family:Ubuntu, "PT Sans", Arial, sans-serif',
-                'text-shadow:-2px 2px 0 #fff',
+                'font-family:PT Sans,Helvetica Neue,Helvetica,Arial,sans-serif',
                 'top:65px',
                 'z-index:9999',
                 'line-height:11px',
                 'height:15px',
                 'transform:rotate(-90deg)',
+                'text-transform:uppercase',
                 'overflow:hidden',
                 'text-align:center'
             ].join(';') + '}';
-            css.innerHTML += '#' + buttonId + ':hover{' + ['right:-21px'].join(';') + '}';
+            css.innerHTML += '#' + buttonId + ':hover{' + ['right:-21px','background:#df3b3b','box-shadow:0 2px 4px 0 rgba(71,0,0,.31)'].join(';') + '}';
             el.id = buttonId;
             el.innerHTML = param.buttonText;
             document.body.appendChild(css.cloneNode(true));
