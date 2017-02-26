@@ -1,0 +1,175 @@
+<!DOCTYPE html><html lang="en">
+<head><meta charset="utf-8" /><meta name="format-detection" content="telephone=no" /><meta name="msapplication-tap-highlight" content="no" /><meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
+	<title>Shutter places test</title>
+<!--<link rel="stylesheet" href="leaflet/leaflet.css">
+<script src="leaflet/leaflet.js"></script>-->
+<script src=libs/jquery.js></script>
+</head>
+<body>
+<style>
+/*#ShutterPlacesButtonOpenMap859{padding:6px;background:#c33;color:#fff;font-size:14px;font-weight:800;margin:0;border-radius:3px;cursor: pointer;font-family:PT Sans,Helvetica Neue,Helvetica,Arial,sans-serif;text-transform:uppercase;overflow:hidden;text-align:center;float:right;line-height:15px;}#ShutterPlacesButtonOpenMap859:hover{right:-21px;background:#df3b3b;box-shadow:0 2px 4px 0 rgba(71,0,0,.31)}
+#ShutterPlacesInfoIframe790 table{background:#fff6e9;width:100%;margin-bottom:50px;border-bottom:2px solid #bdb6ad;margin:10px 0}#ShutterPlacesInfoIframe790 th{display:table-cell;padding:2px 10px;border:solid #ece4d8;border-width:0 2px 2px 0;color:#cd596b;font-family:"Open Sans",Myriad,Calibri,sans-serif;font-weight:bold;font-size:.85em}#ShutterPlacesInfoIframe790 td{border-width:0 2px 0 0;border:solid #ece4d8;vertical-align:middle;text-align:center}#ShutterPlacesInfoIframe790 table:after{content:" ";display:block;width:100%;height:100px}#ShutterPlacesInfoIframe790 td.thumb img{min-width:50px;min-height:50px;max-width:100px}*/
+body{margin:0;}html{height:100%}
+/*#mesta *,#side *{font-family:sans-serif,Arial,Verdana;}
+#side{
+display:none;background: #fff;width:0px;height: 100% !important;position: absolute;right: 0px;z-index: 1;
+box-sizing: border-box;
+padding: 10px;
+}
+#side.open{display:block;width:300px;box-shadow:0 0 30px rgba(0,0,0,0.5);right: 0;}
+#side p, #side div, #side h2 {text-align: center;}
+#side h2 {color:#0078A8;text-align:center;font-weight: normal;}
+#side p img{border-radius:5px;margin:0 auto;width:auto;min-height:150px;max-height:250px;}
+#side div::after,#side h2::after{color:#ddd;content:"¶";}
+#side a {
+    color: #298aae;
+    text-decoration: none;
+}
+#mesta{position: absolute;top:0;left:0;width: 100% !important;height: 100% !important;padding: 0 !important;margin: 0 !important;}
+#mesta .marker-icon {
+    border: 2px solid #0078A8;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: opacity 1s ease-in-out;
+}
+#mesta .marker-icon img {
+    width: 100%;
+    max-height: 100%;
+    vertical-align: middle;
+    transition: opacity 1s ease-in-out;
+}
+#mesta .holder {width: 100px;height: 67px;overflow: hidden;
+    border: 2px solid #0078A8;background-color: #fff;
+    border-radius: 5px;
+    background-size: cover;
+    cursor: pointer;
+}
+#mesta .holder.mini{
+    height: 50px;
+    width: 50px;
+}
+#mesta .holder.left{margin-left: -100px;}
+#mesta .holder.left.mini{margin-left: -50px;}
+#mesta .holder.top{margin-top: -67px;}
+#mesta .holder.top.mini{margin-top: -50px;}
+#mesta .holder.top.left{margin-left: -67px;margin-top: -100px;width: 67px;height: 100px;}
+#mesta .holder.top.left.mini{margin-left: -50px;margin-top: -50px;width: 50px;height: 50px;}
+#mesta .marker-icon:hover, #mesta .holder:hover{border-color: #999;}
+#mesta .marker-icon:hover{z-index: 1000;}
+#mesta .leaflet-container #mesta .leaflet-control-scale{font-size: 12px;font-weight: bold;}
+#mesta .leaflet-control-scale-line{box-shadow: 1px 0 0 #fff, -1px 0 0 #fff;color: #000;text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, -1px 1px 0 #fff, 1px -1px 0 #fff;background: transparent !important;border: 1px solid #000;border-top:none;}
+#mesta .leaflet-control-scale-line:not(:first-child){margin-top: -1px;border: 1px solid #000;border-bottom: none;}
+.close-sign {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 36px;
+    width: 36px;
+    color: rgba(0, 0, 0, 0.2);
+    font-size: 38px;
+    float: right;
+    cursor: pointer;
+    line-height: 0.7;
+    vertical-align: middle;
+    font-style: normal;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    z-index: 2;
+}*/
+/* modal window */
+/*.modal,.modal-container{position: fixed;
+    z-index: 2000;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
+	background-color: rgba(0,0,0,0.75);
+}
+.modal-table {
+    display: table;
+    table-layout: fixed;
+    height: 100%;
+    width: 100%;
+}
+.modal-cell {
+    display: table-cell;
+    height: 100%;
+    width: 100%;
+    vertical-align: middle;
+    padding: 50px;
+}
+.modal-content{
+position: relative;
+    overflow: hidden;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    background-color: #fff;
+    margin-left: auto;
+    margin-right: auto;
+}
+.modal-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 36px;
+    width: 36px;
+    color: rgba(0, 0, 0, 0.2);
+    font-size: 38px;
+    float: right;
+    cursor: pointer;
+    line-height: 0.7;
+    vertical-align: middle;
+    font-style: normal;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    z-index: 2;
+}
+.modal *{box-sizing: border-box;}*/
+</style>
+<div id=download-map-container>
+	<div class="h4">Latest downloads</div>	
+</div>
+<!--<img src="map.svg" style="display: none">-->
+<!-- <div id="container">
+<div id=side></div>
+<button class="close-sign" type="button">✕</button>
+<div id=mapp>
+<div id=mesta></div>
+</div>
+</div> -->
+<script>
+</script>
+<!-- <div class="modal-container" style="display: none;">
+<div class="modal-table">
+<div class="modal-cell">
+<div class="modal-content">
+
+<button class="modal-close" type="button">✕</button>
+
+</div></div></div></div>
+ -->
+ <script>
+(function(f,e,n,k,i){
+var n=e.createElement(n);
+n.setAttribute('id','shutter_places_window_helper_script');
+n.async=true;
+n.src=k;
+if(typeof(IFrameWindowHelper) == 'undefined'){
+// if (/Safari/g.test(window.navigator.appVersion)){
+// window_helper.js}
+n.onload = function(){ShutterPlacesWindowHelperScript.init({base:''});};
+}
+(e[i]('head')[0] || e[i]('body')[0]).appendChild(n);
+})(window,document,'script','new.js','getElementsByTagName');
+</script></body>
+</html>
