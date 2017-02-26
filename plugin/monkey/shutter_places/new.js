@@ -19,7 +19,7 @@
         var ext = (navigator.userAgent.search('WebKit')>-1)?'webp':'png';
         var minZoom=2;
         var maxZoom=8;
-        var base='';//https+"://gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/";
+        var base=https+"://gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/";//'';
         var keys = ['buttonText','closeText','thumbText','similarText','utilizesText','timeText','placeText'];
         var dic = 
         {'en':{Places:'Places',Collapse:'Collapse',Thumbnail:'Thumbnail',Similar:'Similar on Site',Who:'Google Images',Time:'Time',Place:'Place',Undefined:'Undefined',Show:"Show all",Map:"Sales map",Selected:'Selected'},
