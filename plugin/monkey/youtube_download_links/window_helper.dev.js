@@ -140,7 +140,7 @@ var setDiv = function(videos) {
     html = html + ['</ul>',
     '</li>',
     '</ul>'].join('');
-    var wpDiv = document.getElementById('container');
+    var wpDiv = document.getElementById('info');
     if (wpDiv !== null) {
         wpDiv.insertAdjacentHTML('beforeend', html);
     button_click_event_handler_activator();
