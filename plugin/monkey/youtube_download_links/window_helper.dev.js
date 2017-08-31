@@ -115,7 +115,7 @@ var setDiv = function(videos) {
 '}'].join('');
     document.head.insertAdjacentElement('beforeEnd',css);
     var title = 'saved video';
-    var titleH1 = document.getElementById('watch-headline-title');
+    var titleH1 = document.getElementById('container');//watch-headline-title
     if (titleH1 !== null) {
         title = titleH1.children[0].innerText;
     }

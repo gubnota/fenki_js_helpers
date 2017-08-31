@@ -1,17 +1,14 @@
 (function(window) {
     if (window !== top) return;
-    if ( !! window.ShutterPlacesWindowHelperScript) {
-        return window.ShutterPlacesWindowHelperScript;
+    if ( !! window.sp) {
+        return window.sp;
     }
 
     var document = window.document;
     // IE8 does not support textContent, so we should fallback to innerText.
-    var ShutterPlacesWindowHelperScript = (function() {
+    var sp = (function(that) {
         var id = Math.ceil(Math.random() * 1000); //уникальный id объекта
         var ShutterPlacesWindowHelperScriptId = 'ShutterPlacesInfo' + id;
-        var ShutterPlacesIframeId = 'ShutterPlacesInfoIframe' + id;
-        var dismissLinkId = 'ShutterPlacesDismiss' + id;
-        var buttonId = 'ShutterPlacesButtonOpen' + id;
         var lang = 'en';
         var https=(window.location.protocol.length==6 ? 'https' : 'http');
         var url = https+"://submit.shutterstock.com/api/user/downloads/map"; //"http://gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/response.json";
@@ -19,7 +16,7 @@
         var ext = (navigator.userAgent.search('WebKit')>-1)?'webp':'png';
         var minZoom=2;
         var maxZoom=8;
-        var base=https+"://gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/";//'';
+        var base=https+"://sinopost.ru/fenki_js_helpers/plugin/monkey/shutter_places/";//https+"://gubnota.github.io/fenki_js_helpers/plugin/monkey/shutter_places/";//'';
         var keys = ['buttonText','closeText','thumbText','similarText','utilizesText','timeText','placeText'];
         var dic = 
         {'en':{Places:'Places',Collapse:'Collapse',Thumbnail:'Thumbnail',Similar:'Similar on Site',Who:'Google Images',Time:'Time',Place:'Place',Undefined:'Undefined',Show:"Show all",Map:"Sales map",Selected:'Selected'},
@@ -36,234 +33,20 @@
         };
         var param = {url:url,base:base,tile:tile,ext:ext,minZoom:minZoom,maxZoom:maxZoom};
         var init = function(that){
-        sp.map.build(that);
         sp.ui.set_user_lang();
         _ChangeMapOnClick();
         sp.button.build();
+        if (window.localStorage.getItem('shutter_places_last') || new Date().getTime()/1000 - sp.ls.get(0,1)[0].time > 1000){
+            sp.http.get(function(e){sp.ls.add(sp.ls.prepare(e));window.localStorage.setItem('shutter_places_last', parseInt(new Date().getTime()/1000));},sp.url);
+        }
         };
         var Button = function(params){init(params,this);};
-        var table = (function(that){
-        function _setElementText(element, text) {
-            element.innerHTML = text;
-        };
-        function _dismissLinkClick() {
-            _close();
-            return false;
-        }
-        this._createDismissLink = function(dismissText) {
-            var dismissLink = document.createElement('a');
-            _setElementText(dismissLink, dismissText || param.closeText);
-            dismissLink.id = dismissLinkId;
-            dismissLink.href = '#';
-            dismissLink.style.cssText = 'color:#fff;margin:4px 10px 10px;text-decoration:none;font:normal 15px/17px \'PT Sans\',Arial;';
-            return dismissLink;
-        }
-        this._createDialogElement = function(dismissText, linkHref) {
-            var glassStyle = 'position:fixed;width:100%;height:100%;z-index:9999;' +
-                'top:0;left:0;opacity:0.3;filter:alpha(opacity=30);' +
-                'background-color:#000;';
-            var dialogStyle = 'z-index:10000;position:fixed;top:0';
-            var contentStyle = 'position:fixed;height:100%;width:100%;' +
-                'background-color:#fff6e9;padding:10px 0;box-shadow:4px 4px 25px #888;font: 15px/17px "PT Sans",Arial;z-index: 10000;';
-            var ShutterPlacesWindowHelperScriptElement = document.createElement('div');
-            ShutterPlacesWindowHelperScriptElement.id = ShutterPlacesWindowHelperScriptId;
 
-            var glassPanel = document.createElement('div');
-            glassPanel.style.cssText = glassStyle;
-
-            var content = document.createElement('div');
-            content.style.cssText = contentStyle;
-
-            var css = document.createElement('style');
-            css.innerHTML = '#' + ShutterPlacesIframeId + ' table{' + ['background:#fff6e9',
-                'width:100%',
-                'margin-bottom:50px',
-                'border-bottom:2px solid #bdb6ad',
-                'margin:10px 0'
-            ].join(';') + '}' + '#' + ShutterPlacesIframeId + ' th{' + ['display:table-cell',
-                'padding:2px 10px',
-                'border:solid #ece4d8',
-                'border-width:0 2px 2px 0',
-                'color:#cd596b',
-                'font-family:"Open Sans",Myriad,Calibri,sans-serif',
-                'font-weight:bold',
-                'font-size:.85em',
-            ].join(';') + '}' + '#' + ShutterPlacesIframeId + ' td{' + ['border-width:0 2px 0 0', 'border:solid #ece4d8', 'vertical-align:middle', 'text-align:center'].join(';') + '}' + '#' + ShutterPlacesIframeId + ' table:after{' + ['content:" "', 'display:block', 'width:100%', 'height:100px'].join(';') + '}' + '#' + ShutterPlacesIframeId + ' td.thumb img{' + ['min-width:50px', 'min-height:50px', 'max-width:100px'].join(';') + '}';
-            var dialog = document.createElement('div');
-            dialog.style.cssText = dialogStyle;
-            dialog.id = ShutterPlacesWindowHelperScriptId+'dialog';
-            var dismissLink = _createDismissLink(dismissText || param.closeText);
-            dismissLink.style.cssText = dismissLink.style.cssText + ';display:block;background-color:#193441;' +
-                'text-align:center;padding:4px;font:normal 15px/17px \'PT Sans\',Arial';
-
-            content.appendChild(dismissLink);
-            var frame = document.createElement('div');
-            frame.id = ShutterPlacesIframeId;
-            frame.style.cssText = "width:100%;height:100%;overflow-y:scroll;";
-            content.appendChild(frame);
-            dialog.appendChild(content);
-            ShutterPlacesWindowHelperScriptElement.appendChild(glassPanel);
-            ShutterPlacesWindowHelperScriptElement.appendChild(dialog);
-            ShutterPlacesWindowHelperScriptElement.appendChild(css);
-            return ShutterPlacesWindowHelperScriptElement;
-        };
-        this._showShutterPlacesWindowHelperScript = function(dismissText, linkHref) {
-      var ShutterPlacesElement = document.getElementById(ShutterPlacesWindowHelperScriptId);
-      if (ShutterPlacesElement != null) {
-        ShutterPlacesElement.style.display = 'block';
-      }
-      else{
-
-
-                var consentElement =
-                    _createDialogElement(dismissText || param.closeText, linkHref || '/');
-                var fragment = document.createDocumentFragment();
-                fragment.appendChild(consentElement);
-                document.body.appendChild(fragment.cloneNode(true));
-                document.getElementById(dismissLinkId).onclick = _dismissLinkClick;
-          }
-        };
-        this.Dialog = function (_url,lang) {
-            Button(_url || url);
-            _showShutterPlacesWindowHelperScript(_url || url);
-            sp.table.draw_table();
-            sp.ls.get();
-            // sp.table.load_info(param.url);
-        };
-
-        this._close = function () {
-            var ShutterPlacesElement = document.getElementById(ShutterPlacesWindowHelperScriptId);
-            if (ShutterPlacesElement !== null) {
-                ShutterPlacesElement.style.display = 'none';
-            }
-        }
-        this._buttonIdClick = function() {
-            Dialog(param.buttonText, param.closeText, url);
-        };
-        this.resolve_place = function(placespot, lon, lat, zoom){
-        if (zoom === undefined) zoom = '11';
-        jQuery.get(https+"://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lon, function(data) {
-            if (typeof data.results[0] !== 'undefined' && typeof data.results[0].formatted_address !== 'undefined') {
-                var o = data.results[0].formatted_address;
-            } else if (typeof lat !== 'undefined') {
-                var o = '@' + lat + "," + lon;
-            }
-            if (typeof o !== 'undefined') placespot.html(o); // add place name to place cell
-            }, "json");
-        }
-
-        this.draw_table = function (url) {
-            var t = jQuery('#' + ShutterPlacesIframeId + ' table');
-            if (typeof t.html() == 'undefined') {
-                // console.log(document.getElementById(ShutterPlacesIframeId));
-                // var t = document.createElement('table');
-                // t.width = "100%";
-                // t.height = "100%";
-                // document.getElementById(ShutterPlacesIframeId).appendChild(t);
-                jQuery('#' + ShutterPlacesIframeId).html('<table></table>');
-                jQuery('#' + ShutterPlacesIframeId + ' table').append('<tr>' + '<th>'+param.thumbText+'</th>' + '<th>'+param.similarText+'</th>' + '<th>'+param.utilizesText+'</th>' + '<th>'+param.timeText+'</th>' + '<th>'+param.placeText+'</th>' + '</tr>');
-            }
-            // jQuery('#'+ShutterPlacesIframeId+' table').append('<tr>'+'<td>thumb</td>'+'<td>Stock</td>'+'<td>Google</td>'+'<td>time</td>'+'<td>place</td>'+'</tr>');
-        };
-
-        this.load_info = function (url) {
-            var t = jQuery('#' + ShutterPlacesIframeId + ' table tr td');
-            if (t.length < 1) {
-                jQuery.ajax({
-                    url: url,
-                    type: 'GET',
-                    success: function(data) {
-                        _localStorage(data);
-                        for (var i = 0; data.length > i; i++) {//data.length - 1
-                            if (jQuery('#' + ShutterPlacesIframeId + ' table .' + data[i].media_id) === null) continue; // если уже есть такой id
-                            var place = dic[lang][7];//vm20150528
-                            var time = new Date(data[i].time*1000);
-                            var coordinates = ''; var badge = 'Google maps';
-                            if (data[i].coordinates[0] && data[i].coordinates[1]) {
-                                // https://www.google.com/maps/dir//-20.4810998,-54.635534/@-21.3840774,-58.2390497,3z
-                                //place = 'https://www.google.com/maps/@' + data[i].latitude + ',' + data[i].longitude + ',11z';
-                                place = data[i].coordinates[0] + ',' + data[i].coordinates[1];
-                                coordinates = place;
-                            }
-                            if (data[i].country) {place = data[i].country; if(data[i].city) {place += ', ' + data[i].city;} badge = place;}
-                            if (data[i].coordinates[0] && data[i].coordinates[1]) {
-                                place = 'https://www.google.com/maps/dir//' + place + '/@' + coordinates + ',3z';
-                                place = '<a href="' + place + '" target="_blank">'+badge+'</a>';
-                            }
-                            else {var place = dic[lang][7]}
-                            data[i].thumb_url = 'https://thumb1.shutterstock.com/display_pic_with_logo/0/0/'+data[i].media_id+'.jpg';
-                            jQuery('#' + ShutterPlacesIframeId + ' table').append('<tr id="ph' + data[i].media_id + '_' + i + '" style="max-height:40px;">' + '<td class="thumb" style="width:105px"><a href="http://www.shutterstock.com/pic-' + data[i].media_id + '/index.html" target="_blank"><img src="' + data[i].thumb_url + '"></a></td>' + '<td class="similar"><a href="http://www.shutterstock.com/similar-' + data[i].media_id + '/index.html" target="_blank">Shutterstock</a></td>' + '<td class="google"><a href="https://www.google.com/searchbyimage?&amp;image_url=' + window.encodeURI('http://thumb1.shutterstock.com/display_pic_with_logo/0/0/' + data[i].media_id + '.jpg') + '" target="_blank">Google images</a></td>' + '<td class="time" style="max-width:80px">' + time + '</td>' + '<td class="place" style="max-width:100px;">' + place + '</td>' + '</tr>');
-                            if(!data[i].country && !data[i].city && data[i].coordinates[0] !== undefined && data[i].coordinates[1] !== undefined)
-                            ShutterPlacesWindowHelperScript.resolve_place(jQuery('#' + ShutterPlacesIframeId + ' table #ph' + data[i].media_id + '_' + i + ' .place a'), data[i].coordinates[1], data[i].coordinates[0], 11);
-                        };
-                    },
-                    cache: false,
-                    crossDomain: true,
-                    dataType: "json"
-                });
-            }
-        };
-        this.Button = function (_param) {
-          _ChangeMapOnClick();
-          if (typeof _param === 'string') url = _param;
-          for (var i in _param) { param[i] = _param[i]; }
-            var ButtonElem = document.getElementById(buttonId);
-            if (ButtonElem !== null) {
-                return;
-            } // уже существует кнопка
-          //   if (_closeText !== undefined)
-          //       closeText = _closeText;
-          //   if (_buttonText !== undefined)
-          //       buttonText = _buttonText;
-          var lang = _get_user_lang();
-            if (_param !== undefined) {
-                url = _param.url||url;
-            }
-                for (var i in keys) {
-                  if (dic[lang][i] !== undefined && _param === undefined || _param[keys[i]] === undefined){
-                    param[keys[i]] = dic[lang][i];
-                  }
-                };
-//            }
-            var el = document.createElement('div');
-
-            var css = document.createElement('style');
-            css.innerHTML = ['#' + buttonId + '{position:fixed',
-                'padding:11px 11px 22px',
-                'background:#c33',
-                'color:#fff',
-                'font-size:14px',
-                'font-weight:800',
-                'margin:0',
-                'border-radius:3px',
-                'right:-22px',
-                'max-width:200px',
-                'cursor: pointer',
-                'font-family:PT Sans,Helvetica Neue,Helvetica,Arial,sans-serif',
-                'top:25px',
-                'z-index:9999',
-                'line-height:11px',
-                'height:15px',
-                'transform:rotate(-90deg)',
-                'text-transform:uppercase',
-                'overflow:hidden',
-                'text-align:center'
-            ].join(';') + '}';
-            css.innerHTML += '#' + buttonId + ':hover{' + ['right:-21px','background:#df3b3b','box-shadow:0 2px 4px 0 rgba(71,0,0,.31)'].join(';') + '}';
-            el.id = buttonId;
-            el.innerHTML = param.buttonText;
-            document.body.appendChild(css.cloneNode(true));
-            // document.body.insertBefore(el.cloneNode(true),document.body.firstChild);
-            document.body.appendChild(el.cloneNode(true));
-            document.getElementById(buttonId).onclick = _buttonIdClick;
-        };
-        return {Dialog:Dialog,Button:Button,draw_table:draw_table,load_info:load_info,resolve_place:resolve_place};
-        })();
         var button = (function(that){
         var buttonId = 'ShutterPlacesButtonOpen'+id;
-        this.init = function(that){//js goes here
-        };
         this.click = function(that){//js goes here
+            if(!document.getElementById('mapp'+sp.id)) {
+                sp.map.build();}
             var a = document.getElementById(buttonId);
             if(!a.className) {a.className='open';sp.map.show();}
             else {a.className='';sp.map.hide();}
@@ -310,7 +93,7 @@
             document.body.appendChild(el.cloneNode(true));
             document.getElementById(buttonId).onclick = sp.button.click;
             };
-        return {init:init,build:build,click:click,hide:hide,show:show};
+        return {build:build,click:click,hide:hide,show:show};
         })();
         var cal = (function(that){//Calendar data picker
         this.startDate='',this._startDate='',this.endDate='',this._endDate='';
@@ -321,11 +104,11 @@
         if (!css){
             var css = document.createElement('style');
             css.id='calendar_data_picker';
-            css.innerHTML=['#datepickerholder'+id+'{z-index: 1;margin:0 auto;text-align:center;padding-left:50px;position: relative;display: inline-block}',
+            css.innerHTML=['#datepickerholder'+id+'{z-index: 103;margin:0 auto;text-align:center;margin-left:50px;position: fixed;display: inline-block}',
 '.datepickerholder {display: inline-block;border: 2px solid rgba(0, 0, 0, 0.2);border-radius: 4px;margin-top: 10px;}',
 '.datepickerholder label{cursor:pointer;width: 120px;font-family: PT Sans;font-weight:bold;background: #fff;display: block;padding: 0;margin: 0;border-radius: 4px 4px 0 0;}',
 '.datepickerholder:hover *{background:#f4f4f4}',
-'input[type=text]#startDate,input[type=text]#endDate{cursor:pointer;outline-style: none;padding: 0;width: 120px;height:20px;margin: 0;border:none;text-align: center;font-size: 13px;border-radius: 0 0 4px 4px;}'].join('');
+'input[type=text]#startDate,input[type=text]#endDate{cursor:pointer;outline-style: none;padding: 0;width: 120px;height:21px;margin: 0;border:none;text-align: center;font-size: 13px;border-radius: 0 0 4px 4px;}'].join('');
 var m = document.getElementById('mapp'+id);
 if (m) m.insertAdjacentElement('beforeBegin',css);
 var css = document.createElement('link');
@@ -474,8 +257,7 @@ var map = (function(){
         var d = document.getElementById(sid);
         if(!d){
         document.body.insertAdjacentHTML('afterBegin',['<div id="'+sid+'">','<div id=side'+id+'></div>','<button class="close-sign" type="button">✕</button>','<div id=mapp'+id+'>','<div id=mesta'+id+'></div>','</div>','</div>'].join(''));
-        sp.map.draw();
-        sp.map.markers(sp.ls.get(0,10));
+        sp.http.get(function(e){sp.ls.add(sp.ls.prepare(e));sp.map.markers(sp.ls.get(0,10));},sp.url);
         sp.cal.build();
         document.querySelector('.close-sign').onclick=function(){
             sp.map.hide();
@@ -497,32 +279,35 @@ var map = (function(){
         }
     };
 
-    var draw = function(){
+    this.draw = function(){
 var map = L.map('mesta'+id,{maxZoom:maxZoom,
 minZoom:minZoom,
 zoom:3,
 maxBounds:[[88,220], [-88,-220]],
 layers: []}).setView([0, 0], 2);
-map.addControl(new L.Control.Scale().setPosition('bottomleft'));map.attributionControl.remove();
+map.addControl(new L.Control.Scale().setPosition('bottomleft'));//map.attributionControl.remove();
 L.tileLayer(tile+ext).addTo(map);
+//var bounds = [[90,180], [-90,-180]];
+//var image = L.imageOverlay('map2.svg', bounds).addTo(map);
+
 this.map = map;
     };
-var build = function(){
+var build = function(that){
         var css = document.getElementById('shuttermaps_map_css');
         if (!css){
             var css = document.createElement('style');
             css.id='shuttermaps_map_css';
-            css.innerHTML=['#shutter_places_map_container%id%.hidden{display:none;}',
+            css.innerHTML=['#shutter_places_map_container%id% .leaflet-container .leaflet-top,#shutter_places_map_container%id% .leaflet-container .leaflet-bottom{background:transparent} #shutter_places_map_container%id%.hidden{display:none;}',
 '#mesta%id%,#side%id%,#mesta%id% *,#side%id% *{font-family:sans-serif,Arial,Verdana;}',
 '#side%id% .button{border:2px solid rgba(0, 0, 0, 0.6);padding:6px;margin:5px 0;cursor:pointer;color:#0078A8; text-align:center;display:block}',
-'#side%id%{display:none;background: #fff;width:0px;height: 100% !important;position: absolute;right: 0px;z-index: 3;box-sizing: border-box;padding: 10px;}',
+'#side%id%{display:none;background: #fff;width:0px;height: 100% !important;position: fixed;right: 0px;z-index: 103;box-sizing: border-box;padding: 10px;}',
 '#side%id%.open{display:block;width:300px;box-shadow:0 0 30px rgba(0,0,0,0.5);right: 0;}',
 '#side%id% p, #side%id% div, #side%id% h2 {text-align: center;}',
 '#side%id% h2 {color:#0078A8;text-align:center;font-weight: normal;}',
 '#side%id% p img{border-radius:5px;margin:0 auto;width:auto;min-height:150px;max-height:250px;}',
 '#side%id% p::after,#side%id% h2::after{color:#ddd;content:"¶";}',
 '#side%id% a {color: #298aae;text-decoration: none;}',
-'#mesta%id%{position: absolute;top:0;left:0;width: 100% !important;height: 100% !important;padding: 0 !important;margin: 0 !important;}',
+'#mesta%id%{background:#ddd;position: fixed;top:0;left:0;width: 100% !important;height: 100% !important;padding: 0 !important;margin: 0 !important;z-index:102}',
 '#mesta%id% .marker-icon {border: 2px solid #0078A8;width: 4px;height: 4px;border-radius: 50%;background-color: #fff;transition: opacity 1s ease-in-out;}',
 '#mesta%id% .marker-icon img {width: 100%;max-height: 100%;vertical-align: middle;transition: opacity 1s ease-in-out;}',
 '#mesta%id% .holder {width: 100px;height: 67px;overflow: hidden;border: 2px solid #0078A8;background-color: #fff;border-radius: 5px;background-size: cover;cursor: pointer;}',
@@ -538,7 +323,7 @@ var build = function(){
 '#mesta%id% .leaflet-container #mesta%id% .leaflet-control-scale{font-size: 12px;font-weight: bold;}',
 '#mesta%id% .leaflet-control-scale-line{box-shadow: 1px 0 0 #fff, -1px 0 0 #fff;color: #000;text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, -1px 1px 0 #fff, 1px -1px 0 #fff;background: transparent !important;border: 1px solid #000;border-top:none;}',
 '#mesta%id% .leaflet-control-scale-line:not(:first-child){margin-top: -1px;border: 1px solid #000;border-bottom: none;}',
-'.close-sign {outline-style: none;position: absolute;top: 5px;right: 5px;height: 36px;width: 36px;color: rgba(0, 0, 0, 0.2);font-size: 38px;float: right;cursor: pointer;line-height: 0.7;vertical-align: middle;font-style: normal;font-weight: bold;background-color: transparent;border: none;padding: 0;margin: 0;z-index: 2;}'].join('').replace(/%id%/g,id);
+'.close-sign {outline-style: none;position: fixed;top: 5px;right: 5px;height: 36px;width: 36px;color: rgba(0, 0, 0, 0.2);font-size: 38px;float: right;cursor: pointer;line-height: 0.7;vertical-align: middle;font-style: normal;font-weight: bold;background-color: transparent;border: none;padding: 0;margin: 0;z-index: 103;}'].join('').replace(/%id%/g,id);
 document.body.insertAdjacentElement('beforeEnd',css);
 if (typeof L == 'undefined')
 {
@@ -546,7 +331,7 @@ var script = document.createElement('script');
 script.async="true";
 script.src=base+"leaflet/leaflet.js";
 document.body.insertAdjacentElement('beforeEnd',script);
-script.onload=function(e){/*sp.map.init();*/};
+script.onload=function(e){sp.map.init();sp.map.draw();sp.map.clear_markers();sp.map.markers(sp.ls.get());};
 var css = document.createElement('link');
 css.rel="stylesheet";
 css.href=base+"leaflet/leaflet.css";
@@ -554,7 +339,7 @@ document.body.insertAdjacentElement('beforeEnd',css);
 }
 else{
 var elem = document.getElementById(sid);
-if (!elem) sp.map.init();
+if (!elem) {sp.map.init();sp.map.draw();}
 }
                 };
                 };//build: insert essential libs, elements into body and wait until it loads
@@ -565,6 +350,7 @@ for (var i = 0; i< a.length; i++){a[i].remove();}
 };
 var current_markers=[];
 var markers = function(a){
+if (!a || !a.length) return;
 sp.map.current_markers = a;
 var b = document.getElementById('selected_markers'); if(b) b.innerText=a.length;
 var classes = new Array(a.length).fill('');
@@ -623,7 +409,7 @@ for (var i = m.length - 1; i >= 0; i--) {
         var maxZ = 0;
         var m = document.querySelectorAll('.marker-icon');
         for (var i = m.length - 1; i >= 0; i--) {
-        maxZ = Math.max(m[i].style.zIndex,maxZ);
+        maxZ = Math.max(m[i].style.zIndex,maxZ,101);
         if (m[i].style.zIndex>1000) m[i].style.zIndex -=2;
         }
     event.target.parentElement.style.zIndex=maxZ+1;
@@ -777,6 +563,7 @@ this.map.on('contextmenu',function(e){url='https://maps.google.com/maps/api/geoc
             }
         };
         this.prepare = function(data){
+            if (typeof data == 'string' && data.substr(0,2)=='[{') data = JSON.parse(data);
             if (data.length > 0 && data[0].media_id !== undefined){}
             else if (data.media_id !== undefined && typeof data == 'object'){data = [data];}
             else {return;}
@@ -805,41 +592,10 @@ this.map.on('contextmenu',function(e){url='https://maps.google.com/maps/api/geoc
         return {get_user_lang:get_user_lang,set_user_lang:set_user_lang};
         })();
 
-        function _ChangeMapOnClick() {
-      var m = document.getElementById('download-map');
-      if (m != null)  {
-        m.onclick=function(e){_ChangeMapOnClickHandler(m,true);}
-        m.ontouchend=function(e){_ChangeMapOnClickHandler(m,true);}
-        var t = window.localStorage.getItem('m');
-        if (t == null || t == "null" || t=='a') _ChangeMapOnClickHandler(m,false);
-        }
-        }
-
-        function _ChangeMapOnClickHandler(m,l) {
-        var t = window.localStorage.getItem('m');
-    var a = document.querySelectorAll('.leaflet-zoom-animated g path');
-    for (var i = 0; i< a.length; i++){
-        var color = '#dddddd';
-        if (t == null || t == "null") {
-            color = 'rgb('+(Math.random()*255^1)+','+(Math.random()*255^1)+','+(Math.random()*255^1)+')';
-        }
-        else if (t=='a')
-        {
-            color= 120+Math.random()*87^1;
-            color = 'rgb('+color+','+color+','+color+')';
-        }
-        a[i].setAttribute('fill',color);
-        }
-        if (t==null || t=="null") res='a';
-        if (t=='a') res='b';
-        if (t=='b') res=null;
-        if (l) window.localStorage.setItem('m',res);
-        };
-
         var exports = {
             Button: Button,
             button: button,
-            table:table,
+            // table:table,
             init:init,
             ls:ls,
             cal:cal,
@@ -850,6 +606,8 @@ this.map.on('contextmenu',function(e){url='https://maps.google.com/maps/api/geoc
             user:user,
             backup:backup,
             localStorage:ls,
+            base:base,
+            url:url,
             // Dialog: Dialog,
             // 'draw_table': _draw_table,
             // 'load_info': _load_info,
@@ -858,21 +616,247 @@ this.map.on('contextmenu',function(e){url='https://maps.google.com/maps/api/geoc
             lang:lang,
             dic:dic
         };
-        exports.settings = {
-            'ShutterPlacesWindowHelperScriptId': ShutterPlacesWindowHelperScriptId,
-            'ShutterPlacesIframeId':ShutterPlacesIframeId,
-            // 'dismissLinkId': dismissLinkId,
-            // 'buttonId': buttonId,
-            // 'lang': lang,
-            // 'url': url,
-            // 'dic': dic,
-            // 'keys': keys,
-            param: param
-        };
+        exports.settings = param;
         return exports;
-    })();
+    })(this);
 
-    window.ShutterPlacesWindowHelperScript = ShutterPlacesWindowHelperScript;
-    if (!window.sp) window.sp = ShutterPlacesWindowHelperScript;
-    return ShutterPlacesWindowHelperScript;
+    window.sp = sp;
+    if (!window.ShutterPlacesWindowHelperScript) window.ShutterPlacesWindowHelperScript = sp;
+    return sp;
+})(this);
+
+
+sp.table = (function(that){
+this.param={id:'ShutterPlacesInfoIframe'+sp.id,bid:'ShutterPlacesTableButton'+sp.id};
+// var ShutterPlacesIframeId = 'ShutterPlacesInfoIframe' + sp.id;
+// var buttonId = 'ShutterPlacesButtonOpen' + sp.id;
+// var param = that.dic[that.lang];
+this._setElementText = function(element, text) {
+element.innerHTML = text;
+};
+this._dismissLinkClick = function() {
+_close();
+return false;
+}
+this._createDismissLink = function() {
+var dismissLink = document.createElement('a');
+_setElementText(dismissLink, param.Collapse);
+dismissLink.id = this.param.bid;
+dismissLink.href = '#';
+dismissLink.style.cssText = 'color:#fff;margin:4px 10px 10px;text-decoration:none;font:normal 15px/17px \'PT Sans\',Arial;';
+return dismissLink;
+}
+this._createDialogElement = function() {
+var glassStyle = 'position:fixed;width:100%;height:100%;z-index:9999;' +
+    'top:0;left:0;opacity:0.3;filter:alpha(opacity=30);' +
+    'background-color:#000;';
+var dialogStyle = 'z-index:10000;position:fixed;top:0';
+var contentStyle = 'position:fixed;height:100%;width:100%;' +
+    'background-color:#fff6e9;padding:10px 0;box-shadow:4px 4px 25px #888;font: 15px/17px "PT Sans",Arial;z-index: 10000;';
+var ShutterPlacesWindowHelperScriptElement = document.createElement('div');
+
+var glassPanel = document.createElement('div');
+glassPanel.style.cssText = glassStyle;
+
+var content = document.createElement('div');
+content.style.cssText = contentStyle;
+
+var css = document.createElement('style');
+css.innerHTML = '#' + this.param.id + ' table{' + ['background:#fff6e9',
+    'width:100%',
+    'margin-bottom:50px',
+    'border-bottom:2px solid #bdb6ad',
+    'margin:10px 0'
+].join(';') + '}' + '#' + this.param.id + ' th{' + ['display:table-cell',
+    'padding:2px 10px',
+    'border:solid #ece4d8',
+    'border-width:0 2px 2px 0',
+    'color:#cd596b',
+    'font-family:"Open Sans",Myriad,Calibri,sans-serif',
+    'font-weight:bold',
+    'font-size:.85em',
+].join(';') + '}' + '#' + this.param.id + ' td{' + ['border-width:0 2px 0 0', 'border:solid #ece4d8', 'vertical-align:middle', 'text-align:center'].join(';') + '}' + '#' + this.param.id + ' table:after{' + ['content:" "', 'display:block', 'width:100%', 'height:100px'].join(';') + '}' + '#' + this.param.id + ' td.thumb img{' + ['min-width:50px', 'min-height:50px', 'max-width:100px'].join(';') + '}';
+var dialog = document.createElement('div');
+dialog.style.cssText = dialogStyle;
+dialog.id = 'ShutterPlacesDialogTable'+sp.id;
+var dismissLink = _createDismissLink(param.Collapse);
+dismissLink.style.cssText = dismissLink.style.cssText + ';display:block;background-color:#193441;' +
+    'text-align:center;padding:4px;font:normal 15px/17px \'PT Sans\',Arial';
+
+content.appendChild(dismissLink);
+var frame = document.createElement('div');
+frame.id = this.param.id;
+frame.style.cssText = "width:100%;height:100%;overflow-y:scroll;";
+content.appendChild(frame);
+dialog.appendChild(content);
+ShutterPlacesWindowHelperScriptElement.appendChild(glassPanel);
+ShutterPlacesWindowHelperScriptElement.appendChild(dialog);
+ShutterPlacesWindowHelperScriptElement.appendChild(css);
+return ShutterPlacesWindowHelperScriptElement;
+};
+this._showShutterPlacesWindowHelperScript = function() {
+var ShutterPlacesElement = document.getElementById(this.param.id);
+if (ShutterPlacesElement != null) {
+ShutterPlacesElement.style.display = 'block';
+}
+else{
+// var consentElement =
+    // _createDialogElement(param.Collapse);
+// var fragment = document.createDocumentFragment();
+// fragment.appendChild(consentElement);
+// document.body.appendChild(fragment.cloneNode(true));
+document.getElementById(this.param.bid).onclick = _dismissLinkClick;
+}
+};
+this.Dialog = function () {
+Button();
+_showShutterPlacesWindowHelperScript();
+sp.table.draw_table();
+};
+
+this._close = function () {
+var ShutterPlacesElement = document.getElementById('ShutterPlacesDialogTable'+sp.id);
+if (ShutterPlacesElement !== null) {
+    ShutterPlacesElement.style.display = 'none';
+}
+}
+this._buttonIdClick = function() {
+Dialog();
+};
+this.resolve_place = function(placespot, lon, lat, zoom){
+if (zoom === undefined) zoom = '11';
+jQuery.get(https+"://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lon, function(data) {
+if (typeof data.results[0] !== 'undefined' && typeof data.results[0].formatted_address !== 'undefined') {
+    var o = data.results[0].formatted_address;
+} else if (typeof lat !== 'undefined') {
+    var o = '@' + lat + "," + lon;
+}
+if (typeof o !== 'undefined') placespot.html(o); // add place name to place cell
+}, "json");
+}
+
+this.draw_table = function (url) {
+var t = jQuery('#' + this.param.id + ' table');
+if (typeof t.html() == 'undefined') {
+    // console.log(document.getElementById(ShutterPlacesIframeId));
+    // var t = document.createElement('table');
+    // t.width = "100%";
+    // t.height = "100%";
+    // document.getElementById(ShutterPlacesIframeId).appendChild(t);
+    jQuery('#' + this.param.id).html('<table></table>');
+    jQuery('#' + this.param.id + ' table').append('<tr>' + '<th>'+param.thumbText+'</th>' + '<th>'+param.similarText+'</th>' + '<th>'+param.utilizesText+'</th>' + '<th>'+param.timeText+'</th>' + '<th>'+param.placeText+'</th>' + '</tr>');
+}
+// jQuery('#'+ShutterPlacesIframeId+' table').append('<tr>'+'<td>thumb</td>'+'<td>Stock</td>'+'<td>Google</td>'+'<td>time</td>'+'<td>place</td>'+'</tr>');
+};
+
+this.load_info = function (data) {
+if (!data) var data = sp.ls.get();
+var t = jQuery('#' + this.param.id + ' table tr td');
+if (t.length < 1) {
+        for (var i = 0; data.length > i; i++) {//data.length - 1
+                if (jQuery('#' + this.param.id + ' table .' + data[i].media_id) === null) continue; // если уже есть такой id
+                var place = 'place';//dic[lang][7];//vm20150528
+                var time = new Date(data[i].time*1000);
+                var coordinates = ''; var badge = 'Google maps';
+                if (data[i].coordinates[0] && data[i].coordinates[1]) {
+                    // https://www.google.com/maps/dir//-20.4810998,-54.635534/@-21.3840774,-58.2390497,3z
+                    //place = 'https://www.google.com/maps/@' + data[i].latitude + ',' + data[i].longitude + ',11z';
+                    place = data[i].coordinates[0] + ',' + data[i].coordinates[1];
+                    coordinates = place;
+                }
+                if (data[i].country) {place = data[i].country; if(data[i].city) {place += ', ' + data[i].city;} badge = place;}
+                if (data[i].coordinates[0] && data[i].coordinates[1]) {
+                    place = 'https://www.google.com/maps/dir//' + place + '/@' + coordinates + ',3z';
+                    place = '<a href="' + place + '" target="_blank">'+badge+'</a>';
+                }
+                else {var place = dic[lang][7]}
+                data[i].thumb_url = 'https://image.shutterstock.com/display_pic_with_logo/0/0/'+data[i].media_id+'.jpg';
+                jQuery('#' + this.param.id + ' table').append('<tr id="ph' + data[i].media_id + '_' + i + '" style="max-height:40px;">' + '<td class="thumb" style="width:105px"><a href="http://www.shutterstock.com/pic-' + data[i].media_id + '/index.html" target="_blank"><img src="' + data[i].thumb_url + '"></a></td>' + '<td class="similar"><a href="http://www.shutterstock.com/similar-' + data[i].media_id + '/index.html" target="_blank">Shutterstock</a></td>' + '<td class="google"><a href="https://www.google.com/searchbyimage?&amp;image_url=' + window.encodeURI('http://image.shutterstock.com/display_pic_with_logo/0/0/' + data[i].media_id + '.jpg') + '" target="_blank">Google images</a></td>' + '<td class="time" style="max-width:80px">' + time + '</td>' + '<td class="place" style="max-width:100px;">' + place + '</td>' + '</tr>');
+                if(!data[i].country && !data[i].city && data[i].coordinates[0] !== undefined && data[i].coordinates[1] !== undefined)
+                ShutterPlacesWindowHelperScript.resolve_place(jQuery('#' + this.param.id + ' table #ph' + data[i].media_id + '_' + i + ' .place a'), data[i].coordinates[1], data[i].coordinates[0], 11);
+        }
+
+}
+};
+this.Button = function (_param) {
+_ChangeMapOnClick();
+if (typeof _param === 'string') url = _param;
+for (var i in _param) { param[i] = _param[i]; }
+var ButtonElem = document.getElementById('ShutterPlacesTable'+sp.id);
+if (ButtonElem !== null) {
+    return;
+} // уже существует кнопка
+//   if (_closeText !== undefined)
+//       closeText = _closeText;
+//   if (_buttonText !== undefined)
+//       buttonText = _buttonText;
+var lang = sp.ui.get_user_lang();
+if (_param !== undefined) {
+    url = _param.url||url;
+}
+    for (var i in keys) {
+      if (sp.dic[lang][i] !== undefined && _param === undefined || _param[keys[i]] === undefined){
+        param[keys[i]] = sp.dic[lang][i];
+      }
+    };
+//            }
+var el = document.createElement('div');
+
+var css = document.createElement('style');
+css.innerHTML = ['#' + 'ShutterPlacesTable'+sp.id + '{background:#3181FF',
+    'color:#fff',
+    'font-size:21px',
+    'font-weight:800',
+    'margin:0',
+    'border-radius:3px',
+    'max-width:200px',
+    'cursor: pointer',
+    'font-family:"PT Sans"',
+    'z-index:9999',
+    'line-height:26px',
+    'height:26px',
+    'text-transform:uppercase',
+    'overflow:hidden',
+    'text-align:center'
+].join(';') + '}';
+css.innerHTML += '#ShutterPlacesTable'+sp.id + ':hover{' + ['background:#1966CC','box-shadow:0 2px 4px 0 rgba(71,0,0,.31)'].join(';') + '}#ShutterPlacesTable'+sp.id+':active{margin-top:2px}';
+el.id = 'ShutterPlacesTable'+sp.id;
+el.innerHTML = param.buttonText;
+document.body.appendChild(css.cloneNode(true));
+// document.body.insertBefore(el.cloneNode(true),document.body.firstChild);
+document.getElementById('download-map-container').querySelector('.h4').appendChild(el.cloneNode(true));
+document.getElementById('ShutterPlacesTable'+sp.id).onclick = _buttonIdClick;
+};
+
+this._ChangeMapOnClick = function() {
+var m = document.getElementById('download-map');
+if (m != null)  {
+m.onclick=function(e){this._ChangeMapOnClickHandler(m,true);}
+m.ontouchend=function(e){this._ChangeMapOnClickHandler(m,true);}
+var t = window.localStorage.getItem('m');
+if (t == null || t == "null" || t=='a') this._ChangeMapOnClickHandler(m,false);
+}
+};
+
+this._ChangeMapOnClickHandler = function (m,l) {
+var t = window.localStorage.getItem('m');
+var a = document.querySelectorAll('.leaflet-zoom-animated g path');
+for (var i = 0; i< a.length; i++){
+var color = '#dddddd';
+if (t == null || t == "null") {
+    color = 'rgb('+(Math.random()*255^1)+','+(Math.random()*255^1)+','+(Math.random()*255^1)+')';
+}
+else if (t=='a')
+{
+    color= 120+Math.random()*87^1;
+    color = 'rgb('+color+','+color+','+color+')';
+}
+a[i].setAttribute('fill',color);
+}
+if (t==null || t=="null") res='a';
+if (t=='a') res='b';
+if (t=='b') res=null;
+if (l) window.localStorage.setItem('m',res);
+};
+return {Dialog:Dialog,Button:Button,draw_table:draw_table,load_info:load_info,resolve_place:resolve_place,_ChangeMapOnClickHandler:_ChangeMapOnClickHandler,_ChangeMapOnClick:_ChangeMapOnClick,param:param};
 })(this);
