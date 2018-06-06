@@ -115,9 +115,9 @@ var setDiv = function(videos) {
 '}'].join('');
     document.head.insertAdjacentElement('beforeEnd',css);
     var title = 'saved video';
-    var titleH1 = document.getElementById('watch-headline-title');
+    var titleH1 = document.querySelector('h1.title');//watch-headline-title
     if (titleH1 !== null) {
-        title = titleH1.children[0].innerText;
+        title = titleH1.innerHTML;
     }
 ;
 ;
@@ -140,7 +140,7 @@ var setDiv = function(videos) {
     html = html + ['</ul>',
     '</li>',
     '</ul>'].join('');
-    var wpDiv = document.getElementById('watch-headline-title');
+    var wpDiv = document.getElementById('info');
     if (wpDiv !== null) {
         wpDiv.insertAdjacentHTML('beforeend', html);
     button_click_event_handler_activator();
@@ -156,9 +156,9 @@ if (this.responseURL.search('timedtext')!=-1)
 if (!d0){
 var d1=document.querySelector('#download-youtube-chrome-extension ul');
     var title = 'saved video';
-    var titleH1 = document.getElementById('watch-headline-title');
+    var titleH1 = document.querySelector('h1.title');//watch-headline-title
     if (titleH1 !== null) {
-        title = titleH1.children[0].innerText;
+        title = titleH1.innerHTML;
     }
 d1.insertAdjacentHTML('beforeend', '<li id="download-youtube-chrome-extension-subtitles"><a href="'+this.responseURL+'" title="'+title.replace('"','%22')+'" download="'+title.replace('"','%22')+'.asr3">Subtitles</a></li>');
 }else {d0.href=this.responseURL;}}
