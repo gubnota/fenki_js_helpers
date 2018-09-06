@@ -22,17 +22,17 @@ var w = window;
 var a = document.getElementsByClassName('play');
 for (var i = a.length - 1; i >= 0; i--) {
 var b = a[i].getAttribute('onclick');
-if (/^PlayPhrase\(/.test(a[i]))
+if (/^PlayPhrase\(/.test(b))
     {
-    var g = /'([^\']+)'/.exec(a[i]);
+    var g = /'([^\']+)'/.exec(b);
 if (g[1] !== undefined) 
     {
        a[i].setAttribute('onclick','//audio.forvo.com/mp3/'+atob(g[1]));
     }
 
     }
-else if (/^Play\(/.test(a[i])) {
-    var g = /'([^\']+)'/.exec(a[i]);
+else if (/^Play\(/.test(b)) {
+    var g = /'([^\']+)'/.exec(b);
 if (g[1] !== undefined) 
     {
        a[i].setAttribute('onclick','//audio00.forvo.com/phrases/mp3/'+atob(g[1]));
