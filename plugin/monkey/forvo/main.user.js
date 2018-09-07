@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       Forvo links
 // @namespace  http://gubnota.github.io/fenki_js_helpers/plugin/monkey/forvo/
-// @version    0.0.1
+// @version    0.0.2
 // @downloadURL http://gubnota.github.io/fenki_js_helpers/plugin/monkey/forvo/main.user.js
 // @description Forvo links
 // @include        http://*.forvo.com/*
@@ -27,7 +27,7 @@ if (/^PlayPhrase\(/.test(b))
     var g = /'([^\']+)'/.exec(b);
 if (g[1] !== undefined) 
     {
-       a[i].setAttribute('onclick','//audio.forvo.com/mp3/'+atob(g[1]));
+       a[i].setAttribute('onclick','window.open(\'//audio00.forvo.com/phrases/mp3/'+atob(g[1])+'\')');
     }
 
     }
@@ -35,7 +35,7 @@ else if (/^Play\(/.test(b)) {
     var g = /'([^\']+)'/.exec(b);
 if (g[1] !== undefined) 
     {
-       a[i].setAttribute('onclick','//audio00.forvo.com/phrases/mp3/'+atob(g[1]));
+       a[i].setAttribute('onclick','window.open(\'//audio00.forvo.com/mp3/'+atob(g[1])+'\')');
     }
     }
 }
