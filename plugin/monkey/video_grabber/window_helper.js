@@ -157,13 +157,13 @@ window.getSelection().addRange(range);
           if (ButtonElem !== null) {
               return;
           }
-        var lang = _get_user_lang();
+        var lang = 'en';//_get_user_lang();
           if (_param !== undefined) {
               url = _param.url||url;
           }
               for (var i in keys) {
-                if (dic[lang][i] !== undefined && _param === undefined || _param[keys[i]] === undefined){
-                  param[keys[i]] = dic[lang][i];
+//                if (dic[lang][i] !== undefined && _param === undefined || _param[keys[i]] === undefined){
+                  param[keys[i]] = dic[lang][i]||'Underfined';
                 }
               };
           var el = document.createElement('div');
