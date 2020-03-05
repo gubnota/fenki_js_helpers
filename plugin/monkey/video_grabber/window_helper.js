@@ -131,11 +131,12 @@
       }
 
       function _get_user_lang() {
-          var match = document.cookie.match(new RegExp('lang=([^;]+)')); ///ru/g.test(window.navigator.language)
-          if (match && match[1] !== undefined) return match[1].toString();
-          if (typeof window.navigator.languages[0] !== 'undefined')
-            return window.navigator.languages[0].substring(0,2).toLowerCase();
-          return lang;
+        return 'en';
+          // var match = document.cookie.match(new RegExp('lang=([^;]+)')); ///ru/g.test(window.navigator.language)
+          // if (match && match[1] !== undefined) return match[1].toString();
+          // if (typeof window.navigator.languages[0] !== 'undefined')
+          //   return window.navigator.languages[0].substring(0,2).toLowerCase();
+          // return lang;
       }
       function _select_and_copy(el){
         const el2 = document.createElement('textarea');
@@ -161,9 +162,9 @@ window.getSelection().addRange(range);
               url = _param.url||url;
           }
               for (var i in keys) {
-//                if (dic[lang][i] !== undefined && _param === undefined || _param[keys[i]] === undefined){
+                if (dic[lang][i] !== undefined && _param === undefined || _param[keys[i]] === undefined){
                   param[keys[i]] = dic[lang][i];
-//                }
+                }
               };
           var el = document.createElement('div');
 
