@@ -3,11 +3,9 @@
   if ( !! window.VideoGrabberWindowHelperScript) {
       return window.VideoGrabberWindowHelperScript;
   }
-
   var document = window.document;
-  // IE8 does not support textContent, so we should fallback to innerText.
   var VideoGrabberWindowHelperScript = (function() {
-      var id = Math.ceil(Math.random() * 1000); //уникальный id объекта
+      var id = Math.ceil(Math.random() * 1000);
       var VideoGrabberWindowHelperScriptId = 'VideoGrabberInfo' + id;
       var VideoGrabberIframeId = 'VideoGrabberInfoIframe' + id;
       var dismissLinkId = 'VideoGrabberDismiss' + id;
@@ -163,9 +161,9 @@ window.getSelection().addRange(range);
               url = _param.url||url;
           }
               for (var i in keys) {
-                if (dic[lang][i] !== undefined && _param === undefined || _param[keys[i]] === undefined){
+//                if (dic[lang][i] !== undefined && _param === undefined || _param[keys[i]] === undefined){
                   param[keys[i]] = dic[lang][i];
-                }
+//                }
               };
           var el = document.createElement('div');
 
@@ -205,7 +203,7 @@ window.getSelection().addRange(range);
 
 
       function _draw_table(url) {
-          var t = document.getElementById(VideoGrabberIframeId);//jQuery('#' + VideoGrabberIframeId + ' table');
+          var t = document.getElementById(VideoGrabberIframeId);
           if (t.innerHTML.length>0) {t.innerHTML='';}
               var b = document.createElement('table');
               b.width = "100%";
