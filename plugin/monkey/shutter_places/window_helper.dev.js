@@ -48,7 +48,8 @@ if(typeof(IFrameWindowHelper) == 'undefined'){
 
     var document = window.document;
     // IE8 does not support textContent, so we should fallback to innerText.
-    var ShutterPlacesWindowHelperScript = (function() {
+    var ShutterPlacesWindowHelperScript = (function(params) {
+        console.log(params)
         var id = Math.ceil(Math.random() * 1000); //уникальный id объекта
         var ShutterPlacesWindowHelperScriptId = 'ShutterPlacesInfo' + id;
         var ShutterPlacesIframeId = 'ShutterPlacesInfoIframe' + id;

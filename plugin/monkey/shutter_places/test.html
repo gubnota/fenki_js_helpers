@@ -140,16 +140,16 @@ position: relative;
 	<div class="h4">Latest downloads</div>	
 </div>
 <!--<img src="map.svg" style="display: none">-->
-<!-- <div id="container">
+<div id="container">
 <div id=side></div>
 <button class="close-sign" type="button">✕</button>
 <div id=mapp>
 <div id=mesta></div>
 </div>
-</div> -->
+</div>
 <script>
 </script>
-<!-- <div class="modal-container" style="display: none;">
+<div class="modal-container" style="display: none;">
 <div class="modal-table">
 <div class="modal-cell">
 <div class="modal-content">
@@ -157,7 +157,7 @@ position: relative;
 <button class="modal-close" type="button">✕</button>
 
 </div></div></div></div>
- -->
+
  <script>
 (function(f,e,n,k,i){
 var n=e.createElement(n);
@@ -167,9 +167,13 @@ n.src=k;
 if(typeof(IFrameWindowHelper) == 'undefined'){
 // if (/Safari/g.test(window.navigator.appVersion)){
 // window_helper.js}
-n.onload = function(){ShutterPlacesWindowHelperScript.init({base:''});};
+n.onload = function(){
+    ShutterPlacesWindowHelperScript.init({base:'',test:true});
+document.getElementById("ShutterPlacesButtonOpen"+ShutterPlacesWindowHelperScript.id).dispatchEvent(new Event("click"));
+
+};
 }
 (e[i]('head')[0] || e[i]('body')[0]).appendChild(n);
-})(window,document,'script','new.js','getElementsByTagName');
+})(window,document,'script','window_helper.test.js','getElementsByTagName');
 </script></body>
 </html>
