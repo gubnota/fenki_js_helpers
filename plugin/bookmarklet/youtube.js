@@ -1,1 +1,1 @@
-javascript: (function ()% 7Bvar % 20a % 3Ddocument.querySelectorAll('video') % 5B0 % 5D % 3Bwindow.open(a.src % 2C'_blank') % 7D) ()
+javascript:(function()%7Bvar%20a%3Ddocument.querySelectorAll('video')%5B0%5D%3Bwindow.open(a.src%2C'_blank')%7D)()
