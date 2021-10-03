@@ -1,6 +1,7 @@
 // ==UserScript==
-// @name         console.save as file
-// @namespace    http://tampermonkey.net/
+// @name         console.save as a file
+// @namespace    fenki_js_helpers
+// @downloadURL http://gubnota.github.io/fenki_js_helpers/plugin/monkey/console.save/main.user.js
 // @version      0.1
 // @description  saves json objects to file when one calls console.save(data)
 // @author       You
