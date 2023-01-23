@@ -18,8 +18,7 @@ window.prepareMarkdown = () => {
 			default:
 				var from = tick.outerHTML.replace('><', '>```swift<br/><')
 				var to = tick.outerHTML.replace('><', '><br/>```<')
-				el.innerHTML = from + el.innerHTML + to
-				console.log(from, to)
+				if (el.innerHTML.length > 0) el.innerHTML = from + el.innerHTML + to
 				break
 		}
 	})
