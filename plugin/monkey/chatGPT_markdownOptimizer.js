@@ -22,28 +22,39 @@ window.prepareMarkdown = () => {
 				break
 		}
 	})
+	document.querySelectorAll('img.rounded-sm').forEach(function (el) {
+		if (el.getAttribute('alt') != '') el.setAttribute('alt', '')
+	})
+	document.querySelectorAll('.whitespace-pre-wrap').forEach(function (el, i) {
+		if (i % 2 == 0 && el.innerText.search('#') === -1) {
+			// only odd items with questions and doesn't preceded with #
+			el.innerHTML = '# ' + el.innerHTML
+		}
+	})
 }
-var el = document.createElement('div')
-el.style.position = 'fixed'
-el.style.top = '20px'
-el.style.right = '20px'
-el.style.borderRadius = '6px'
-el.style.height = '60px'
-el.style.width = '60px'
-el.style.background = '#f60'
-el.style.cursor = 'pointer'
-document.body.appendChild(el)
-el.onclick = () => {
-	console.log('prepareMarkdown')
+// var el = document.createElement('div')
+// el.style.position = 'fixed'
+// el.style.top = '20px'
+// el.style.right = '20px'
+// el.style.borderRadius = '6px'
+// el.style.height = '60px'
+// el.style.width = '60px'
+// el.style.background = '#f60'
+// el.style.cursor = 'pointer'
+// document.body.appendChild(el)
+// el.onclick = () => {
+// 	console.log('prepareMarkdown')
+// 	window.prepareMarkdown()
+// }
+setInterval(() => {
 	window.prepareMarkdown()
-}
-setTimeout(() => {
-	window.prepareMarkdown()
-}, 1000)
+}, 5000)
 var style = document.createElement('style')
 style.innerHTML = [
-	// '.prose :where(code):not(:where([class~=not-prose] *)):before,.prose :where(code):not(:where([class~=not-prose] *)):after{content:"" !important}',
-	'b.tick{opacity:0}',
+	'.prose :where(code):not(:where([class~=not-prose] *)):before,.prose :where(code):not(:where([class~=not-prose] *)):after{content:"" !important}',
+	'b.tick{opacity:1}',
+	'code.hljs > b.tick {font-size:0px}',
+	'img.rounded-sm{user-select: none;}',
 	'button.flex.ml-auto.gap-2{display:none}',
 ].join('\n')
 document.body.appendChild(style)
