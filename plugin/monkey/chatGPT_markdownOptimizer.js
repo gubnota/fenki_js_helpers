@@ -1,11 +1,17 @@
 // ==UserScript==
-// @name        chatGPT MarkDown optimizer
-// @description add backticks
+// @name  chatGPT Markdown optimization
+// @description adds headings and backticks to the code blocks
+// @author Larry Moore (Vladislav Muravyev)
+// @website https://fenki.net/
 // @match       https://chat.openai.com/chat/*
 // // @run-at document-end
 // ==/UserScript==
-
+/*
+TODO: If you want to run script manually comment out section with setInterval and uncomment the button above
+*/
 window.prepareMarkdown = () => {
+	if (document.querySelector('.result-streaming') !== null) return // a query is running
+	//    if (document.querySelector('.btn.flex.justify-center.gap-2.btn-neutral') && document.querySelector('.btn.flex.justify-center.gap-2.btn-neutral').innerText == "Stop generating") return  // a query is running
 	var tick = document.createElement('b')
 	tick.classList.add('tick')
 	document.querySelectorAll('code').forEach(function (el) {
