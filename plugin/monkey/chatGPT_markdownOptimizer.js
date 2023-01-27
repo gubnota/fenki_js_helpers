@@ -3,7 +3,7 @@
 // @description adds headings and backticks to the code blocks
 // @author Larry Moore (Vladislav Muravyev)
 // @website https://fenki.net/
-// @match       https://chat.openai.com/chat/*
+// @match       https://chat.openai.com/chat*
 // // @run-at document-end
 // ==/UserScript==
 /*
